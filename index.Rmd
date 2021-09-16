@@ -54,7 +54,7 @@ vacc <- read_csv("https://raw.githubusercontent.com/govex/COVID-19/master/data_t
 policytrackerOR <- read_csv("https://raw.githubusercontent.com/govex/COVID-19/govex_data/data_tables/policy_data/table_data/Current/Oregon_policy.csv")
 ```
 
-The projected cited above from a project I did spring term mainly looked at the case, death, and vaccination numbers per state to compare highly and mildly impacted states. However in this project I will mostly look at highly impacted states and the counties of Oregon. Additionally this project will use population and density data from the tidycensus package which I discuss more about how I got this data in a blog post [here](https://rbolt.netlify.app/post/2021/08/30/tidycensus-package/). Note that this data is from 2019, which is a couple years older than the COVID data. 
+The projected cited above mainly looked at the case, death, and vaccination numbers per state to compare highly and mildly impacted states. In this project I will look at highly impacted states and the counties of Oregon. Additionally this project will use population and density data from the tidycensus package. I discuss more about how I got this data using an API in a blog post [here](https://rbolt.netlify.app/post/2021/08/30/tidycensus-package/). Note that this data is from 2019, which is a couple years older than the COVID data. 
 
 ```{r}
 state.pop <- get_estimates(geography = "state", year = 2019, variable =  "POP") %>% rename ("state" = NAME, "population" = value)
