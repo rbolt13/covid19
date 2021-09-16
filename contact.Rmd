@@ -5,8 +5,10 @@ knit: (function(input_file, encoding) {
   rmarkdown::render(input_file,
  encoding=encoding,
  output_file=file.path(dirname(input_file), out_dir, 'contact.html'))})
-output: 
-  html_document: rmdformats::material
+output:
+  html_document:
+    toc: true
+    theme: darkly
 ---
 
 Like what you see? Have a specific questions? Send me an email letting me know.

@@ -1,8 +1,9 @@
 ---
 name: "covid19"
 output_dir: "docs"
-output: 
-  html_document: rmdformats::material
+output:
+  html_document:
+    theme: darkly
 navbar:
   title: "COVID-19"
   left:
