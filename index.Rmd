@@ -137,7 +137,7 @@ head(or.covid.est, n=10)
 
 To begin lets look at the country as a whole, by state. The data will be filtered for **September 16th, 2021**, and then lets look at the top five states with :
 
-* the highest number of cases
+### Most number of cases
 ```{r, echo=F}
 # us.states.cases <- us.states.vacc %>%
 #   filter(date =="2021-09-16") %>%
@@ -177,7 +177,7 @@ To begin lets look at the country as a whole, by state. The data will be filtere
 ```
 
 
-* the highest percentage of cases per state 
+### Highest percentage of cases per state 
 ```{r, echo=F}
 # us.states.cases.perc <- us.states.vacc %>%
 #   filter(date =="2021-09-16") %>%
@@ -198,14 +198,14 @@ To begin lets look at the country as a whole, by state. The data will be filtere
 ```
 
 
-* the highest number of deaths
+### Most number of deaths
 ```{r, echo=F}
 us.states.deaths <- us.states.vacc %>%
   filter(date =="2021-09-16") %>%
   select(state, population, deaths, perc.deaths) %>%
-  arrange(desc(deaths)) %>%
-    head(5) %>%
-    gt() %>%
+  arrange(desc(deaths))
+# table
+gt(us.states.deaths[1:5,]) %>%
     fmt_number(columns = deaths, decimals = 0) %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = perc.deaths, decimals = 2) %>%
@@ -215,17 +215,16 @@ us.states.deaths <- us.states.vacc %>%
                population = md("**Total Population**"),
                deaths = md("**Deaths**"),
                perc.deaths = md("**Percentage**"))
-us.states.deaths
 ```
 
-* the highest percentage of deaths per state
+### Highest percentage of deaths per state
 ```{r, echo=F}
 us.states.deaths.perc <- us.states.vacc %>%
   filter(date =="2021-09-16") %>%
   select(state, population, deaths, perc.deaths) %>%
-  arrange(desc(perc.deaths)) %>%
-    head(5) %>%
-    gt() %>%
+  arrange(desc(perc.deaths)) 
+# table
+gt(us.states.deaths.perc[1:5,]) %>%
     fmt_number(columns = deaths, decimals = 0) %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = perc.deaths, decimals = 2) %>%
@@ -235,17 +234,16 @@ us.states.deaths.perc <- us.states.vacc %>%
                population = md("**Total Population**"),
                deaths = md("**Deaths**"),
                perc.deaths = md("**Percentage**"))
-us.states.deaths.perc
 ```
 
-* the most people fully vaccinated 
+### Most people fully vaccinated 
 ```{r, echo=F}
-us.states.vacc <- us.states.vacc %>%
+us.states.most.vacc <- us.states.vacc %>%
   filter(date =="2021-09-16") %>%
   select(state, population, full.vacc, full.vacc.perc) %>%
-  arrange(desc(full.vacc)) %>%
-    head(5) %>%
-    gt() %>%
+  arrange(desc(full.vacc)) 
+# Table
+gt(us.states.most.vacc[1:5,]) %>%
     fmt_number(columns = full.vacc, decimals = 0) %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = full.vacc.perc, decimals = 2) %>%
@@ -255,37 +253,36 @@ us.states.vacc <- us.states.vacc %>%
                population = md("**Total Population**"),
                full.vacc = md("**People Fully Vaccinated**"),
                full.vacc.perc = md("**Percentage**"))
-us.states.vacc
 ```
 
-* the highst percentage of people fully vaccinated 
+### Highest percentage of population fully vaccinated 
 ```{r, echo=F}
-# us.states.vacc.perc <- us.states.vacc %>%
-#   filter(date =="2021-09-01") %>%
-#   select(state, population, full.vacc, full.vacc.perc) %>%
-#   arrange(desc(full.vacc.perc)) %>%
-#     head(5) %>%
-#     gt() %>%
-#     fmt_number(columns = full.vacc, decimals = 0) %>%
-#     fmt_number(columns = population, decimals = 0) %>%
-#     fmt_percent(columns = full.vacc.perc, decimals = 2) %>%
-#     tab_header(title = md("**Highest Percent of People Fully Vaccinated**"),
-#                subtitle = "By state, as of September 1st, 2021") %>%
-#     cols_label(state = md("**State**"),
-#                population = md("**Total Population**"),
-#                full.vacc = md("**People Fully Vaccinated**"),
-#                full.vacc.perc = md("**Percentage**"))
-# us.states.vacc.perc
+us.states.vacc.perc <- us.states.vacc %>%
+  filter(date =="2021-09-01") %>%
+  select(state, population, full.vacc, full.vacc.perc) %>%
+  arrange(desc(full.vacc.perc))
+# table
+gt(us.states.vacc.perc[1:5,]) %>%
+    fmt_number(columns = full.vacc, decimals = 0) %>%
+    fmt_number(columns = population, decimals = 0) %>%
+    fmt_percent(columns = full.vacc.perc, decimals = 2) %>%
+    tab_header(title = md("**Highest Percent of People Fully Vaccinated**"),
+               subtitle = "By state, as of September 1st, 2021") %>%
+    cols_label(state = md("**State**"),
+               population = md("**Total Population**"),
+               full.vacc = md("**People Fully Vaccinated**"),
+               full.vacc.perc = md("**Percentage**"))
 ```
-* the least amount of people fully vaccinated
 
-* the lowest percentage of people fully vaccinated. 
+### Overview
+
+This is were I point out some things I notice.
 
 ## Looking at Oregon Counties
 
-Next to look at the data a little closer to home, for Oregon Counties. Initially filtering by the most recent date, which as of this being written is **September 16th, 2021**, and then look at the top five Oregon counties with :
+Next to look at the data a little closer to home, for Oregon Counties. Initially filtering by the most recent date, which as of this being written is **September 16th, 2021**, and then look at the top five Oregon counties.
 
-* the highest number of cases
+### Most number of cases
 ```{r, echo = F}
 # cases
 or.county.cases <- or.covid.est %>%
@@ -307,7 +304,7 @@ or.county.cases
 ```
 
 
-* the highest percentage of cases per county 
+### Highest percentage of cases per county 
 ```{r, echo = F}
 #cases percent
 or.county.cases.perc <- or.covid.est %>%
@@ -329,7 +326,7 @@ or.county.cases.perc
 ```
 
 
-* the highest number of deaths
+### Most number of deaths
 ```{r, echo = F}
 #deaths
 or.county.deaths <- or.covid.est %>%
@@ -351,7 +348,7 @@ or.county.deaths
 ```
 
 
-* the highest death percentage 
+### Highest percentage of deaths per county
 ```{r, echo = F}
 #deaths percentage
 or.county.deaths.perc <- or.covid.est %>%
@@ -374,3 +371,4 @@ or.county.deaths.perc
 
 ### Overview 
 
+Here I will put in an overview of what the data says. 

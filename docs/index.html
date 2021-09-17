@@ -269,10 +269,23 @@ $(document).ready(function () {
 <li><a href="#wrangling-the-data">Wrangling the Data</a></li>
 <li><a href="#using-the-data">Using the data</a>
 <ul>
-<li><a href="#looking-at-states">Looking at States</a></li>
+<li><a href="#looking-at-states">Looking at States</a>
+<ul>
+<li><a href="#most-number-of-cases">Most number of cases</a></li>
+<li><a href="#highest-percentage-of-cases-per-state">Highest percentage of cases per state</a></li>
+<li><a href="#most-number-of-deaths">Most number of deaths</a></li>
+<li><a href="#highest-percentage-of-deaths-per-state">Highest percentage of deaths per state</a></li>
+<li><a href="#most-people-fully-vaccinated">Most people fully vaccinated</a></li>
+<li><a href="#highest-percentage-of-population-fully-vaccinated">Highest percentage of population fully vaccinated</a></li>
+<li><a href="#overview">Overview</a></li>
+</ul></li>
 <li><a href="#looking-at-oregon-counties">Looking at Oregon Counties</a>
 <ul>
-<li><a href="#overview">Overview</a></li>
+<li><a href="#most-number-of-cases-1">Most number of cases</a></li>
+<li><a href="#highest-percentage-of-cases-per-county">Highest percentage of cases per county</a></li>
+<li><a href="#most-number-of-deaths-1">Most number of deaths</a></li>
+<li><a href="#highest-percentage-of-deaths-per-county">Highest percentage of deaths per county</a></li>
+<li><a href="#overview-1">Overview</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -337,17 +350,20 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
 <div id="looking-at-states" class="section level2">
 <h2>Looking at States</h2>
 <p>To begin lets look at the country as a whole, by state. The data will be filtered for <strong>September 16th, 2021</strong>, and then lets look at the top five states with :</p>
-<ul>
-<li><p>the highest number of cases</p></li>
-<li><p>the highest percentage of cases per state</p></li>
-<li><p>the highest number of deaths</p></li>
-</ul>
-<div id="qitzjswjqg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="most-number-of-cases" class="section level3">
+<h3>Most number of cases</h3>
+</div>
+<div id="highest-percentage-of-cases-per-state" class="section level3">
+<h3>Highest percentage of cases per state</h3>
+</div>
+<div id="most-number-of-deaths" class="section level3">
+<h3>Most number of deaths</h3>
+<div id="ddlkffyilb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#qitzjswjqg .gt_table {
+#ddlkffyilb .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -372,7 +388,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-left-color: #D3D3D3;
 }
 
-#qitzjswjqg .gt_heading {
+#ddlkffyilb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -384,7 +400,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#qitzjswjqg .gt_title {
+#ddlkffyilb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -394,7 +410,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-width: 0;
 }
 
-#qitzjswjqg .gt_subtitle {
+#ddlkffyilb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -404,13 +420,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-width: 0;
 }
 
-#qitzjswjqg .gt_bottom_border {
+#ddlkffyilb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qitzjswjqg .gt_col_headings {
+#ddlkffyilb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -425,7 +441,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#qitzjswjqg .gt_col_heading {
+#ddlkffyilb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -445,7 +461,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#qitzjswjqg .gt_column_spanner_outer {
+#ddlkffyilb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -457,15 +473,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 4px;
 }
 
-#qitzjswjqg .gt_column_spanner_outer:first-child {
+#ddlkffyilb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qitzjswjqg .gt_column_spanner_outer:last-child {
+#ddlkffyilb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qitzjswjqg .gt_column_spanner {
+#ddlkffyilb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -477,7 +493,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   width: 100%;
 }
 
-#qitzjswjqg .gt_group_heading {
+#ddlkffyilb .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -499,7 +515,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#qitzjswjqg .gt_empty_group_heading {
+#ddlkffyilb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -514,15 +530,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#qitzjswjqg .gt_from_md > :first-child {
+#ddlkffyilb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qitzjswjqg .gt_from_md > :last-child {
+#ddlkffyilb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qitzjswjqg .gt_row {
+#ddlkffyilb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -541,7 +557,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#qitzjswjqg .gt_stub {
+#ddlkffyilb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -553,7 +569,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-left: 12px;
 }
 
-#qitzjswjqg .gt_summary_row {
+#ddlkffyilb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -563,7 +579,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#qitzjswjqg .gt_first_summary_row {
+#ddlkffyilb .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -573,7 +589,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#qitzjswjqg .gt_grand_summary_row {
+#ddlkffyilb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -583,7 +599,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#qitzjswjqg .gt_first_grand_summary_row {
+#ddlkffyilb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -593,11 +609,11 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#qitzjswjqg .gt_striped {
+#ddlkffyilb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qitzjswjqg .gt_table_body {
+#ddlkffyilb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -606,7 +622,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-color: #D3D3D3;
 }
 
-#qitzjswjqg .gt_footnotes {
+#ddlkffyilb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -620,13 +636,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#qitzjswjqg .gt_footnote {
+#ddlkffyilb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#qitzjswjqg .gt_sourcenotes {
+#ddlkffyilb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -640,41 +656,41 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#qitzjswjqg .gt_sourcenote {
+#ddlkffyilb .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#qitzjswjqg .gt_left {
+#ddlkffyilb .gt_left {
   text-align: left;
 }
 
-#qitzjswjqg .gt_center {
+#ddlkffyilb .gt_center {
   text-align: center;
 }
 
-#qitzjswjqg .gt_right {
+#ddlkffyilb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qitzjswjqg .gt_font_normal {
+#ddlkffyilb .gt_font_normal {
   font-weight: normal;
 }
 
-#qitzjswjqg .gt_font_bold {
+#ddlkffyilb .gt_font_bold {
   font-weight: bold;
 }
 
-#qitzjswjqg .gt_font_italic {
+#ddlkffyilb .gt_font_italic {
   font-style: italic;
 }
 
-#qitzjswjqg .gt_super {
+#ddlkffyilb .gt_super {
   font-size: 65%;
 }
 
-#qitzjswjqg .gt_footnote_marks {
+#ddlkffyilb .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -723,15 +739,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   
 </table>
 </div>
-<ul>
-<li>the highest percentage of deaths per state</li>
-</ul>
-<div id="imlbwwcgnv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+</div>
+<div id="highest-percentage-of-deaths-per-state" class="section level3">
+<h3>Highest percentage of deaths per state</h3>
+<div id="mdkvpybugf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#imlbwwcgnv .gt_table {
+#mdkvpybugf .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -756,7 +772,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-left-color: #D3D3D3;
 }
 
-#imlbwwcgnv .gt_heading {
+#mdkvpybugf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -768,7 +784,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#imlbwwcgnv .gt_title {
+#mdkvpybugf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -778,7 +794,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-width: 0;
 }
 
-#imlbwwcgnv .gt_subtitle {
+#mdkvpybugf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -788,13 +804,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-width: 0;
 }
 
-#imlbwwcgnv .gt_bottom_border {
+#mdkvpybugf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#imlbwwcgnv .gt_col_headings {
+#mdkvpybugf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -809,7 +825,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#imlbwwcgnv .gt_col_heading {
+#mdkvpybugf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -829,7 +845,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#imlbwwcgnv .gt_column_spanner_outer {
+#mdkvpybugf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -841,15 +857,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 4px;
 }
 
-#imlbwwcgnv .gt_column_spanner_outer:first-child {
+#mdkvpybugf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#imlbwwcgnv .gt_column_spanner_outer:last-child {
+#mdkvpybugf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#imlbwwcgnv .gt_column_spanner {
+#mdkvpybugf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -861,7 +877,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   width: 100%;
 }
 
-#imlbwwcgnv .gt_group_heading {
+#mdkvpybugf .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -883,7 +899,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#imlbwwcgnv .gt_empty_group_heading {
+#mdkvpybugf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -898,15 +914,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#imlbwwcgnv .gt_from_md > :first-child {
+#mdkvpybugf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#imlbwwcgnv .gt_from_md > :last-child {
+#mdkvpybugf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#imlbwwcgnv .gt_row {
+#mdkvpybugf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -925,7 +941,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#imlbwwcgnv .gt_stub {
+#mdkvpybugf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -937,7 +953,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-left: 12px;
 }
 
-#imlbwwcgnv .gt_summary_row {
+#mdkvpybugf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -947,7 +963,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#imlbwwcgnv .gt_first_summary_row {
+#mdkvpybugf .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -957,7 +973,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#imlbwwcgnv .gt_grand_summary_row {
+#mdkvpybugf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -967,7 +983,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#imlbwwcgnv .gt_first_grand_summary_row {
+#mdkvpybugf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -977,11 +993,11 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#imlbwwcgnv .gt_striped {
+#mdkvpybugf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#imlbwwcgnv .gt_table_body {
+#mdkvpybugf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -990,7 +1006,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-color: #D3D3D3;
 }
 
-#imlbwwcgnv .gt_footnotes {
+#mdkvpybugf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1004,13 +1020,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#imlbwwcgnv .gt_footnote {
+#mdkvpybugf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#imlbwwcgnv .gt_sourcenotes {
+#mdkvpybugf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1024,41 +1040,41 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#imlbwwcgnv .gt_sourcenote {
+#mdkvpybugf .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#imlbwwcgnv .gt_left {
+#mdkvpybugf .gt_left {
   text-align: left;
 }
 
-#imlbwwcgnv .gt_center {
+#mdkvpybugf .gt_center {
   text-align: center;
 }
 
-#imlbwwcgnv .gt_right {
+#mdkvpybugf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#imlbwwcgnv .gt_font_normal {
+#mdkvpybugf .gt_font_normal {
   font-weight: normal;
 }
 
-#imlbwwcgnv .gt_font_bold {
+#mdkvpybugf .gt_font_bold {
   font-weight: bold;
 }
 
-#imlbwwcgnv .gt_font_italic {
+#mdkvpybugf .gt_font_italic {
   font-style: italic;
 }
 
-#imlbwwcgnv .gt_super {
+#mdkvpybugf .gt_super {
   font-size: 65%;
 }
 
-#imlbwwcgnv .gt_footnote_marks {
+#mdkvpybugf .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1107,15 +1123,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   
 </table>
 </div>
-<ul>
-<li>the most people fully vaccinated</li>
-</ul>
-<div id="czkqmfkdwy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+</div>
+<div id="most-people-fully-vaccinated" class="section level3">
+<h3>Most people fully vaccinated</h3>
+<div id="jqlfkkmtap" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#czkqmfkdwy .gt_table {
+#jqlfkkmtap .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1140,7 +1156,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-left-color: #D3D3D3;
 }
 
-#czkqmfkdwy .gt_heading {
+#jqlfkkmtap .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1152,7 +1168,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#czkqmfkdwy .gt_title {
+#jqlfkkmtap .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1162,7 +1178,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-width: 0;
 }
 
-#czkqmfkdwy .gt_subtitle {
+#jqlfkkmtap .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1172,13 +1188,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-width: 0;
 }
 
-#czkqmfkdwy .gt_bottom_border {
+#jqlfkkmtap .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#czkqmfkdwy .gt_col_headings {
+#jqlfkkmtap .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1193,7 +1209,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#czkqmfkdwy .gt_col_heading {
+#jqlfkkmtap .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1213,7 +1229,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#czkqmfkdwy .gt_column_spanner_outer {
+#jqlfkkmtap .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1225,15 +1241,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 4px;
 }
 
-#czkqmfkdwy .gt_column_spanner_outer:first-child {
+#jqlfkkmtap .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#czkqmfkdwy .gt_column_spanner_outer:last-child {
+#jqlfkkmtap .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#czkqmfkdwy .gt_column_spanner {
+#jqlfkkmtap .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1245,7 +1261,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   width: 100%;
 }
 
-#czkqmfkdwy .gt_group_heading {
+#jqlfkkmtap .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1267,7 +1283,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#czkqmfkdwy .gt_empty_group_heading {
+#jqlfkkmtap .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1282,15 +1298,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#czkqmfkdwy .gt_from_md > :first-child {
+#jqlfkkmtap .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#czkqmfkdwy .gt_from_md > :last-child {
+#jqlfkkmtap .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#czkqmfkdwy .gt_row {
+#jqlfkkmtap .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1309,7 +1325,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#czkqmfkdwy .gt_stub {
+#jqlfkkmtap .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1321,7 +1337,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-left: 12px;
 }
 
-#czkqmfkdwy .gt_summary_row {
+#jqlfkkmtap .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1331,7 +1347,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#czkqmfkdwy .gt_first_summary_row {
+#jqlfkkmtap .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1341,7 +1357,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#czkqmfkdwy .gt_grand_summary_row {
+#jqlfkkmtap .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1351,7 +1367,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#czkqmfkdwy .gt_first_grand_summary_row {
+#jqlfkkmtap .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1361,11 +1377,11 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#czkqmfkdwy .gt_striped {
+#jqlfkkmtap .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#czkqmfkdwy .gt_table_body {
+#jqlfkkmtap .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1374,7 +1390,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-color: #D3D3D3;
 }
 
-#czkqmfkdwy .gt_footnotes {
+#jqlfkkmtap .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1388,13 +1404,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#czkqmfkdwy .gt_footnote {
+#jqlfkkmtap .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#czkqmfkdwy .gt_sourcenotes {
+#jqlfkkmtap .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1408,41 +1424,41 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#czkqmfkdwy .gt_sourcenote {
+#jqlfkkmtap .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#czkqmfkdwy .gt_left {
+#jqlfkkmtap .gt_left {
   text-align: left;
 }
 
-#czkqmfkdwy .gt_center {
+#jqlfkkmtap .gt_center {
   text-align: center;
 }
 
-#czkqmfkdwy .gt_right {
+#jqlfkkmtap .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#czkqmfkdwy .gt_font_normal {
+#jqlfkkmtap .gt_font_normal {
   font-weight: normal;
 }
 
-#czkqmfkdwy .gt_font_bold {
+#jqlfkkmtap .gt_font_bold {
   font-weight: bold;
 }
 
-#czkqmfkdwy .gt_font_italic {
+#jqlfkkmtap .gt_font_italic {
   font-style: italic;
 }
 
-#czkqmfkdwy .gt_super {
+#jqlfkkmtap .gt_super {
   font-size: 65%;
 }
 
-#czkqmfkdwy .gt_footnote_marks {
+#jqlfkkmtap .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1491,24 +1507,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   
 </table>
 </div>
-<ul>
-<li><p>the highst percentage of people fully vaccinated</p></li>
-<li><p>the least amount of people fully vaccinated</p></li>
-<li><p>the lowest percentage of people fully vaccinated.</p></li>
-</ul>
 </div>
-<div id="looking-at-oregon-counties" class="section level2">
-<h2>Looking at Oregon Counties</h2>
-<p>Next to look at the data a little closer to home, for Oregon Counties. Initially filtering by the most recent date, which as of this being written is <strong>September 16th, 2021</strong>, and then look at the top five Oregon counties with :</p>
-<ul>
-<li>the highest number of cases</li>
-</ul>
-<div id="olozxobwaj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="highest-percentage-of-population-fully-vaccinated" class="section level3">
+<h3>Highest percentage of population fully vaccinated</h3>
+<div id="wkriuprzmy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#olozxobwaj .gt_table {
+#wkriuprzmy .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1533,7 +1540,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-left-color: #D3D3D3;
 }
 
-#olozxobwaj .gt_heading {
+#wkriuprzmy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1545,7 +1552,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#olozxobwaj .gt_title {
+#wkriuprzmy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1555,7 +1562,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-width: 0;
 }
 
-#olozxobwaj .gt_subtitle {
+#wkriuprzmy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1565,13 +1572,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-width: 0;
 }
 
-#olozxobwaj .gt_bottom_border {
+#wkriuprzmy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#olozxobwaj .gt_col_headings {
+#wkriuprzmy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1586,7 +1593,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#olozxobwaj .gt_col_heading {
+#wkriuprzmy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1606,7 +1613,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#olozxobwaj .gt_column_spanner_outer {
+#wkriuprzmy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1618,15 +1625,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 4px;
 }
 
-#olozxobwaj .gt_column_spanner_outer:first-child {
+#wkriuprzmy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#olozxobwaj .gt_column_spanner_outer:last-child {
+#wkriuprzmy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#olozxobwaj .gt_column_spanner {
+#wkriuprzmy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1638,7 +1645,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   width: 100%;
 }
 
-#olozxobwaj .gt_group_heading {
+#wkriuprzmy .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1660,7 +1667,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#olozxobwaj .gt_empty_group_heading {
+#wkriuprzmy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1675,15 +1682,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#olozxobwaj .gt_from_md > :first-child {
+#wkriuprzmy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#olozxobwaj .gt_from_md > :last-child {
+#wkriuprzmy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#olozxobwaj .gt_row {
+#wkriuprzmy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1702,7 +1709,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#olozxobwaj .gt_stub {
+#wkriuprzmy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1714,7 +1721,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-left: 12px;
 }
 
-#olozxobwaj .gt_summary_row {
+#wkriuprzmy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1724,7 +1731,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#olozxobwaj .gt_first_summary_row {
+#wkriuprzmy .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1734,7 +1741,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#olozxobwaj .gt_grand_summary_row {
+#wkriuprzmy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1744,7 +1751,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#olozxobwaj .gt_first_grand_summary_row {
+#wkriuprzmy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1754,11 +1761,11 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#olozxobwaj .gt_striped {
+#wkriuprzmy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#olozxobwaj .gt_table_body {
+#wkriuprzmy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1767,7 +1774,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-color: #D3D3D3;
 }
 
-#olozxobwaj .gt_footnotes {
+#wkriuprzmy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1781,13 +1788,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#olozxobwaj .gt_footnote {
+#wkriuprzmy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#olozxobwaj .gt_sourcenotes {
+#wkriuprzmy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1801,41 +1808,433 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#olozxobwaj .gt_sourcenote {
+#wkriuprzmy .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#olozxobwaj .gt_left {
+#wkriuprzmy .gt_left {
   text-align: left;
 }
 
-#olozxobwaj .gt_center {
+#wkriuprzmy .gt_center {
   text-align: center;
 }
 
-#olozxobwaj .gt_right {
+#wkriuprzmy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#olozxobwaj .gt_font_normal {
+#wkriuprzmy .gt_font_normal {
   font-weight: normal;
 }
 
-#olozxobwaj .gt_font_bold {
+#wkriuprzmy .gt_font_bold {
   font-weight: bold;
 }
 
-#olozxobwaj .gt_font_italic {
+#wkriuprzmy .gt_font_italic {
   font-style: italic;
 }
 
-#olozxobwaj .gt_super {
+#wkriuprzmy .gt_super {
   font-size: 65%;
 }
 
-#olozxobwaj .gt_footnote_marks {
+#wkriuprzmy .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="4" class="gt_heading gt_title gt_font_normal" style><strong>Highest Percent of People Fully Vaccinated</strong></th>
+    </tr>
+    <tr>
+      <th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>By state, as of September 1st, 2021</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>State</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"><strong>Total Population</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"><strong>People Fully Vaccinated</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"><strong>Percentage</strong></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">Rhode Island</td>
+<td class="gt_row gt_right">1,059,361</td>
+<td class="gt_row gt_right">752,840</td>
+<td class="gt_row gt_right">71.07%</td></tr>
+    <tr><td class="gt_row gt_left">District of Columbia</td>
+<td class="gt_row gt_right">705,749</td>
+<td class="gt_row gt_right">500,274</td>
+<td class="gt_row gt_right">70.89%</td></tr>
+    <tr><td class="gt_row gt_left">Vermont</td>
+<td class="gt_row gt_right">623,989</td>
+<td class="gt_row gt_right">438,799</td>
+<td class="gt_row gt_right">70.32%</td></tr>
+    <tr><td class="gt_row gt_left">Connecticut</td>
+<td class="gt_row gt_right">3,565,287</td>
+<td class="gt_row gt_right">2,360,433</td>
+<td class="gt_row gt_right">66.21%</td></tr>
+    <tr><td class="gt_row gt_left">Massachusetts</td>
+<td class="gt_row gt_right">6,892,503</td>
+<td class="gt_row gt_right">4,552,073</td>
+<td class="gt_row gt_right">66.04%</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+<div id="overview" class="section level3">
+<h3>Overview</h3>
+<p>This is were I point out some things I notice.</p>
+</div>
+</div>
+<div id="looking-at-oregon-counties" class="section level2">
+<h2>Looking at Oregon Counties</h2>
+<p>Next to look at the data a little closer to home, for Oregon Counties. Initially filtering by the most recent date, which as of this being written is <strong>September 16th, 2021</strong>, and then look at the top five Oregon counties.</p>
+<div id="most-number-of-cases-1" class="section level3">
+<h3>Most number of cases</h3>
+<div id="gruvnslsgl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#gruvnslsgl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gruvnslsgl .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gruvnslsgl .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gruvnslsgl .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gruvnslsgl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gruvnslsgl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gruvnslsgl .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gruvnslsgl .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gruvnslsgl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gruvnslsgl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gruvnslsgl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gruvnslsgl .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gruvnslsgl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gruvnslsgl .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gruvnslsgl .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gruvnslsgl .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gruvnslsgl .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#gruvnslsgl .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gruvnslsgl .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#gruvnslsgl .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gruvnslsgl .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gruvnslsgl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gruvnslsgl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gruvnslsgl .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gruvnslsgl .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#gruvnslsgl .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gruvnslsgl .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#gruvnslsgl .gt_left {
+  text-align: left;
+}
+
+#gruvnslsgl .gt_center {
+  text-align: center;
+}
+
+#gruvnslsgl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gruvnslsgl .gt_font_normal {
+  font-weight: normal;
+}
+
+#gruvnslsgl .gt_font_bold {
+  font-weight: bold;
+}
+
+#gruvnslsgl .gt_font_italic {
+  font-style: italic;
+}
+
+#gruvnslsgl .gt_super {
+  font-size: 65%;
+}
+
+#gruvnslsgl .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1884,15 +2283,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   
 </table>
 </div>
-<ul>
-<li>the highest percentage of cases per county</li>
-</ul>
-<div id="dnktecrjfd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+</div>
+<div id="highest-percentage-of-cases-per-county" class="section level3">
+<h3>Highest percentage of cases per county</h3>
+<div id="wwpybmcauw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#dnktecrjfd .gt_table {
+#wwpybmcauw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1917,7 +2316,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-left-color: #D3D3D3;
 }
 
-#dnktecrjfd .gt_heading {
+#wwpybmcauw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1929,7 +2328,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#dnktecrjfd .gt_title {
+#wwpybmcauw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1939,7 +2338,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-width: 0;
 }
 
-#dnktecrjfd .gt_subtitle {
+#wwpybmcauw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1949,13 +2348,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-width: 0;
 }
 
-#dnktecrjfd .gt_bottom_border {
+#wwpybmcauw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dnktecrjfd .gt_col_headings {
+#wwpybmcauw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1970,7 +2369,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#dnktecrjfd .gt_col_heading {
+#wwpybmcauw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1990,7 +2389,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#dnktecrjfd .gt_column_spanner_outer {
+#wwpybmcauw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2002,15 +2401,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 4px;
 }
 
-#dnktecrjfd .gt_column_spanner_outer:first-child {
+#wwpybmcauw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dnktecrjfd .gt_column_spanner_outer:last-child {
+#wwpybmcauw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dnktecrjfd .gt_column_spanner {
+#wwpybmcauw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2022,7 +2421,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   width: 100%;
 }
 
-#dnktecrjfd .gt_group_heading {
+#wwpybmcauw .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2044,7 +2443,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#dnktecrjfd .gt_empty_group_heading {
+#wwpybmcauw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2059,15 +2458,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#dnktecrjfd .gt_from_md > :first-child {
+#wwpybmcauw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dnktecrjfd .gt_from_md > :last-child {
+#wwpybmcauw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dnktecrjfd .gt_row {
+#wwpybmcauw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2086,7 +2485,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#dnktecrjfd .gt_stub {
+#wwpybmcauw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2098,7 +2497,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-left: 12px;
 }
 
-#dnktecrjfd .gt_summary_row {
+#wwpybmcauw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2108,7 +2507,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#dnktecrjfd .gt_first_summary_row {
+#wwpybmcauw .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2118,7 +2517,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#dnktecrjfd .gt_grand_summary_row {
+#wwpybmcauw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2128,7 +2527,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#dnktecrjfd .gt_first_grand_summary_row {
+#wwpybmcauw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2138,11 +2537,11 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#dnktecrjfd .gt_striped {
+#wwpybmcauw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dnktecrjfd .gt_table_body {
+#wwpybmcauw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2151,7 +2550,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-color: #D3D3D3;
 }
 
-#dnktecrjfd .gt_footnotes {
+#wwpybmcauw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2165,13 +2564,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#dnktecrjfd .gt_footnote {
+#wwpybmcauw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#dnktecrjfd .gt_sourcenotes {
+#wwpybmcauw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2185,41 +2584,41 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#dnktecrjfd .gt_sourcenote {
+#wwpybmcauw .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#dnktecrjfd .gt_left {
+#wwpybmcauw .gt_left {
   text-align: left;
 }
 
-#dnktecrjfd .gt_center {
+#wwpybmcauw .gt_center {
   text-align: center;
 }
 
-#dnktecrjfd .gt_right {
+#wwpybmcauw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dnktecrjfd .gt_font_normal {
+#wwpybmcauw .gt_font_normal {
   font-weight: normal;
 }
 
-#dnktecrjfd .gt_font_bold {
+#wwpybmcauw .gt_font_bold {
   font-weight: bold;
 }
 
-#dnktecrjfd .gt_font_italic {
+#wwpybmcauw .gt_font_italic {
   font-style: italic;
 }
 
-#dnktecrjfd .gt_super {
+#wwpybmcauw .gt_super {
   font-size: 65%;
 }
 
-#dnktecrjfd .gt_footnote_marks {
+#wwpybmcauw .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -2268,15 +2667,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   
 </table>
 </div>
-<ul>
-<li>the highest number of deaths</li>
-</ul>
-<div id="ypnefxvjet" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+</div>
+<div id="most-number-of-deaths-1" class="section level3">
+<h3>Most number of deaths</h3>
+<div id="iopdbsalba" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ypnefxvjet .gt_table {
+#iopdbsalba .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2301,7 +2700,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-left-color: #D3D3D3;
 }
 
-#ypnefxvjet .gt_heading {
+#iopdbsalba .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2313,7 +2712,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#ypnefxvjet .gt_title {
+#iopdbsalba .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2323,7 +2722,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-width: 0;
 }
 
-#ypnefxvjet .gt_subtitle {
+#iopdbsalba .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2333,13 +2732,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-width: 0;
 }
 
-#ypnefxvjet .gt_bottom_border {
+#iopdbsalba .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ypnefxvjet .gt_col_headings {
+#iopdbsalba .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2354,7 +2753,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#ypnefxvjet .gt_col_heading {
+#iopdbsalba .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2374,7 +2773,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#ypnefxvjet .gt_column_spanner_outer {
+#iopdbsalba .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2386,15 +2785,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 4px;
 }
 
-#ypnefxvjet .gt_column_spanner_outer:first-child {
+#iopdbsalba .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ypnefxvjet .gt_column_spanner_outer:last-child {
+#iopdbsalba .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ypnefxvjet .gt_column_spanner {
+#iopdbsalba .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2406,7 +2805,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   width: 100%;
 }
 
-#ypnefxvjet .gt_group_heading {
+#iopdbsalba .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2428,7 +2827,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#ypnefxvjet .gt_empty_group_heading {
+#iopdbsalba .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2443,15 +2842,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#ypnefxvjet .gt_from_md > :first-child {
+#iopdbsalba .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ypnefxvjet .gt_from_md > :last-child {
+#iopdbsalba .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ypnefxvjet .gt_row {
+#iopdbsalba .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2470,7 +2869,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#ypnefxvjet .gt_stub {
+#iopdbsalba .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2482,7 +2881,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-left: 12px;
 }
 
-#ypnefxvjet .gt_summary_row {
+#iopdbsalba .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2492,7 +2891,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#ypnefxvjet .gt_first_summary_row {
+#iopdbsalba .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2502,7 +2901,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#ypnefxvjet .gt_grand_summary_row {
+#iopdbsalba .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2512,7 +2911,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#ypnefxvjet .gt_first_grand_summary_row {
+#iopdbsalba .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2522,11 +2921,11 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#ypnefxvjet .gt_striped {
+#iopdbsalba .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ypnefxvjet .gt_table_body {
+#iopdbsalba .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2535,7 +2934,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-color: #D3D3D3;
 }
 
-#ypnefxvjet .gt_footnotes {
+#iopdbsalba .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2549,13 +2948,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#ypnefxvjet .gt_footnote {
+#iopdbsalba .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ypnefxvjet .gt_sourcenotes {
+#iopdbsalba .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2569,41 +2968,41 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#ypnefxvjet .gt_sourcenote {
+#iopdbsalba .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ypnefxvjet .gt_left {
+#iopdbsalba .gt_left {
   text-align: left;
 }
 
-#ypnefxvjet .gt_center {
+#iopdbsalba .gt_center {
   text-align: center;
 }
 
-#ypnefxvjet .gt_right {
+#iopdbsalba .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ypnefxvjet .gt_font_normal {
+#iopdbsalba .gt_font_normal {
   font-weight: normal;
 }
 
-#ypnefxvjet .gt_font_bold {
+#iopdbsalba .gt_font_bold {
   font-weight: bold;
 }
 
-#ypnefxvjet .gt_font_italic {
+#iopdbsalba .gt_font_italic {
   font-style: italic;
 }
 
-#ypnefxvjet .gt_super {
+#iopdbsalba .gt_super {
   font-size: 65%;
 }
 
-#ypnefxvjet .gt_footnote_marks {
+#iopdbsalba .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -2652,15 +3051,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   
 </table>
 </div>
-<ul>
-<li>the highest death percentage</li>
-</ul>
-<div id="jcnidheoxk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+</div>
+<div id="highest-percentage-of-deaths-per-county" class="section level3">
+<h3>Highest percentage of deaths per county</h3>
+<div id="vnlhbnpwep" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#jcnidheoxk .gt_table {
+#vnlhbnpwep .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2685,7 +3084,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-left-color: #D3D3D3;
 }
 
-#jcnidheoxk .gt_heading {
+#vnlhbnpwep .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2697,7 +3096,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#jcnidheoxk .gt_title {
+#vnlhbnpwep .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2707,7 +3106,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-width: 0;
 }
 
-#jcnidheoxk .gt_subtitle {
+#vnlhbnpwep .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2717,13 +3116,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-width: 0;
 }
 
-#jcnidheoxk .gt_bottom_border {
+#vnlhbnpwep .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jcnidheoxk .gt_col_headings {
+#vnlhbnpwep .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2738,7 +3137,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#jcnidheoxk .gt_col_heading {
+#vnlhbnpwep .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2758,7 +3157,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#jcnidheoxk .gt_column_spanner_outer {
+#vnlhbnpwep .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2770,15 +3169,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 4px;
 }
 
-#jcnidheoxk .gt_column_spanner_outer:first-child {
+#vnlhbnpwep .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jcnidheoxk .gt_column_spanner_outer:last-child {
+#vnlhbnpwep .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jcnidheoxk .gt_column_spanner {
+#vnlhbnpwep .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2790,7 +3189,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   width: 100%;
 }
 
-#jcnidheoxk .gt_group_heading {
+#vnlhbnpwep .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2812,7 +3211,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#jcnidheoxk .gt_empty_group_heading {
+#vnlhbnpwep .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2827,15 +3226,15 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   vertical-align: middle;
 }
 
-#jcnidheoxk .gt_from_md > :first-child {
+#vnlhbnpwep .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jcnidheoxk .gt_from_md > :last-child {
+#vnlhbnpwep .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jcnidheoxk .gt_row {
+#vnlhbnpwep .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2854,7 +3253,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   overflow-x: hidden;
 }
 
-#jcnidheoxk .gt_stub {
+#vnlhbnpwep .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2866,7 +3265,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-left: 12px;
 }
 
-#jcnidheoxk .gt_summary_row {
+#vnlhbnpwep .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2876,7 +3275,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#jcnidheoxk .gt_first_summary_row {
+#vnlhbnpwep .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2886,7 +3285,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#jcnidheoxk .gt_grand_summary_row {
+#vnlhbnpwep .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2896,7 +3295,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   padding-right: 5px;
 }
 
-#jcnidheoxk .gt_first_grand_summary_row {
+#vnlhbnpwep .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2906,11 +3305,11 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-top-color: #D3D3D3;
 }
 
-#jcnidheoxk .gt_striped {
+#vnlhbnpwep .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jcnidheoxk .gt_table_body {
+#vnlhbnpwep .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2919,7 +3318,7 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-bottom-color: #D3D3D3;
 }
 
-#jcnidheoxk .gt_footnotes {
+#vnlhbnpwep .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2933,13 +3332,13 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#jcnidheoxk .gt_footnote {
+#vnlhbnpwep .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#jcnidheoxk .gt_sourcenotes {
+#vnlhbnpwep .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2953,41 +3352,41 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   border-right-color: #D3D3D3;
 }
 
-#jcnidheoxk .gt_sourcenote {
+#vnlhbnpwep .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#jcnidheoxk .gt_left {
+#vnlhbnpwep .gt_left {
   text-align: left;
 }
 
-#jcnidheoxk .gt_center {
+#vnlhbnpwep .gt_center {
   text-align: center;
 }
 
-#jcnidheoxk .gt_right {
+#vnlhbnpwep .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jcnidheoxk .gt_font_normal {
+#vnlhbnpwep .gt_font_normal {
   font-weight: normal;
 }
 
-#jcnidheoxk .gt_font_bold {
+#vnlhbnpwep .gt_font_bold {
   font-weight: bold;
 }
 
-#jcnidheoxk .gt_font_italic {
+#vnlhbnpwep .gt_font_italic {
   font-style: italic;
 }
 
-#jcnidheoxk .gt_super {
+#vnlhbnpwep .gt_super {
   font-size: 65%;
 }
 
-#jcnidheoxk .gt_footnote_marks {
+#vnlhbnpwep .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -3036,8 +3435,10 @@ or.county.den &lt;- get_estimates(geography = &quot;county&quot;, state = &quot;
   
 </table>
 </div>
-<div id="overview" class="section level3">
+</div>
+<div id="overview-1" class="section level3">
 <h3>Overview</h3>
+<p>Here I will put in an overview of what the data says.</p>
 </div>
 </div>
 </div>
