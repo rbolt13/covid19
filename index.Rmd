@@ -210,7 +210,7 @@ gt(us.states.deaths[1:5,]) %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = perc.deaths, decimals = 2) %>%
     tab_header(title = md("**Most Deaths**"),
-               subtitle = " as of September 16th, 2021") %>%
+               subtitle = "By state, as of September 16th, 2021") %>%
     cols_label(state = md("**State**"),
                population = md("**Total Population**"),
                deaths = md("**Deaths**"),
