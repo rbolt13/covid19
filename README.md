@@ -16,3 +16,7 @@ View [here](https://rbolt13.github.io/covid19/).
 ☑️ README
 
 ☑️ Creae site
+
+☑️ Wrangle Data 
+
+☑️ Create Tables
