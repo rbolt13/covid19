@@ -7,7 +7,9 @@ View [here](https://rbolt13.github.io/covid19/).
 * tables
    + update dates
    + add overviews
-   + create a function that works for formatting all the tables
+   + create a function that works for formatting all the tables 
+         + minimize lines of code used 
+         + only need to change date in one spot
 * graphs 
 * maps
 * shiny
@@ -15,7 +17,7 @@ View [here](https://rbolt13.github.io/covid19/).
 # Done 
 ☑️ README
 
-☑️ Creae site
+☑️ Create site
 
 ☑️ Wrangle Data 
 
