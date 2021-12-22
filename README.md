@@ -8,8 +8,8 @@ View [here](https://rbolt13.github.io/covid19/).
    + update dates
    + add overviews
    + create a function that works for formatting all the tables 
-         + minimize lines of code used 
-         + only need to change date in one spot
+      - minimize lines of code
+      - only change date in one spot
 * graphs 
 * maps
 * shiny
