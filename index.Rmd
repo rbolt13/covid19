@@ -14,9 +14,9 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
-library(magrittr)
-library(dplyr)
-library(readr)
+library(magrittr) # %>%
+library(dplyr) # rename()
+library(readr) # read_csv()
 library(tidyr)
 library(lubridate)
 library(pander)
@@ -68,17 +68,17 @@ or.county.den <- get_estimates(geography = "county", state = "OR", year = 2019, 
 The COVID data set is already in long form (meaning the dates are in rows instead of columns), and the date is already saved as a date variable. Therefore the main tasks here are to join the us.states data set with the vaccination records, and population estimates. Then join the us.states.vacc with the population data and create new percentage columns. 
 
 ```{r, echo=F}
-# join states population with density and clean
+# join states population with density
 state.est <- state.pop %>%
   select(state, population) %>%
   full_join(state.den %>%
               select(state, density),
             by = c("state" = "state"))
-# states join with vacc
+# join states with vacc
 us.states.vacc <- us.states %>%
   select(date, state, cases, deaths) %>%
   full_join(vacc %>%
-              select(Province_State, Date, Lat, Long_, People_Fully_Vaccinated, People_Partially_Vaccinated),
+              select(Province_State, Date, Lat, Long_,People_Fully_Vaccinated, People_Partially_Vaccinated),
             by = c("state"="Province_State", "date"="Date")) %>%
   select(date, state, cases, deaths, People_Fully_Vaccinated, People_Partially_Vaccinated) %>%
   # join with census population data
@@ -136,12 +136,17 @@ head(or.covid.est, n=10)
 
 ## Looking at States
 
-To begin lets look at the country as a whole, by state. The data will be filtered for **December 21st, 2021**, and then lets look at the top five states with :
+To begin lets look at the country as a whole, by state. The data will be filtered for **January 1st, 2022**, and then lets look at the top five states with :
+
+```{r}
+Date <- "2022-01-01"
+```
+
 
 ### Most number of cases
 ```{r, echo=F}
 us.states.cases <- us.states.vacc %>%
-  filter(date =="2021-12-21") %>%
+  filter(date == Date) %>%
   select(state, population, cases, case.per) %>%
   arrange(desc(cases)) %>%
     head(5) %>%
@@ -150,7 +155,7 @@ us.states.cases <- us.states.vacc %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = case.per, decimals = 2) %>%
     tab_header(title = md("**Most Cases**"),
-               subtitle = "By State as of December 21st, 2021") %>%
+               subtitle = paste0("By State as of ", Date)) %>%
     cols_label(state = md("**State**"),
                population = md("**Total Population**"),
                cases = md("**Cases**"),
@@ -164,11 +169,12 @@ us.states.cases
 ```
 
 
+
 ### Highest percentage of cases 
 ```{r, echo=F}
 # filter - select - arrange
 us.states.cases.perc <- us.states.vacc %>%
-  filter(date =="2021-12-21") %>%
+  filter(date == Date) %>%
   select(state, population, cases, case.per) %>%
   arrange(desc(case.per)) 
 # table
@@ -177,7 +183,7 @@ gt(us.states.cases.perc[1:5,]) %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = case.per, decimals = 2) %>%
     tab_header(title = md("**Highest Percent of Cases**"),
-               subtitle = "By State as of December 21st, 2021") %>%
+               subtitle = paste0("By State as of ", Date)) %>%
     cols_label(state = md("**State**"),
                population = md("**Total Population**"),
                cases = md("**Cases**"),
@@ -192,7 +198,7 @@ gt(us.states.cases.perc[1:5,]) %>%
 ### Most number of deaths
 ```{r, echo=F}
 us.states.deaths <- us.states.vacc %>%
-  filter(date =="2021-12-21") %>%
+  filter(date == Date) %>%
   select(state, population, deaths, perc.deaths) %>%
   arrange(desc(deaths))
 # table
@@ -201,7 +207,7 @@ gt(us.states.deaths[1:5,]) %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = perc.deaths, decimals = 2) %>%
     tab_header(title = md("**Most Deaths**"),
-               subtitle = "By State as of December 21st, 2021") %>%
+               subtitle = paste0("By State as of ", Date)) %>%
     cols_label(state = md("**State**"),
                population = md("**Total Population**"),
                deaths = md("**Deaths**"),
@@ -216,7 +222,7 @@ gt(us.states.deaths[1:5,]) %>%
 ### Highest percentage of deaths 
 ```{r, echo=F}
 us.states.deaths.perc <- us.states.vacc %>%
-  filter(date =="2021-12-21") %>%
+  filter(date == Date) %>%
   select(state, population, deaths, perc.deaths) %>%
   arrange(desc(perc.deaths)) 
 # table
@@ -225,7 +231,7 @@ gt(us.states.deaths.perc[1:5,]) %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = perc.deaths, decimals = 2) %>%
     tab_header(title = md("**Highest percent of Deaths**"),
-               subtitle = "By State as of December 21st, 2021") %>%
+               subtitle = paste0("By State as of ", Date)) %>%
     cols_label(state = md("**State**"),
                population = md("**Total Population**"),
                deaths = md("**Deaths**"),
@@ -240,7 +246,7 @@ gt(us.states.deaths.perc[1:5,]) %>%
 ### Most people fully vaccinated 
 ```{r, echo=F}
 us.states.most.vacc <- us.states.vacc %>%
-  filter(date =="2021-12-21") %>%
+  filter(date == Date) %>%
   select(state, population, full.vacc, full.vacc.perc) %>%
   arrange(desc(full.vacc)) 
 # Table
@@ -249,7 +255,7 @@ gt(us.states.most.vacc[1:5,]) %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = full.vacc.perc, decimals = 2) %>%
     tab_header(title = md("**Most People Vaccinated**"),
-               subtitle = "By State as of December 21st, 2021") %>%
+               subtitle = paste0("By State as of ", Date)) %>%
     cols_label(state = md("**State**"),
                population = md("**Total Population**"),
                full.vacc = md("**People Fully Vaccinated**"),
@@ -264,7 +270,7 @@ gt(us.states.most.vacc[1:5,]) %>%
 ### Highest percentage of population fully vaccinated 
 ```{r, echo=F}
 us.states.vacc.perc <- us.states.vacc %>%
-  filter(date =="2021-12-21") %>%
+  filter(date == Date) %>%
   select(state, population, full.vacc, full.vacc.perc) %>%
   arrange(desc(full.vacc.perc))
 # table
@@ -273,7 +279,7 @@ gt(us.states.vacc.perc[1:5,]) %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = full.vacc.perc, decimals = 2) %>%
     tab_header(title = md("**Highest Percent of People Fully Vaccinated**"),
-               subtitle = "By State as of December 21st, 2021") %>%
+               subtitle = paste0("By State as of ", Date)) %>%
     cols_label(state = md("**State**"),
                population = md("**Total Population**"),
                full.vacc = md("**People Fully Vaccinated**"),
@@ -297,7 +303,7 @@ Next to look at the data a little closer to home, for Oregon Counties. Initially
 ```{r, echo = F}
 # cases
 or.county.cases <- or.covid.est %>%
-  filter(date =="2021-12-21") %>%
+  filter(date == Date) %>%
   select(county, population, cases, cases.perc) %>%
   arrange(desc(cases)) %>%
     head(5) %>%
@@ -306,7 +312,7 @@ or.county.cases <- or.covid.est %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = cases.perc, decimals = 2) %>%
     tab_header(title = md("**Most Cases**"),
-               subtitle = "Oregon Counties as of December 21st, 2021") %>%
+               subtitle = paste0("Oregon Counties as of ", Date)) %>%
     cols_label(county = md("**County**"),
                population = md("**Total Population**"),
                cases = md("**Cases**"),
@@ -324,7 +330,7 @@ or.county.cases
 ```{r, echo = F}
 #cases percent
 or.county.cases.perc <- or.covid.est %>%
-  filter(date =="2021-12-21") %>%
+  filter(date == Date) %>%
   select(county, population, cases, cases.perc) %>%
   arrange(desc(cases.perc)) %>%
     head(5) %>%
@@ -333,7 +339,7 @@ or.county.cases.perc <- or.covid.est %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = cases.perc, decimals = 2) %>%
     tab_header(title = md("**Highest Percentage of Cases**"),
-               subtitle = "Oregon Counties as of December 21st, 2021") %>%
+               subtitle = paste0("Oregon Counties as of ", Date)) %>%
     cols_label(county = md("**County**"),
                population = md("**Total Population**"),
                cases = md("**Cases**"),
@@ -351,7 +357,7 @@ or.county.cases.perc
 ```{r, echo = F}
 #deaths
 or.county.deaths <- or.covid.est %>%
-  filter(date =="2021-12-21") %>%
+  filter(date == Date) %>%
   select(county, population, deaths, deaths.perc) %>%
   arrange(desc(deaths)) %>%
     head(5) %>%
@@ -360,7 +366,7 @@ or.county.deaths <- or.covid.est %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = deaths.perc, decimals = 2) %>%
     tab_header(title = md("**Most Deaths**"),
-               subtitle = "Oregon Counties as of December 21st, 2021") %>%
+               subtitle = paste0("Oregon Counties as of ", Date)) %>%
     cols_label(county = md("**County**"),
                population = md("**Total Population**"),
                deaths = md("**Deaths**"),
@@ -377,7 +383,7 @@ or.county.deaths
 ```{r, echo = F}
 #deaths percentage
 or.county.deaths.perc <- or.covid.est %>%
-  filter(date =="2021-12-21") %>%
+  filter(date == Date) %>%
   select(county, population, deaths, deaths.perc) %>%
   arrange(desc(deaths.perc)) %>%
     head(5) %>%
@@ -386,7 +392,7 @@ or.county.deaths.perc <- or.covid.est %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = deaths.perc, decimals = 2) %>%
     tab_header(title = md("**Highest Percent of Deaths**"),
-               subtitle = "Oregon Counties as of December 21st, 2021") %>%
+               subtitle = paste0("Oregon Counties as of ", Date)) %>%
     cols_label(county = md("**County**"),
                population = md("**Total Population**"),
                deaths = md("**Deaths**"),
