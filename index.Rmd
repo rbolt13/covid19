@@ -12,6 +12,10 @@ output:
     theme: darkly
 ---
 
+```{r, echo=F}
+Date <- "2022-01-03"
+```
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 library(magrittr) # %>%
@@ -136,12 +140,7 @@ head(or.covid.est, n=10)
 
 ## Looking at States
 
-To begin lets look at the country as a whole, by state. The data will be filtered for **January 1st, 2022**, and then lets look at the top five states with :
-
-```{r}
-Date <- "2022-01-01"
-```
-
+To begin lets look at the country as a whole, by state. The data will be filtered for **`r Date`**, and then lets look at the top five states with :
 
 ### Most number of cases
 ```{r, echo=F}
