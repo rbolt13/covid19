@@ -13,7 +13,8 @@ output:
 ---
 
 ```{r, echo=F}
-Date <- "2022-01-05"
+Date <- "2022-01-07"
+N <- 5
 ```
 
 ```{r setup, include=FALSE}
@@ -62,8 +63,11 @@ policytrackerOR <- read_csv("https://raw.githubusercontent.com/govex/COVID-19/go
 The projected cited above mainly looked at the case, death, and vaccination numbers per state to compare highly and mildly impacted states. In this project I will look at highly impacted states and the counties of Oregon. Additionally this project will use population and density data from the tidycensus package. I discuss more about how I got this data using an API in a blog post [here](https://rbolt.netlify.app/post/2021/08/30/tidycensus-package/). Note that this data is from 2019, which is a couple years older than the COVID data. 
 
 ```{r}
+# tidycensus
+# State : POP and DENSITY data 
 state.pop <- get_estimates(geography = "state", year = 2019, variable =  "POP") %>% rename ("state" = NAME, "population" = value)
 state.den <- get_estimates(geography = "state", year = 2019, variable =  "DENSITY") %>% rename ("state" = NAME, "density" = value)
+# OREGON : POP and Density data 
 or.county.pop <- get_estimates(geography = "county", state = "OR", year = 2019, variable = "POP") %>% rename ("county" = NAME, "population" = value)
 or.county.den <- get_estimates(geography = "county", state = "OR", year = 2019, variable = "DENSITY") %>% rename ("county" = NAME, "density" = value)
 ```
@@ -143,6 +147,7 @@ head(or.covid.est, n=10)
 To begin lets look at the country as a whole, by state. The data will be filtered for **`r Date`**, and then lets look at the top five states with :
 
 ### Most number of cases
+
 ```{r, echo=F}
 us.states.cases <- us.states.vacc %>%
   filter(date == Date) %>%
@@ -167,8 +172,6 @@ us.states.cases <- us.states.vacc %>%
 us.states.cases
 ```
 
-
-
 ### Highest percentage of cases 
 ```{r, echo=F}
 # filter - select - arrange
@@ -177,7 +180,7 @@ us.states.cases.perc <- us.states.vacc %>%
   select(state, population, cases, case.per) %>%
   arrange(desc(case.per)) 
 # table
-gt(us.states.cases.perc[1:5,]) %>%
+gt(us.states.cases.perc[1:10,]) %>%
     fmt_number(columns = cases, decimals = 0) %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = case.per, decimals = 2) %>%
@@ -267,6 +270,7 @@ gt(us.states.most.vacc[1:5,]) %>%
 ```
 
 ### Highest percentage of population fully vaccinated 
+
 ```{r, echo=F}
 us.states.vacc.perc <- us.states.vacc %>%
   filter(date == Date) %>%
@@ -290,15 +294,25 @@ gt(us.states.vacc.perc[1:5,]) %>%
      ))
 ```
 
-### Overview
-
-This is were I point out some things I notice.
-
 ## Looking at Oregon Counties
 
-Next to look at the data a little closer to home, for Oregon Counties. Initially filtering by the most recent date, which as of this being written is **December 21st, 2021**, and then look at the top five Oregon counties.
+Next to look at the data a little closer to home, for Oregon Counties. Initially filtering by the most recent date, which as of this being written is **`r Date``**, looking at a graph of the state as a whole, and then look at the top five Oregon counties.
 
 ### Most number of cases
+
+```{r, echo = F , message= F}
+or.covid.est %>%
+  ggplot(aes(x=date, y=cases, color = county)) +
+  geom_line(size=.8) +
+  ggtitle("Number of Cases per County") +
+  xlab("Date (by month)") + ylab("Cases") +
+  scale_x_date(date_breaks = "1 month", date_labels = "%m") +
+  theme_minimal()
+```
+
+
+
+
 ```{r, echo = F}
 # cases
 or.county.cases <- or.covid.est %>%
@@ -326,6 +340,17 @@ or.county.cases
 
 
 ### Highest percentage of Cases 
+
+```{r, echo = F , message=F, warning=F}
+or.covid.est %>%
+  ggplot(aes(x=date, y=cases.perc, color = county)) +
+  geom_line(size=.8) +
+  ggtitle("Percent of Cases per County") +
+  xlab("Date (by month)") + ylab("Percent") +
+  scale_x_date(date_breaks = "1 month", date_labels = "%m") +
+  theme_minimal()
+```
+
 ```{r, echo = F}
 #cases percent
 or.county.cases.perc <- or.covid.est %>%
@@ -353,6 +378,17 @@ or.county.cases.perc
 
 
 ### Most number of Deaths
+
+```{r, echo = F , message= F}
+or.covid.est %>%
+  ggplot(aes(x=date, y=deaths, color = county)) +
+  geom_line(size=.8) +
+  ggtitle("Number of Deaths per County") +
+  xlab("Date (by month)") + ylab("Deaths") +
+  scale_x_date(date_breaks = "1 month", date_labels = "%m") +
+  theme_minimal()
+```
+
 ```{r, echo = F}
 #deaths
 or.county.deaths <- or.covid.est %>%
@@ -379,6 +415,17 @@ or.county.deaths
 ```
 
 ### Highest percentage of Deaths
+
+```{r, echo = F , message= FALSE, error=F, warning=FALSE}
+or.covid.est %>%
+  ggplot(aes(x=date, y=deaths.perc, color = county)) +
+  geom_line(size=.8) +
+  ggtitle("Percent of Deaths per County") +
+  xlab("Date (by month)") + ylab("Percent") +
+  scale_x_date(date_breaks = "1 month", date_labels = "%m") +
+  theme_minimal()
+```
+
 ```{r, echo = F}
 #deaths percentage
 or.county.deaths.perc <- or.covid.est %>%
@@ -406,6 +453,3 @@ or.county.deaths.perc <- or.covid.est %>%
 or.county.deaths.perc
 ```
 
-### Overview 
-
-Here I will put in an overview of what the data says. 
