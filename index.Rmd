@@ -13,7 +13,7 @@ output:
 ---
 
 ```{r, echo=F}
-Date <- "2022-01-07"
+Date <- "2022-01-20"
 N <- 5
 ```
 
@@ -31,6 +31,7 @@ library(kableExtra)
 library(gridExtra) # grid.arrange
 library(tidycensus) # population data
 readRenviron(".Renviron")
+library(plotly)
 ```
 
 ## Background and Data
@@ -301,13 +302,14 @@ Next to look at the data a little closer to home, for Oregon Counties. Initially
 ### Most number of cases
 
 ```{r, echo = F , message= F}
-or.covid.est %>%
+plot <- or.covid.est %>%
   ggplot(aes(x=date, y=cases, color = county)) +
   geom_line(size=.8) +
   ggtitle("Number of Cases per County") +
   xlab("Date (by month)") + ylab("Cases") +
   scale_x_date(date_breaks = "1 month", date_labels = "%m") +
   theme_minimal()
+ggplotly(plot)
 ```
 
 
@@ -342,13 +344,14 @@ or.county.cases
 ### Highest percentage of Cases 
 
 ```{r, echo = F , message=F, warning=F}
-or.covid.est %>%
+plot2 <- or.covid.est %>%
   ggplot(aes(x=date, y=cases.perc, color = county)) +
   geom_line(size=.8) +
   ggtitle("Percent of Cases per County") +
   xlab("Date (by month)") + ylab("Percent") +
   scale_x_date(date_breaks = "1 month", date_labels = "%m") +
   theme_minimal()
+ggplotly(plot2)
 ```
 
 ```{r, echo = F}
@@ -380,13 +383,14 @@ or.county.cases.perc
 ### Most number of Deaths
 
 ```{r, echo = F , message= F}
-or.covid.est %>%
+plot3 <- or.covid.est %>%
   ggplot(aes(x=date, y=deaths, color = county)) +
   geom_line(size=.8) +
   ggtitle("Number of Deaths per County") +
   xlab("Date (by month)") + ylab("Deaths") +
   scale_x_date(date_breaks = "1 month", date_labels = "%m") +
   theme_minimal()
+ggplotly(plot3)
 ```
 
 ```{r, echo = F}
@@ -417,13 +421,14 @@ or.county.deaths
 ### Highest percentage of Deaths
 
 ```{r, echo = F , message= FALSE, error=F, warning=FALSE}
-or.covid.est %>%
+plot4 <- or.covid.est %>%
   ggplot(aes(x=date, y=deaths.perc, color = county)) +
   geom_line(size=.8) +
   ggtitle("Percent of Deaths per County") +
   xlab("Date (by month)") + ylab("Percent") +
   scale_x_date(date_breaks = "1 month", date_labels = "%m") +
   theme_minimal()
+ggplotly(plot4)
 ```
 
 ```{r, echo = F}
