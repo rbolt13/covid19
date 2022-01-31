@@ -13,7 +13,7 @@ output:
 ---
 
 ```{r, echo=F}
-Date <- "2022-01-20"
+Date <- "2022-01-28"
 N <- 5
 ```
 
@@ -112,6 +112,7 @@ head(us.states.vacc, n=5)
 Note: People_Fully_Vaccinated and People_Partially_Vaccinated show as NA because of the dates displayed were before the vaccine was released.
 
 Next, to join the Oregon county population data with the density data, remove "County, Oregon" from each county object, filter out Oregon from the us.counties data, and then join with the population data per county. 
+
 ```{r, echo=FALSE}
 # join states population with density and clean
 or.county.est <- or.county.pop %>%
@@ -297,9 +298,387 @@ gt(us.states.vacc.perc[1:5,]) %>%
 
 ## Looking at Oregon Counties
 
+```{r data for maps, echo = F , message= F}
+# remove " County, Oregon" from the county name
+or.county.pop$county <- gsub(" County, Oregon", "", or.county.pop$county)
+# sort or.county.pop
+# or.county.pop <- or.county.pop[with(or.county.pop, order(county)), ]
+# or counties with lat and long
+or_counties <- map_data("county", "oregon") %>%
+  select(lon = long, lat, group, county = subregion)
+# total cases and deaths 
+total_or <- or.covid.est %>%
+  filter(date == Date) %>%
+  group_by(county) %>%
+  summarise(total_cases = cases,
+            total_cases_perc = cases.perc,
+            total_deaths = deaths,
+            total_deaths_perc = deaths.perc)
+# remove "unknown" from total cases 
+total_or <- total_or %>%
+  filter(county != "Unknown")
+# join total_or with population
+total_or <- total_or %>%
+  select(county, total_cases, total_cases_perc, total_deaths, total_deaths_perc) %>%
+  full_join(or.county.pop %>%
+              select(county, population),
+            by = c("county"="county"))
+
+```
+
+
+```{r, echo=F, message=F}
+# join or_counties with total_or
+new <- or_counties %>%
+  select(lon, lat, group, county) %>%
+  left_join(total_or %>%
+            select(county, total_cases, total_cases_perc, total_deaths, total_deaths_perc),
+            by = c("county" = "county"))
+```
+
+
+```{r, echo=F, message=F}
+# baker data 
+baker_tcase <- total_or$total_cases[1]
+baker_tcasep <- total_or$total_cases_perc[1]
+baker_tdeath <- total_or$total_deaths[1]
+baker_deathp <- total_or$total_deaths_perc[1]
+new$total_cases[1:73] <- baker_tcase
+new$total_cases_perc[1:73] <- baker_tcasep
+new$total_deaths[1:73] <- baker_tdeath
+new$total_deaths_perc[1:73] <- baker_deathp
+# benton
+benton_tcase <- total_or$total_cases[2]
+benton_tcasep <- total_or$total_cases_perc[2]
+benton_tdeath <- total_or$total_deaths[2]
+benton_deathp <- total_or$total_deaths_perc[2]
+new$total_cases[74:106] <- benton_tcase
+new$total_cases_perc[74:106] <- benton_tcasep
+new$total_deaths[74:106] <- benton_tdeath
+new$total_deaths_perc[74:106] <- benton_deathp
+# clackamas
+clackamas_tcase <- total_or$total_cases[3]
+clackamas_tcasep <- total_or$total_cases_perc[3]
+clackamas_tdeath <- total_or$total_deaths[3]
+clackamas_deathp <- total_or$total_deaths_perc[3]
+new$total_cases[107:156] <- clackamas_tcase
+new$total_cases_perc[107:156] <- clackamas_tcasep
+new$total_deaths[107:156] <- clackamas_tdeath
+new$total_deaths_perc[107:156] <- clackamas_deathp
+# clatsop
+clatsop_tcase <- total_or$total_cases[4]
+clatsop_tcasep <- total_or$total_cases_perc[4]
+clatsop_tdeath <- total_or$total_deaths[4]
+clatsop_deathp <- total_or$total_deaths_perc[4]
+new$total_cases[157:195] <- clatsop_tcase
+new$total_cases_perc[157:195] <- clatsop_tcasep
+new$total_deaths[157:195] <- clatsop_tdeath
+new$total_deaths_perc[157:195] <- clatsop_deathp
+# columbia
+columbia_tcase <- total_or$total_cases[5]
+columbia_tcasep <- total_or$total_cases_perc[5]
+columbia_tdeath <- total_or$total_deaths[5]
+columbia_deathp <- total_or$total_deaths_perc[5]
+new$total_cases[196:225] <- columbia_tcase
+new$total_cases_perc[196:225] <- columbia_tcasep
+new$total_deaths[196:225] <- columbia_tdeath
+new$total_deaths_perc[196:225] <- columbia_deathp
+# coos - 6, 226:271
+coos_tcase <- total_or$total_cases[6]
+coos_tcasep <- total_or$total_cases_perc[6]
+coos_tdeath <- total_or$total_deaths[6]
+coos_deathp <- total_or$total_deaths_perc[6]
+new$total_cases[226:271] <- coos_tcase
+new$total_cases_perc[226:271] <- coos_tcasep
+new$total_deaths[226:271] <- coos_tdeath
+new$total_deaths_perc[226:271] <- coos_deathp
+# crook - 7, 272:300
+crook_tcase <- total_or$total_cases[7]
+crook_tcasep <- total_or$total_cases_perc[7]
+crook_tdeath <- total_or$total_deaths[7]
+crook_deathp <- total_or$total_deaths_perc[7]
+new$total_cases[272:300] <- crook_tcase
+new$total_cases_perc[272:300] <- crook_tcasep
+new$total_deaths[272:300] <- crook_tdeath
+new$total_deaths_perc[272:300] <- crook_deathp
+# curry - 8, 301:368
+curry_tcase <- total_or$total_cases[8]
+curry_tcasep <- total_or$total_cases_perc[8]
+curry_tdeath <- total_or$total_deaths[8]
+curry_deathp <- total_or$total_deaths_perc[8]
+new$total_cases[301:368] <- curry_tcase
+new$total_cases_perc[301:368] <- curry_tcasep
+new$total_deaths[301:368] <- curry_tdeath
+new$total_deaths_perc[301:368] <- curry_deathp
+# deschutes - 9, 369:418
+deschutes_tcase <- total_or$total_cases[9]
+deschutes_tcasep <- total_or$total_cases_perc[9]
+deschutes_tdeath <- total_or$total_deaths[9]
+deschutes_deathp <- total_or$total_deaths_perc[9]
+new$total_cases[369:418] <- deschutes_tcase
+new$total_cases_perc[369:418] <- deschutes_tcasep
+new$total_deaths[369:418] <- deschutes_tdeath
+new$total_deaths_perc[369:418] <- deschutes_deathp
+# douglas - 10, 419:515
+douglas_tcase <- total_or$total_cases[10]
+douglas_tcasep <- total_or$total_cases_perc[10]
+douglas_tdeath <- total_or$total_deaths[10]
+douglas_deathp <- total_or$total_deaths_perc[10]
+new$total_cases[419:515] <- douglas_tcase
+new$total_cases_perc[419:515] <- douglas_tcasep
+new$total_deaths[419:515] <- douglas_tdeath
+new$total_deaths_perc[419:515] <- douglas_deathp
+# gilliam - 11, 516:566
+gilliam_tcase <- total_or$total_cases[11]
+gilliam_tcasep <- total_or$total_cases_perc[11]
+gilliam_tdeath <- total_or$total_deaths[11]
+gilliam_deathp <- total_or$total_deaths_perc[11]
+new$total_cases[516:566] <- gilliam_tcase
+new$total_cases_perc[516:566] <- gilliam_tcasep
+new$total_deaths[516:566] <- gilliam_tdeath
+new$total_deaths_perc[516:566] <- gilliam_deathp
+# grant - 12, 567:616
+grant_tcase <- total_or$total_cases[12]
+grant_tcasep <- total_or$total_cases_perc[12]
+grant_tdeath <- total_or$total_deaths[12]
+grant_deathp <- total_or$total_deaths_perc[12]
+new$total_cases[567:616] <- grant_tcase
+new$total_cases_perc[567:616] <- grant_tcasep
+new$total_deaths[567:616] <- grant_tdeath
+new$total_deaths_perc[567:616] <- grant_deathp
+# harney - 13, 617:645
+harney_tcase <- total_or$total_cases[13]
+harney_tcasep <- total_or$total_cases_perc[13]
+harney_tdeath <- total_or$total_deaths[13]
+harney_deathp <- total_or$total_deaths_perc[13]
+new$total_cases[617:645] <- harney_tcase
+new$total_cases_perc[617:645] <- harney_tcasep
+new$total_deaths[617:645] <- harney_tdeath
+new$total_deaths_perc[617:645] <- harney_deathp
+# hoodriver - 14, 646:674
+hoodriver_tcase <- total_or$total_cases[14]
+hoodriver_tcasep <- total_or$total_cases_perc[14]
+hoodriver_tdeath <- total_or$total_deaths[14]
+hoodriver_deathp <- total_or$total_deaths_perc[14]
+new$total_cases[646:674] <- hoodriver_tcase
+new$total_cases_perc[646:674] <- hoodriver_tcasep
+new$total_deaths[646:674] <- hoodriver_tdeath
+new$total_deaths_perc[646:674] <- hoodriver_deathp
+# jackson - 15, 675:694
+a <- total_or$total_cases[15]
+b <- total_or$total_cases_perc[15]
+c <- total_or$total_deaths[15]
+d <- total_or$total_deaths_perc[15]
+new$total_cases[675:694] <- a
+new$total_cases_perc[675:694] <- b
+new$total_deaths[675:694] <- c
+new$total_deaths_perc[675:694] <- d
+# jefferson - 16, 695:714
+a <- total_or$total_cases[16]
+b <- total_or$total_cases_perc[16]
+c <- total_or$total_deaths[16]
+d <- total_or$total_deaths_perc[16]
+new$total_cases[695:714] <- a
+new$total_cases_perc[695:714] <- b
+new$total_deaths[695:714] <- c
+new$total_deaths_perc[695:714] <- d
+```
+
+```{r, echo=F, message= F}
+# josephine - 17, 715:758
+a <- total_or$total_cases[17]
+b <- total_or$total_cases_perc[17]
+c <- total_or$total_deaths[17]
+d <- total_or$total_deaths_perc[17]
+new$total_cases[715:758] <- a
+new$total_cases_perc[715:758] <- b
+new$total_deaths[715:758] <- c
+new$total_deaths_perc[715:758] <- d
+# klamath - 18, 759:795
+a <- total_or$total_cases[18]
+b <- total_or$total_cases_perc[18]
+c <- total_or$total_deaths[18]
+d <- total_or$total_deaths_perc[18]
+new$total_cases[759:795] <- a
+new$total_cases_perc[759:795] <- b
+new$total_deaths[759:795] <- c
+new$total_deaths_perc[759:795] <- d
+# lane - 19, 796:818
+a <- total_or$total_cases[19]
+b <- total_or$total_cases_perc[19]
+c <- total_or$total_deaths[19]
+d <- total_or$total_deaths_perc[19]
+new$total_cases[796:818] <- a
+new$total_cases_perc[796:818] <- b
+new$total_deaths[796:818] <- c
+new$total_deaths_perc[796:818] <- d
+# lake - 20, 819:908
+a <- total_or$total_cases[20]
+b <- total_or$total_cases_perc[20]
+c <- total_or$total_deaths[20]
+d <- total_or$total_deaths_perc[20]
+new$total_cases[819:908] <- a
+new$total_cases_perc[819:908] <- b
+new$total_deaths[819:908] <- c
+new$total_deaths_perc[819:908] <- d
+# lincoln - 21, 909:987
+a <- total_or$total_cases[21]
+b <- total_or$total_cases_perc[21]
+c <- total_or$total_deaths[21]
+d <- total_or$total_deaths_perc[21]
+new$total_cases[909:987] <- a
+new$total_cases_perc[909:987] <- b
+new$total_deaths[909:987] <- c
+new$total_deaths_perc[909:987] <- d
+# linn - 22, 988:1020
+a <- total_or$total_cases[22]
+b <- total_or$total_cases_perc[22]
+c <- total_or$total_deaths[22]
+d <- total_or$total_deaths_perc[22]
+new$total_cases[988:1020] <- a
+new$total_cases_perc[988:1020] <- b
+new$total_deaths[988:1020] <- c
+new$total_deaths_perc[988:1020] <- d
+# malheur - 23, 1021:1058
+a <- total_or$total_cases[23]
+b <- total_or$total_cases_perc[23]
+c <- total_or$total_deaths[23]
+d <- total_or$total_deaths_perc[23]
+new$total_cases[1021:1058] <- a
+new$total_cases_perc[1021:1058] <- b
+new$total_deaths[1021:1058] <- c
+new$total_deaths_perc[1021:1058] <- d
+# marion - 24, 1059:1207
+a <- total_or$total_cases[24]
+b <- total_or$total_cases_perc[24]
+c <- total_or$total_deaths[24]
+d <- total_or$total_deaths_perc[24]
+new$total_cases[1059:1207] <- a
+new$total_cases_perc[1059:1207] <- b
+new$total_deaths[1059:1207] <- c
+new$total_deaths_perc[1059:1207] <- d
+# marrow - 25, 1127:1155
+a <- total_or$total_cases[25]
+b <- total_or$total_cases_perc[25]
+c <- total_or$total_deaths[25]
+d <- total_or$total_deaths_perc[25]
+new$total_cases[1127:1155] <- a
+new$total_cases_perc[1127:1155] <- b
+new$total_deaths[1127:1155] <- c
+new$total_deaths_perc[1127:1155] <- d
+# multnomah - 26, 1156:1181
+a <- total_or$total_cases[26]
+b <- total_or$total_cases_perc[26]
+c <- total_or$total_deaths[26]
+d <- total_or$total_deaths_perc[26]
+new$total_cases[1156:1181] <- a
+new$total_cases_perc[1156:1181] <- b
+new$total_deaths[1156:1181] <- c
+new$total_deaths_perc[1156:1181] <- d
+# polk - 27, 1182:1207
+a <- total_or$total_cases[27]
+b <- total_or$total_cases_perc[27]
+c <- total_or$total_deaths[27]
+d <- total_or$total_deaths_perc[27]
+new$total_cases[1182:1207] <- a
+new$total_cases_perc[1182:1207] <- b
+new$total_deaths[1182:1207] <- c
+new$total_deaths_perc[1182:1207] <- d
+# sherman - 28, 1208:1258
+a <- total_or$total_cases[28]
+b <- total_or$total_cases_perc[28]
+c <- total_or$total_deaths[28]
+d <- total_or$total_deaths_perc[28]
+new$total_cases[1208:1258] <- a
+new$total_cases_perc[1208:1258] <- b
+new$total_deaths[1208:1258] <- c
+new$total_deaths_perc[1208:1258] <- d
+# tillamook - 29, 1259:1308
+a <- total_or$total_cases[29]
+b <- total_or$total_cases_perc[29]
+c <- total_or$total_deaths[29]
+d <- total_or$total_deaths_perc[29]
+new$total_cases[1259:1308] <- a
+new$total_cases_perc[1259:1308] <- b
+new$total_deaths[1259:1308] <- c
+new$total_deaths_perc[1259:1308] <- d
+# umatilla - 30, 1309:1351
+a <- total_or$total_cases[30]
+b <- total_or$total_cases_perc[30]
+c <- total_or$total_deaths[30]
+d <- total_or$total_deaths_perc[30]
+new$total_cases[1309:1351] <- a
+new$total_cases_perc[1309:1351] <- b
+new$total_deaths[1309:1351] <- c
+new$total_deaths_perc[1309:1351] <- d
+# union - 31, 1352:1416
+a <- total_or$total_cases[31]
+b <- total_or$total_cases_perc[31]
+c <- total_or$total_deaths[31]
+d <- total_or$total_deaths_perc[31]
+new$total_cases[1352:1416] <- a
+new$total_cases_perc[1352:1416] <- b
+new$total_deaths[1352:1416] <- c
+new$total_deaths_perc[1352:1416] <- d
+# wallowa - 32, 1417:1465
+a <- total_or$total_cases[32]
+b <- total_or$total_cases_perc[32]
+c <- total_or$total_deaths[32]
+d <- total_or$total_deaths_perc[32]
+new$total_cases[1417:1465] <- a
+new$total_cases_perc[1417:1465] <- b
+new$total_deaths[1417:1465] <- c
+new$total_deaths_perc[1417:1465] <- d
+# wasco - 33, 1466:1528
+a <- total_or$total_cases[33]
+b <- total_or$total_cases_perc[33]
+c <- total_or$total_deaths[33]
+d <- total_or$total_deaths_perc[33]
+new$total_cases[1466:1528] <- a
+new$total_cases_perc[1466:1528] <- b
+new$total_deaths[1466:1528] <- c
+new$total_deaths_perc[1466:1528] <- d
+# washington - 34, 1529:1576
+a <- total_or$total_cases[34]
+b <- total_or$total_cases_perc[34]
+c <- total_or$total_deaths[34]
+d <- total_or$total_deaths_perc[34]
+new$total_cases[1529:1576] <- a
+new$total_cases_perc[1529:1576] <- b
+new$total_deaths[1529:1576] <- c
+new$total_deaths_perc[1529:1576] <- d
+# wheeler - 35, 1577:1605
+a <- total_or$total_cases[35]
+b <- total_or$total_cases_perc[35]
+c <- total_or$total_deaths[35]
+d <- total_or$total_deaths_perc[35]
+new$total_cases[1577:1605] <- a
+new$total_cases_perc[1577:1605] <- b
+new$total_deaths[1577:1605] <- c
+new$total_deaths_perc[1577:1605] <- d
+# yamhill - 36, 1606:1633
+a <- total_or$total_cases[36]
+b <- total_or$total_cases_perc[36]
+c <- total_or$total_deaths[36]
+d <- total_or$total_deaths_perc[36]
+new$total_cases[1606:1633] <- a
+new$total_cases_perc[1606:1633] <- b
+new$total_deaths[1606:1633] <- c
+new$total_deaths_perc[1606:1633] <- d
+```
+
+
+
 Next to look at the data a little closer to home, for Oregon Counties. Initially filtering by the most recent date, which as of this being written is **`r Date``**, looking at a graph of the state as a whole, and then look at the top five Oregon counties.
 
 ### Most number of cases
+
+```{r, echo=F, message= F}
+map <- ggplot(data = new, aes(lon, lat, group = group, fill = total_cases))+
+  geom_polygon(color = "grey") +
+  coord_quickmap()
+ggplotly(map)
+```
 
 ```{r, echo = F , message= F}
 plot <- or.covid.est %>%
@@ -311,9 +690,6 @@ plot <- or.covid.est %>%
   theme_minimal()
 ggplotly(plot)
 ```
-
-
-
 
 ```{r, echo = F}
 # cases
@@ -342,6 +718,13 @@ or.county.cases
 
 
 ### Highest percentage of Cases 
+
+```{r, echo=F, message= F}
+map <- ggplot(data = new, aes(lon, lat, group = group, fill = total_cases_perc))+
+  geom_polygon(color = "grey") +
+  coord_quickmap()
+ggplotly(map)
+```
 
 ```{r, echo = F , message=F, warning=F}
 plot2 <- or.covid.est %>%
@@ -379,8 +762,14 @@ or.county.cases.perc <- or.covid.est %>%
 or.county.cases.perc
 ```
 
-
 ### Most number of Deaths
+
+```{r, echo=F, message= F}
+map <- ggplot(data = new, aes(lon, lat, group = group, fill = total_deaths))+
+  geom_polygon(color = "grey") +
+  coord_quickmap()
+ggplotly(map)
+```
 
 ```{r, echo = F , message= F}
 plot3 <- or.covid.est %>%
@@ -419,6 +808,13 @@ or.county.deaths
 ```
 
 ### Highest percentage of Deaths
+
+```{r, echo=F, message= F}
+map <- ggplot(data = new, aes(lon, lat, group = group, fill = total_deaths_perc))+
+  geom_polygon(color = "grey") +
+  coord_quickmap()
+ggplotly(map)
+```
 
 ```{r, echo = F , message= FALSE, error=F, warning=FALSE}
 plot4 <- or.covid.est %>%
