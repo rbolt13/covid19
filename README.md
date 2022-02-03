@@ -5,14 +5,20 @@ View [here](https://rbolt13.github.io/covid19/).
 
 # To Do
 * tables
-   + update dates
-   + add overviews
-   + create a function that works for formatting all the tables 
-      - minimize lines of code
-      - only change date in one spot
+   + add overviews (words)
+   + create a function 
 * graphs 
+   + create function for graphs
+   + add USA graphs 
+   + play with colors and legend
 * maps
-* shiny
+   + clean up "geo-coding" or move it to another file
+   + Oregon Lambert Projection
+   + color scale and legend 
+   + plotly display box
+* show date variable as month-date-year format (%A or %m/%d/%y)
+* spread everything out
+* clean up code
 
 # Done 
 ☑️ README
@@ -22,3 +28,11 @@ View [here](https://rbolt13.github.io/covid19/).
 ☑️ Wrangle Data 
 
 ☑️ Create Tables
+
+☑️ Updated Tables with Date variable and Colors
+
+☑️ Updated Oregon Graphs with Plotly
+
+☑️ Add Maps
+
+☑️ Updated Maps with Plotly

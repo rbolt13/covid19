@@ -13,7 +13,7 @@ output:
 ---
 
 ```{r, echo=F}
-Date <- "2022-02-01"
+Date <- "2022-02-02"
 N <- 5
 ```
 
@@ -23,7 +23,7 @@ library(magrittr) # %>%
 library(dplyr) # rename()
 library(readr) # read_csv()
 library(tidyr)
-library(lubridate)
+library(lubridate) # for dates
 library(pander)
 library(ggplot2)
 library(gt) #format tables
@@ -33,6 +33,7 @@ library(tidycensus) # population data
 readRenviron(".Renviron")
 library(plotly)
 ```
+
 
 ## Background and Data
 
@@ -676,8 +677,14 @@ Next to look at the data a little closer to home, for Oregon Counties. Initially
 ```{r, echo=F, message= F}
 map <- ggplot(data = new, aes(lon, lat, group = group, fill = total_cases))+
   geom_polygon(color = "grey") +
-  coord_quickmap()
-ggplotly(map)
+  coord_quickmap() +
+  theme_minimal() +
+  ggtitle(paste("Total Number of Cases by Oregon Counties as of", Date)) +
+  labs(x = "",
+       y = "",
+       fill = "Number of Cases") 
+  
+ggplotly(map) 
 ```
 
 ```{r, echo = F , message= F}
@@ -722,7 +729,12 @@ or.county.cases
 ```{r, echo=F, message= F}
 map <- ggplot(data = new, aes(lon, lat, group = group, fill = total_cases_perc))+
   geom_polygon(color = "grey") +
-  coord_quickmap()
+  coord_quickmap() +
+  theme_minimal() +
+  ggtitle(paste("Total % of Cases Per Oregon County as of", Date)) +
+  labs(x = "",
+       y = "",
+       fill = "Percent of Cases")
 ggplotly(map)
 ```
 
@@ -767,7 +779,12 @@ or.county.cases.perc
 ```{r, echo=F, message= F}
 map <- ggplot(data = new, aes(lon, lat, group = group, fill = total_deaths))+
   geom_polygon(color = "grey") +
-  coord_quickmap()
+  coord_quickmap() +
+  theme_minimal() +
+  ggtitle(paste("Total Number of Deaths Per Oregon County as of", Date)) +
+  labs(x = "",
+       y = "",
+       fill = "Number of Deaths")
 ggplotly(map)
 ```
 
@@ -812,7 +829,12 @@ or.county.deaths
 ```{r, echo=F, message= F}
 map <- ggplot(data = new, aes(lon, lat, group = group, fill = total_deaths_perc))+
   geom_polygon(color = "grey") +
-  coord_quickmap()
+  coord_quickmap() +
+  theme_minimal() +
+  ggtitle(paste("Total % of Deaths Per Oregon County as of", Date)) +
+  labs(x = "",
+       y = "",
+       fill = "Percent of Deaths")
 ggplotly(map)
 ```
 
