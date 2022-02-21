@@ -4,6 +4,7 @@ This project looks at the COIVD-19 and census data.
 View [here](https://rbolt13.github.io/covid19/).
 
 # To Do
+* clean up code
 * tables
    + add overviews (words)
    + create a function 
@@ -16,9 +17,10 @@ View [here](https://rbolt13.github.io/covid19/).
    + Oregon Lambert Projection
    + color scale and legend 
    + plotly display box
+   + add USA maps
 * show date variable as month-date-year format (%A or %m/%d/%y)
 * spread everything out
-* clean up code
+* shiny or flexboard upgrade
 
 # Done 
 ☑️ README
