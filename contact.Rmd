@@ -11,4 +11,4 @@ output:
     theme: darkly
 ---
 
-Like what you see or have a specific question? Check out other projects I've worked on via my personal website / blog [here](https://www.rbolt.me/), or send me an an email at **rbolt@pdx.edu**.
+Like what you see or have a specific question? Check out other projects I've worked on via my personal website / blog [here](https://www.rbolt.me/), or send me an email at **rbolt@pdx.edu**.
