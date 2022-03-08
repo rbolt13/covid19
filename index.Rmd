@@ -13,7 +13,7 @@ output:
 ---
 
 ```{r, echo=F}
-Date <- "2022-03-04"
+Date <- "2022-03-07"
 N <- 5
 ```
 
@@ -183,7 +183,7 @@ us.states.cases.perc <- us.states.vacc %>%
   select(state, population, cases, case.per) %>%
   arrange(desc(case.per)) 
 # table
-gt(us.states.cases.perc[1:10,]) %>%
+gt(us.states.cases.perc[1:5,]) %>%
     fmt_number(columns = cases, decimals = 0) %>%
     fmt_number(columns = population, decimals = 0) %>%
     fmt_percent(columns = case.per, decimals = 2) %>%
