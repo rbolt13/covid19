@@ -3,7 +3,9 @@
 ## Project Project Structure 
 
 covid19/
+  
   raw_data/
+  
   clean_data/
   figs/
   sand_box/
