@@ -7,8 +7,14 @@ output:
 navbar:
   title: "COVID-19"
   left:
-    - text: "About"
+    - text: "Abstract"
       href: index.html
+    - text: "Analysis"
+      href: analysis.html
+    - text: "US Figures"
+      href: us_figs.html
+    - text: "OR Figures"
+      href: or_figs.html
     - text: "Contact"
       href: contact.html
 ---
