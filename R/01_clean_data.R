@@ -10,7 +10,7 @@
 #'
 #' @return returns two .rds data sets in the clean_data folder.
 
-here::i_am("R/01_clean_data")
+here::i_am("R/01_clean_data.R")
 
 library(dplyr)
 
