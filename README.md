@@ -1,6 +1,7 @@
 This project is under construction. 
 
-# Instructions: Fork this repository and run code in Makefile from terminal to reproduce this analysis. It can also be viewed in your browser from this link [here](https://rbolt13.github.io/covid19/).
+# Instructions: 
+Fork this repository and run code in Makefile from terminal to reproduce this analysis. It can also be viewed in your browser from this link [here](https://rbolt13.github.io/covid19/).
 
 # COVID-19 Analysis
 This project was created by [Randi Bolt](https://www.rbolt.me/) as a student project. 
