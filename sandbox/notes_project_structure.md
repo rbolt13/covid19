@@ -14,27 +14,21 @@ covid19/
   
     R/
     
-        R/00_save_data_us_states.R
+        R/00_save_data.R
+    
+        R/01_clean_data.R
         
-        R/01_save_data_us_counties.R
+        R/02_analysis.R
         
-        R/02_save_data_vacc.R
+        R/03_tables.R
         
-        R/03_save_data_us_pop.R
+        R/04_graphs.R
         
-        R/04_save_data_or_pop.R
+        R/05_maps.R
+        
+    Rmd/
     
-        R/0X_clean_data.R
-    
-        R/0X_us_tables.R
-    
-        R/0X_or_geocode.R
-    
-        R/0X_or_maps.R
-    
-        R/0X_or_graphs.R
-    
-        R/0X_or_tables.R
+        Rmd/analysis.Rmd
   
     Website/
         Docs/
@@ -42,6 +36,8 @@ covid19/
         Website/_site.yml
     
         Website/about.Rmd
+        
+        Website/analysis.Rmd
     
         Website/us.Rmd
     
