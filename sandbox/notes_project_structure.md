@@ -12,35 +12,29 @@ covid19/
   
     sand_box/
   
-    R/
+    code/
     
-        R/00_save_data.R
+        code/00_save_data.R
     
-        R/01_clean_data.R
+        code/01_clean_data.R
         
-        R/02_analysis.R
+        code/02_analysis.R
         
-        R/03_tables.R
-        
-        R/04_graphs.R
-        
-        R/05_maps.R
-        
-    Rmd/
+        code/03_figs.R
     
-        Rmd/analysis.Rmd
+        code/04_ report.Rmd
   
     Website/
         Docs/
    
         Website/_site.yml
     
-        Website/about.Rmd
+        Website/index.Rmd
         
-        Website/analysis.Rmd
+        Website/report.Rmd
     
-        Website/us.Rmd
+        Website/us_figs.Rmd
     
-        Website/or.Rmd
+        Website/or_figs.Rmd
     
         Website/contact.Rmd
