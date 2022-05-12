@@ -1,40 +1,32 @@
-# About
-This project looks at the COIVD-19 and census data. 
+This project is under construction. 
 
-View [here](https://rbolt13.github.io/covid19/).
+# Instructions: Fork this repository and run code in Makefile from terminal to reproduce this analysis. It can also be viewed in your browser from this link [here](https://rbolt13.github.io/covid19/).
 
-# To Do
-* clean up code
-* tables
-   + add overviews (words)
-   + create a function 
-* graphs 
-   + create function for graphs
-   + add USA graphs 
-   + play with colors and legend
-* maps
-   + clean up "geo-coding" or move it to another file
-   + Oregon Lambert Projection
-   + color scale and legend 
-   + plotly display box
-   + add USA maps
-* show date variable as month-date-year format (%A or %m/%d/%y)
-* spread everything out
-* shiny or flexboard upgrade
+# COVID-19 Analysis
+This project was created by [Randi Bolt](https://www.rbolt.me/) as a student project. 
 
-# Done 
-☑️ README
+# Project Intro
+The purpose of this project to analyze Covid-19 data.
 
-☑️ Create site
+#### -- Project Status: [Under Construction]
 
-☑️ Wrangle Data 
+### Methods Used
 
-☑️ Create Tables
+* Descriptive Statistics
 
-☑️ Updated Tables with Date variable and Colors
+* Data Visualization
 
-☑️ Updated Oregon Graphs with Plotly
+* Predictive Modeling (maybe)
 
-☑️ Add Maps
+### Technologies
 
-☑️ Updated Maps with Plotly
+* R
+
+## Project Deescription
+Content coming. 
+
+## Getting Started 
+
+1. Clone this repo. 
+
+2. Coming soon. 
