@@ -23,7 +23,7 @@ The purpose of this project to analyze Covid-19 data.
 
 * R
 
-## Project Deescription
+## Project Description
 Content coming. 
 
 ## Getting Started 
