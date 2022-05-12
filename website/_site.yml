@@ -15,8 +15,6 @@ navbar:
       href: figs.html
     - text: "DIY"
       href: diy.html
-    - text: "Refereneces"
-      href: references.html
     - text: "Contact"
       href: contact.html
 ---

@@ -12,13 +12,16 @@ output:
     theme: darkly
 ---
 
+```{r, include=FALSE}
+here::i_am("website/analysis.Rmd")
+```
+
 ```{r, echo=F}
 Date <- "2022-05-11"
 N <- 5
 ```
 
 ```{r setup, include=FALSE}
-here::i_am("index.Rmd")
 
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 library(magrittr) # %>%
