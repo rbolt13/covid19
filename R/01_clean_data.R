@@ -1,41 +1,48 @@
 #' Clean Data
 #' 
-#' @description 
+#' @description Cleans 5 data sets by:
+#' 1. renaming tidycensus data columns
+#' 2. removing " County, Oregon" from the county name
+#' 3. join us_covid data with vacc data
+#' 4. join us_join with us_pop
+#' 5. join counties_covid with or_pop
+#' 6. clean data
 #'
+#' @return returns two .rds data sets in the clean_data folder.
 
 here::i_am("R/01_clean_data")
 
 library(dplyr)
 
 # location of raw data
-location_of_states_covid <- here::here("raw_data",
+location_of_us_covid <- here::here("raw_data",
                                        "states_covid_data.rds")
 location_of_counties_covid <- here::here("raw_data",
                                          "counties_covid_data.rds")
 location_of_vacc <- here::here("raw_data",
                                "vacc_data.rds")
-location_of_state_pop <- here::here("raw_data",
+location_of_us_pop <- here::here("raw_data",
                                     "state_pop_data.rds")
 location_of_or_pop <- here::here("raw_data",
                                  "or_pop_data.rds")
 # data
-states_covid <- readRDS(location_of_states_covid)
+us_covid <- readRDS(location_of_us_covid)
 counties_covid <- readRDS(location_of_counties_covid)
 vacc <- readRDS(location_of_vacc)
-state_pop <- readRDS(location_of_state_pop)
+us_pop <- readRDS(location_of_us_pop)
 or_pop <- readRDS(location_of_or_pop)
 
-# rename columns (for future join)
-state_pop <- dplyr::rename("state" = NAME,
+# 1. rename columns (for future join)
+us_pop <- dplyr::rename("state" = NAME,
                            "population" = value)
 or_pop <- dplyr::rename("county" = NAME,
                         "population" = value)
 
-# remove " County, Oregon" from the county name (for future join)
+# 2. remove " County, Oregon" from the county name (for future join)
 or_pop <- gsub(" County, Oregon", "", or_pop)
 
-# join state covid data with vacc data
-state_join <- states_covid %>%
+# 3. join state covid data with vacc data
+us_join <- us_covid %>%
   select(date, 
          state, 
          cases, 
@@ -52,15 +59,15 @@ state_join <- states_covid %>%
             by = c("state" = "Province_State",
                    "date" = "Date")
             ) %>%
-# join state_join with state pop
-  full_join(state_pop %>%
+# 4. join state_join with state pop
+  full_join(us_pop %>%
               select(state, 
                      population
                      ), 
             by = c("state" = "state")
             ) 
 
-# join counties covid data with or pop data
+# 5. join counties covid data with or pop data
 join_or <- counties_covid %>%
   select(date, 
          county, 
@@ -72,8 +79,8 @@ join_or <- counties_covid %>%
             by = c("county" = "county")
   )
 
-# clean state data
-us_covid_clean <- state_join %>%
+# 6. clean data
+us_covid_clean <- us_join %>%
   summarise(date = date,
             state = state,
             population = population,
@@ -86,7 +93,6 @@ us_covid_clean <- state_join %>%
             partial_vacc = People_Partially_Vaccinated,
             partial_vacc_per_pop = partial_vacc/population)
 
-# clean or data
 or_covid_clean <- join_or %>%
   summarise(date = date,
             county = county,
