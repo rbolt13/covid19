@@ -2,7 +2,7 @@
 #' 
 #' @description Cleans 5 data sets by:
 #' 1. renaming tidycensus data columns
-#' 2. removing " County, Oregon" from the county name
+#' 2. removing " County, Oregon" from the county name in counties_covid_data
 #' 3. join us_covid data with vacc data
 #' 4. join us_join with us_pop
 #' 5. join counties_covid with or_pop
