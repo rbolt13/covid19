@@ -1,3 +1,11 @@
+#' Save Data
+#'
+#' @description uses readr to save 6 csv data sets from github,
+#' and tidycensus to save 4 data sets. 
+#'
+#' @return saves 10 .rds data sets to raw_data project folder. 
+#' 6 related to covid, and 4 related to census data. 
+
 here::i_am("R/00_save_data.R")
 
 library(readr)
