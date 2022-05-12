@@ -31,10 +31,10 @@ covid19/
     
         Website/index.Rmd
         
-        Website/report.Rmd
+        Website/analysis.Rmd
     
-        Website/us_figs.Rmd
+        Website/figs.Rmd
     
-        Website/or_figs.Rmd
+        Website/diy.Rmd
     
         Website/contact.Rmd
