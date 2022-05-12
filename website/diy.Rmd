@@ -11,3 +11,6 @@ output:
     theme: darkly
 ---
 
+```{r, include=FALSE}
+here::i_am("website/diy.Rmd")
+```

@@ -16,4 +16,5 @@ here::i_am("website/index.Rmd")
 ```
 
 
-Footers ^[This is a footer.]
+The Coronavirus is an infectious disease spread by small liquid particles from an infected person's mouth or nose that can have terminal effects.^[**World Health Organization**  _Coronavirus disease (COVID-19)_. [link](https://www.who.int/health-topics/coronavirus#tab=tab_1). 2022.]
+

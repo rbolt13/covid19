@@ -10,3 +10,7 @@ output:
     toc: true
     theme: darkly
 ---
+
+```{r, include=FALSE}
+here::i_am("website/figs.Rmd")
+```

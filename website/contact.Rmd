@@ -11,4 +11,8 @@ output:
     theme: darkly
 ---
 
+```{r, include=FALSE}
+here::i_am("website/contact.Rmd")
+```
+
 Like what you see or have a specific question? Check out other projects I've worked on via my personal website / blog [here](https://www.rbolt.me/), or send me an email at **rbolt@pdx.edu**.
