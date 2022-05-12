@@ -4,11 +4,11 @@ library(readr)
 library(tidycensus)
 
 # read CSV data
-us_states_covid_data <- readr::read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv")
-us_counties_data <- readr::read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv")
-vacc <- readr::read_csv("https://raw.githubusercontent.com/govex/COVID-19/master/data_tables/vaccine_data/us_data/time_series/people_vaccinated_us_timeline.csv")
+states_covid_data <- readr::read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv")
+counties_covid_data <- readr::read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv")
+vacc_data <- readr::read_csv("https://raw.githubusercontent.com/govex/COVID-19/master/data_tables/vaccine_data/us_data/time_series/people_vaccinated_us_timeline.csv")
 
-# bonus data (not updated since 2021)
+# bonus data (not used bc/ not updated since 2021)
 policytrackerOR_data <- read_csv("https://raw.githubusercontent.com/govex/COVID-19/govex_data/data_tables/policy_data/table_data/Current/Oregon_policy.csv")
 college_data <- read_csv('https://raw.githubusercontent.com/nytimes/covid-19-data/master/colleges/colleges.csv')
 mask_use_data <- read_csv('https://raw.githubusercontent.com/nytimes/covid-19-data/master/colleges/colleges.csv')
@@ -16,33 +16,55 @@ mask_use_data <- read_csv('https://raw.githubusercontent.com/nytimes/covid-19-da
 # read tidycensus data
 state_pop_data <- tidycensus::get_estimates(geography = "state",
                                             year = 2019,
-                                            variable = "Pop")
-state_den_data <- get_estimates(geography = "state", 
-                                year = 2019, 
-                                variable =  "DENSITY")
+                                            variable = "POP")
 or_pop_data <- get_estimates(geography = "county", 
                              state = "OR", 
                              year = 2019, 
                              variable = "POP")
+
+# bonus data (not used)
+state_den_data <- get_estimates(geography = "state", 
+                                year = 2019, 
+                                variable =  "DENSITY") 
+
 or_den_data <- get_estimates(geography = "county", 
                              state = "OR", 
                              year = 2019, 
                              variable = "DENSITY")
 
-# put data into list
-data_list <- list(us_states_covid_data, 
-                  us_counties_data, 
-                  vacc_data, 
-                  policytrackerOR_data,
-                  college_data,
-                  mask_use_data,
-                  state_pop_data,
-                  state_den_data,
-                  or_pop_data,
-                  or_den_data)
+# location of data (main)
+location_of_states_covid <- here::here("raw_data",
+                                       "states_covid_data.rds")
+location_of_counties_covid <- here::here("raw_data",
+                                         "counties_covid_data.rds")
+location_of_vacc <- here::here("raw_data",
+                               "vacc_data.rds")
+location_of_state_pop <- here::here("raw_data",
+                                    "state_pop_data.rds")
+location_of_or_pop <- here::here("raw_data",
+                                 "or_pop_data.rds")
 
-# location of data
-location_of_data <- here::here("raw_data", "data.rds")
+# location of data (bonus)
+location_of_policytracker <- here::here("raw_data",
+                                        "policy_tracker_or_data.rds")
+location_of_college <- here::here("raw_data",
+                                  "college_covid_data.rds")
+location_of_mask_use <- here::here("raw_data",
+                                   "mask_use_data.rds")
+location_of_state_den <- here::here("raw_data",
+                                    "state_den_data.rds")
+location_of_or_den <- here::here("raw_data",
+                                 "or_den_data.rds")
+# save data
+saveRDS(states_covid_data, location_of_states_covid)
+saveRDS(counties_covid_data, location_of_counties_covid)
+saveRDS(vacc_data, location_of_vacc)
+saveRDS(state_pop_data, location_of_state_pop)
+saveRDS(or_pop_data, location_of_or_pop)
 
-# save list of data
-saveRDS(data_list, location_of_data)
+# save data (bonus)
+saveRDS(policytrackerOR_data, location_of_policytracker)
+saveRDS(college_data, location_of_college)
+saveRDS(mask_use_data, location_of_mask_use)
+saveRDS(state_den_data, location_of_state_den)
+saveRDS(or_den_data, location_of_or_den)
