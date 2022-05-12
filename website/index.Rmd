@@ -18,6 +18,8 @@ N <- 5
 ```
 
 ```{r setup, include=FALSE}
+here::i_am("website/index.Rmd")
+
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 library(magrittr) # %>%
 library(dplyr) # rename()
