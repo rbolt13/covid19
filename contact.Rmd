@@ -1,0 +1,14 @@
+---
+title: "Contact"
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'contact.html'))})
+output:
+  html_document:
+    toc: true
+    theme: darkly
+---
+
+Like what you see or have a specific question? Check out other projects I've worked on via my personal website / blog [here](https://www.rbolt.me/), or send me an email at **rbolt@pdx.edu**.
