@@ -1,4 +1,4 @@
-# Instructions: 
+# Instructions 
 Fork this repository and run code in Makefile from terminal to reproduce this analysis. It can also be viewed in your browser from this link [here](https://rbolt13.github.io/covid19/).
 
 # COVID-19 Analysis
