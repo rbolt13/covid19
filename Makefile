@@ -9,3 +9,7 @@ raw_data/clean_data:: R/01_clean_data.R raw_data/counties_covid_data.rds raw_dat
 # analyze data 
 output/analyze_data:: R/00_save_data.R R/01_clean_data.R R/02_analyze_data.R clean_data/or_covid_clean.rds clean_data/us_covid_clean.rds
 	Rscript R/02_analyze_data.R
+	
+# make figures 
+figs/make_figs:: R/00_save_data.R R/01_clean_data.R R/03_figs.R clean_data clean_data/date_data.rds 
+	Rscript R/03_figs.R

@@ -14,7 +14,7 @@
 #' @return returns two .rds data sets in the clean_data folder.
 
 # 03_00: location of this file within the project
-here::i_am("R/02_figs.R")
+here::i_am("R/03_figs.R")
 
 # 03_01: load libraries 
 library(dplyr)
@@ -32,39 +32,37 @@ date_data <- locate_and_save_data("date_data.rds")
 us_current <- locate_and_save_data(paste0("us_",date_data,".rds"))
 
 # 03_04: function that creates reactable table of current data
-make_reactable <- base::function(data_set){
-  # create table 
-  r_table <- reactable::reactable(data_set %>% 
-                                    # remove Date column
-                                    dplyr::select(!Date),
-                                  columns = base::list(
-                                    Population = reactable::colDef(format = reactable::colFormat(separators = TRUE)),
-                                    Cases = reactable::colDef(format = reactable::colFormat(separators = TRUE)),
-                                    cases_per_pop = reactable::colDef(name = "Percent of Cases",
-                                                           format = reactable::colFormat(percent = TRUE,
-                                                                              digits = 2)),
-                                    Deaths = reactable::colDef(format = reactable::colFormat(separators = TRUE)),
-                                    deaths_per_pop = reactable::colDef(name = "Percent of Deaths",
-                                                            format = reactable::colFormat(percent = TRUE,
-                                                                               digits = 2)),
-                                    full_vacc = reactable::colDef(name = "Fully Vaccinated",
-                                                       format = reactable::colFormat(separators = TRUE)),
-                                    full_vacc_per_pop = reactable::colDef(name = "Percent Fully Vaccinated",
-                                                               format = reactable::colFormat(percent = TRUE,
-                                                                                  digits = 2)),
-                                    partial_vacc = reactable::colDef(name = "Partially Vaccinated",
-                                                          format = reactable::colFormat(separators = TRUE)),
-                                    partial_vacc_per_pop = reactable::colDef(name = "Percent Partially Vaccinated",
-                                                                  format = reactable::colFormat(percent = TRUE,
-                                                                                     digits = 2))
+make_reactable <- function(data_set){
+  table <- reactable(data_set %>% dplyr::select(!Date
   ),
-  reactable::defaultSorted = list(Cases = "desc"),
-  reactable::bordered = TRUE,
-  reactable::highlight = TRUE,
-  reactable::showPageSizeOptions = TRUE,
-  reactable::pageSizeOptions = c(5, 10, 20, 50),
-  reactable::defaultPageSize = 5)
-  return(r_table)
+  columns = list(
+    Population = colDef(format = colFormat(separators = TRUE)),
+    Cases = colDef(format = colFormat(separators = TRUE)),
+    cases_per_pop = colDef(name = "Percent of Cases",
+                           format = colFormat(percent = TRUE,
+                                              digits = 2)),
+    Deaths = colDef(format = colFormat(separators = TRUE)),
+    deaths_per_pop = colDef(name = "Percent of Deaths",
+                            format = colFormat(percent = TRUE,
+                                               digits = 2)),
+    full_vacc = colDef(name = "Fully Vaccinated",
+                       format = colFormat(separators = TRUE)),
+    full_vacc_per_pop = colDef(name = "Percent Fully Vaccinated",
+                               format = colFormat(percent = TRUE,
+                                                  digits = 2)),
+    partial_vacc = colDef(name = "Partially Vaccinated",
+                          format = colFormat(separators = TRUE)),
+    partial_vacc_per_pop = colDef(name = "Percent Partially Vaccinated",
+                                  format = colFormat(percent = TRUE,
+                                                     digits = 2))
+  ),
+  defaultSorted = list(Cases = "desc"),
+  bordered = TRUE,
+  highlight = TRUE,
+  showPageSizeOptions = TRUE,
+  pageSizeOptions = c(5, 10, 20, 50),
+  defaultPageSize = 5)
+  return(table)
 }
 
 # 03_05: save table of us_current 
