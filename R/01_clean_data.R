@@ -108,7 +108,7 @@ join_or <- counties_covid %>%
 
 # 6. clean data
 # US
-us_covid_clean <- us_join %>%
+us_clean <- us_join %>%
   # dplyr::summarise
   dplyr::summarise(
                   # Given
@@ -125,8 +125,9 @@ us_covid_clean <- us_join %>%
                    full_vacc_per_pop = full_vacc/population,
                    partial_vacc_per_pop = partial_vacc/population
                    ) 
+  
 # OR
-or_covid_clean <- join_or %>%
+or_clean <- join_or %>%
   # dplyr::summarise
   dplyr::summarise(date = date,
                    county = county,
@@ -136,20 +137,34 @@ or_covid_clean <- join_or %>%
                    deaths = deaths,
                    deaths_per_pop = deaths/or_population
                    )
+# most current data per data 
+# us
+us_data_date_clean <- us_clean %>%
+  filter(date == date_data)
+# or
+or_data_date_clean <- or_clean %>%
+  filter(date == date_data)
+
+# use paste() in save 
 
 # location of cleaned data
 location_of_us_clean <- here::here("clean_data",
                                    "us_covid_clean.rds")
-
 location_of_or_clean <- here::here("clean_data",
                                    "or_covid_clean.rds")
 location_of_today_clean <- here::here("clean_data",
                                       "date_today.rds")
 location_of_data_date_clean <- here::here("clean_data",
                                           "date_data.rds")
+location_of_us_date_clean <- here::here("clean_data",
+                                        paste0("us_",date_data,".rds"))
+location_of_or_date_clean <- here::here("clean_data",
+                                        paste0("or_",date_data,".rds"))
 
 # saved data
 saveRDS(us_covid_clean, location_of_us_clean)
 saveRDS(or_covid_clean, location_of_or_clean)
 saveRDS(date_today, location_of_today_clean)
 saveRDS(date_data, location_of_data_date_clean)
+saveRDS(us_data_date_clean, location_of_us_date_clean)
+saveRDS(or_data_date_clean, location_of_or_date_clean)
