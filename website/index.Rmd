@@ -11,10 +11,25 @@ output:
     theme: darkly
 ---
 
-```{r, include=FALSE}
+```{r setup, include=FALSE}
 here::i_am("website/index.Rmd")
 ```
 
+```{r load data, include=FALSE}
+# variables
+todays_date <- readRDS(here::here("output",
+                                  "todays_date.rds"))
+```
 
-The Coronavirus is an infectious disease spread by small liquid particles from an infected person's mouth or nose that can have terminal effects.^[**World Health Organization**  _Coronavirus disease (COVID-19)_. [link](https://www.who.int/health-topics/coronavirus#tab=tab_1). 2022.]
+The Coronavirus is an infectious disease that can have terminal effects.^[**World Health Organization**  _Coronavirus disease (COVID-19)_. [link](https://www.who.int/health-topics/coronavirus#tab=tab_1). 2022.] 
+
+
+
+This project looks at ... and uses visuals such as tables, graphs, and maps to shows trends as of `r todays_date`. 
+
+
+
+
+
+
 

@@ -94,18 +94,24 @@ join_or <- counties_covid %>%
 
 # 6. clean data
 us_covid_clean <- us_join %>%
-  dplyr::summarise(date = date,
+  # dplyr::summarise
+  dplyr::summarise(
+                  # Given
+                   date = date,
                    state = state,
                    population = population,
                    cases = cases, 
-                   cases_per_pop = cases/population,
                    deaths = deaths,
-                   deaths_per_pop = deaths/population,
                    full_vacc = People_Fully_Vaccinated,
-                   full_vacc_per_pop = full_vacc/population,
                    partial_vacc = People_Partially_Vaccinated,
+                   # Population Percentages
+                   cases_per_pop = cases/population,
+                   deaths_per_pop = deaths/population,
+                   full_vacc_per_pop = full_vacc/population,
                    partial_vacc_per_pop = partial_vacc/population
-                   )
+                   ) 
+  # arrange
+  
 
 or_covid_clean <- join_or %>%
   dplyr::summarise(date = date,
