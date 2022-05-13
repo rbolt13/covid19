@@ -1,0 +1,69 @@
+---
+title: "2022 Table Test"
+author: "Randi Bolt"
+date: "5/12/2022"
+output: html_document
+---
+
+```{r, include=FALSE}
+here::i_am("sandbox/2022_table_test.Rmd")
+
+library(reactable)
+library(magrittr)
+library(dplyr)
+```
+
+
+```{r load data, include=FALSE, echo=FALSE}
+# variables
+date_today <- readRDS(here::here("clean_data",
+                                  "date_today.rds"))
+date_data <- readRDS(here::here("clean_data",
+                                "date_data.rds"))
+# data
+us_clean <- readRDS(here::here("clean_data",
+                               "us_covid_clean.rds"))
+or_clean <- readRDS(here::here("clean_data",
+                               "or_covid_clean.rds"))
+us_current <- readRDS(here::here("clean_data",
+                               paste0("us_", date_data, ".rds")))
+or_current <- readRDS(here::here("clean_data",
+                               paste0("or_", date_data, ".rds")))
+```
+
+```{r}
+make_reactable <- function(data_set){
+  table <- reactable(data_set %>% dplyr::select(!Date
+                                                ),
+                     columns = list(
+                                    Population = colDef(format = colFormat(separators = TRUE)),
+                                    Cases = colDef(format = colFormat(separators = TRUE)),
+                                    cases_per_pop = colDef(name = "Percent of Cases",
+                                                           format = colFormat(percent = TRUE,
+                                                                              digits = 2)),
+                                    Deaths = colDef(format = colFormat(separators = TRUE)),
+                                    deaths_per_pop = colDef(name = "Percent of Deaths",
+                                                            format = colFormat(percent = TRUE,
+                                                                               digits = 2)),
+                                    full_vacc = colDef(name = "Fully Vaccinated",
+                                                      format = colFormat(separators = TRUE)),
+                                    full_vacc_per_pop = colDef(name = "Percent Fully Vaccinated",
+                                                               format = colFormat(percent = TRUE,
+                                                                                  digits = 2)),
+                                    partial_vacc = colDef(name = "Partially Vaccinated",
+                                                          format = colFormat(separators = TRUE)),
+                                    partial_vacc_per_pop = colDef(name = "Percent Partially Vaccinated",
+                                                                  format = colFormat(percent = TRUE,
+                                                                                     digits = 2))
+                                    ),
+                     defaultSorted = list(Cases = "desc"),
+                     bordered = TRUE,
+                     highlight = TRUE,
+                     showPageSizeOptions = TRUE,
+                     pageSizeOptions = c(5, 10, 20, 50),
+                     defaultPageSize = 5)
+  return(table)
+}
+us_test <- make_reactable(us_current)
+us_test
+```
