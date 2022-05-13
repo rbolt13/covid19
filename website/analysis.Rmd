@@ -20,17 +20,21 @@ here::i_am("website/analysis.Rmd")
 # data 
 
 # variables
-todays_date <- readRDS(here::here("output",
-                                  "todays_date.rds"))
+todays_date <- readRDS(here::here("clean_data",
+                                  "date_today.rds"))
 ```
 
 # 1. Introduction 
 
 # 2. Methods
 
-### 2.1 Basic Statistics
+## 2.1 Data 
 
-### 2.2 Literature Review
+This analysis uses two data sets from the NY Times github repository  ^[[New York Times Covid 19 Data](https://github.com/nytimes/covid-19-data).], as well as census data from the RStudio package tidycensus^[[tidycensus](https://walker-data.com/tidycensus/).]. 
+
+## 2.1 Design
 
 # 3. Statistical Analysis 
+
+# 4. Results 
 
