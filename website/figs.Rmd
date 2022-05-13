@@ -27,7 +27,7 @@ us_reactable <- readRDS(here::here("figs", paste0("us_",datas_date,"_reactable.r
 ```
 
 ```{r, echo=FALSE}
-us_reactable 
+# us_reactable 
 ```
 
 
