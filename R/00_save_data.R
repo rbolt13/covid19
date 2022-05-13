@@ -20,6 +20,7 @@ here::i_am("R/00_save_data.R")
 # 00_01: load libraries 
 library(readr)
 library(tidycensus)
+library(dplyr)
 
 # 00_02: read .Renviron
 readRenviron(".Renviron")
