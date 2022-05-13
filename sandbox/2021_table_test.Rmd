@@ -1,0 +1,10 @@
+---
+title: "2022 Table Test"
+author: "Randi Bolt"
+date: "5/12/2022"
+output: html_document
+---
+
+```{r, include=FALSE}
+here::i_am("sandbox/2022_table_test.Rmd")
+```
