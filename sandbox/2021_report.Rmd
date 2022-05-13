@@ -297,7 +297,7 @@ make_reactables <- function(data_set, var_1){
           defaultPageSize = 5)
 }
 
-us_1 <- make_reactables(us_current, "state", "State")
+us_1 <- make_reactables(us_current)
 ```
 
 ```{r}
@@ -319,13 +319,11 @@ make_reactable <- function(data_set){
                                     full_vacc = reactable::colDef(name = "Fully Vaccinated",
                                                        format = reactable::colFormat(separators = TRUE)),
                                     full_vacc_per_pop = reactable::colDef(name = "Percent Fully Vaccinated",
-                                                               format = reactable::colFormat(percent = TRUE,
-                                                                                  digits = 2)),
+                                                               format = reactable::colFormat(percent = TRUE,digits = 2)),
                                     partial_vacc = reactable::colDef(name = "Partially Vaccinated",
                                                           format = reactable::colFormat(separators = TRUE)),
                                     partial_vacc_per_pop = reactable::colDef(name = "Percent Partially Vaccinated",
-                                                                  format = reactable::colFormat(percent = TRUE,
-                                                                                     digit = 2)),
+                                                                  format = reactable::colFormat(percent = TRUE,digit = 2)),
                                     reactable::defaultSorted = list(Cases = "desc"),
   reactable::bordered = TRUE,
   reactable::highlight = TRUE,

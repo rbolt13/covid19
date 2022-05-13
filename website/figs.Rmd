@@ -14,3 +14,20 @@ output:
 ```{r, include=FALSE}
 here::i_am("website/figs.Rmd")
 ```
+
+```{r load data, include=FALSE}
+# data 
+
+# variables
+todays_date <- readRDS(here::here("clean_data",
+                                  "date_today.rds"))
+datas_date <- readRDS(here::here("clean_data",
+                                 "date_data.rds"))
+us_reactable <- readRDS(here::here("figs", paste0("us_",datas_date,"_reactable.rds")))
+```
+
+```{r, echo=FALSE}
+us_reactable 
+```
+
+
