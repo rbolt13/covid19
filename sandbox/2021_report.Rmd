@@ -149,27 +149,28 @@ To begin lets look at the country as a whole, by state. The data will be filtere
 ### Most number of cases
 
 ```{r us most cases, echo=F}
-us.states.cases <- us.states.vacc %>%
-  filter(date == date_data) %>%
-  select(state, population, cases, case.per) %>%
-  arrange(desc(cases)) %>%
-    head(5) %>%
-    gt() %>%
-    fmt_number(columns = cases, decimals = 0) %>%
-    fmt_number(columns = population, decimals = 0) %>%
-    fmt_percent(columns = case.per, decimals = 2) %>%
-    tab_header(title = md("**Most Cases**"),
-               subtitle = paste0("By State as of ", Date)) %>%
-    cols_label(state = md("**State**"),
-               population = md("**Total Population**"),
-               cases = md("**Cases**"),
-               case.per = md("**Percentage**")) %>%
-   tab_style(style = list(
-             cell_fill(color = "lightcyan")),
-   locations = cells_body(
-       columns = everything()
-     ))
-us.states.cases
+# issue 
+# us.states.cases <- us.states.vacc %>%
+#   filter(date == date_data) %>%
+#   select(state, population, cases, case.per) %>%
+#   arrange(desc(cases)) %>%
+#     head(5) %>%
+#     gt() %>%
+#     fmt_number(columns = cases, decimals = 0) %>%
+#     fmt_number(columns = population, decimals = 0) %>%
+#     fmt_percent(columns = case.per, decimals = 2) %>%
+#     tab_header(title = md("**Most Cases**"),
+#                subtitle = paste0("By State as of ", Date)) %>%
+#     cols_label(state = md("**State**"),
+#                population = md("**Total Population**"),
+#                cases = md("**Cases**"),
+#                case.per = md("**Percentage**")) %>%
+#    tab_style(style = list(
+#              cell_fill(color = "lightcyan")),
+#    locations = cells_body(
+#        columns = everything()
+#      ))
+# us.states.cases
 ```
 
 ### Highest percentage of cases 
