@@ -112,38 +112,41 @@ us_clean <- us_join %>%
   # dplyr::summarise
   dplyr::summarise(
                   # Given
-                   date = date,
-                   state = state,
-                   population = population,
-                   cases = cases, 
-                   deaths = deaths,
-                   full_vacc = People_Fully_Vaccinated,
-                   partial_vacc = People_Partially_Vaccinated,
-                   # Population Percentages
+                   Date = date,
+                   State = state,
+                   Population = population,
+                   # Cases
+                   Cases = cases, 
                    cases_per_pop = cases/population,
+                   # Deaths
+                   Deaths = deaths,
                    deaths_per_pop = deaths/population,
+                   # Full Vacc
+                   full_vacc = People_Fully_Vaccinated,
                    full_vacc_per_pop = full_vacc/population,
+                   # Part Vacc
+                   partial_vacc = People_Partially_Vaccinated, 
                    partial_vacc_per_pop = partial_vacc/population
                    ) 
   
 # OR
 or_clean <- join_or %>%
   # dplyr::summarise
-  dplyr::summarise(date = date,
-                   county = county,
-                   or_population = or_population,
-                   cases = cases,
+  dplyr::summarise(Date = date,
+                   County = county,
+                   Population = or_population,
+                   Cases = cases,
                    cases_per_pop = cases/or_population,
-                   deaths = deaths,
+                   Deaths = deaths,
                    deaths_per_pop = deaths/or_population
                    )
 # most current data per data 
 # us
 us_data_date_clean <- us_clean %>%
-  filter(date == date_data)
+  filter(Date == date_data)
 # or
 or_data_date_clean <- or_clean %>%
-  filter(date == date_data)
+  filter(Date == date_data)
 
 # use paste() in save 
 
@@ -162,8 +165,8 @@ location_of_or_date_clean <- here::here("clean_data",
                                         paste0("or_",date_data,".rds"))
 
 # saved data
-saveRDS(us_covid_clean, location_of_us_clean)
-saveRDS(or_covid_clean, location_of_or_clean)
+saveRDS(us_clean, location_of_us_clean)
+saveRDS(or_clean, location_of_or_clean)
 saveRDS(date_today, location_of_today_clean)
 saveRDS(date_data, location_of_data_date_clean)
 saveRDS(us_data_date_clean, location_of_us_date_clean)
