@@ -1,6 +1,9 @@
 #' Clean Data
 #' 
 #' @description Cleans 5 data sets by:
+#' 
+#' 
+#' 
 #' 1. renaming tidycensus data columns
 #' 2. removing " County, Oregon" from the county name in counties_covid_data
 #' 3. join us_covid data with vacc data
@@ -15,6 +18,17 @@ here::i_am("R/01_clean_data.R")
 # libraries
 library(magrittr)
 library(dplyr)
+
+# function to locate and save data
+locate_and_save_data <- function(file_name){
+  locate_data <- here::here("raw_data", file_name)
+  save_data <- base::readRDS(locate_data)
+  return(save_data)
+}
+
+# locate and save data
+date_today <- locate_and_save_data("date_today.rds")
+date_data <- locate_and_save_data("date_data.rds")
 
 # location of raw data
 location_of_us_covid <- here::here("raw_data",
@@ -93,6 +107,7 @@ join_or <- counties_covid %>%
   )
 
 # 6. clean data
+# US
 us_covid_clean <- us_join %>%
   # dplyr::summarise
   dplyr::summarise(
@@ -110,10 +125,9 @@ us_covid_clean <- us_join %>%
                    full_vacc_per_pop = full_vacc/population,
                    partial_vacc_per_pop = partial_vacc/population
                    ) 
-  # arrange
-  
-
+# OR
 or_covid_clean <- join_or %>%
+  # dplyr::summarise
   dplyr::summarise(date = date,
                    county = county,
                    or_population = or_population,
@@ -122,13 +136,20 @@ or_covid_clean <- join_or %>%
                    deaths = deaths,
                    deaths_per_pop = deaths/or_population
                    )
+
 # location of cleaned data
 location_of_us_clean <- here::here("clean_data",
                                    "us_covid_clean.rds")
 
 location_of_or_clean <- here::here("clean_data",
                                    "or_covid_clean.rds")
+location_of_today_clean <- here::here("clean_data",
+                                      "date_today.rds")
+location_of_data_date_clean <- here::here("clean_data",
+                                          "date_data.rds")
 
 # saved data
 saveRDS(us_covid_clean, location_of_us_clean)
 saveRDS(or_covid_clean, location_of_or_clean)
+saveRDS(date_today, location_of_today_clean)
+saveRDS(date_data, location_of_data_date_clean)
