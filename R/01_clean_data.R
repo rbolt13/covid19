@@ -94,6 +94,7 @@ us_join <- us_covid %>%
 
 # 5. join counties covid data with or pop data
 join_or <- counties_covid %>%
+  dplyr::filter(state == "Oregon") %>%
   dplyr::select(date,
                 county,
                 cases,
