@@ -88,13 +88,13 @@ or_cases$Cases <-  base::prettyNum(or_cases$Cases, big.mark = ",")
 or_deaths$Deaths <- base::prettyNum(or_deaths$Deaths, big.mark = ",")
 
 # format data with % sign 
-us_cases_per$cases_per_pop <- base::sprintf("%0.1f%%", us_cases_per$cases_per_pop*100)
-us_deaths_per$deaths_per_pop <- base::sprintf("%0.1f%%", us_deaths_per$deaths_per_pop*100)
-us_full_vacc_per$full_vacc_per_pop <- base::sprintf("%0.1f%%", us_full_vacc_per$full_vacc_per_pop*100)
-us_part_vacc_per$partial_vacc_per_pop <- base::sprintf("%0.1f%%", us_part_vacc_per$partial_vacc_per_pop*100)
+us_cases_per$cases_per_pop <- base::sprintf("%0.2f%%", us_cases_per$cases_per_pop*100)
+us_deaths_per$deaths_per_pop <- base::sprintf("%0.2f%%", us_deaths_per$deaths_per_pop*100)
+us_full_vacc_per$full_vacc_per_pop <- base::sprintf("%0.2f%%", us_full_vacc_per$full_vacc_per_pop*100)
+us_part_vacc_per$partial_vacc_per_pop <- base::sprintf("%0.2f%%", us_part_vacc_per$partial_vacc_per_pop*100)
 
-or_cases_per$cases_per_pop <- base::sprintf("%0.1f%%", or_cases_per$cases_per_pop*100)
-or_deaths_per$deaths_per_pop <- base::sprintf("%0.1f%%", or_deaths_per$deaths_per_pop*100)
+or_cases_per$cases_per_pop <- base::sprintf("%0.2f%%", or_cases_per$cases_per_pop*100)
+or_deaths_per$deaths_per_pop <- base::sprintf("%0.2f%%", or_deaths_per$deaths_per_pop*100)
 
 # put in one list 
 us_list <- list(us_cases,
