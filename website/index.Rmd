@@ -25,11 +25,14 @@ datas_date <- readRDS(here::here("clean_data",
 
 The Coronavirus is an infectious disease that can have terminal effects.^[**World Health Organization**  _Coronavirus disease (COVID-19)_. [link](https://www.who.int/health-topics/coronavirus#tab=tab_1). 2022.] 
 
+This analysis uses two data sets from the NY Times github repository  ^[[New York Times Covid 19 Data](https://github.com/nytimes/covid-19-data).], as well as census data from the RStudio package tidycensus^[[tidycensus](https://walker-data.com/tidycensus/).]. 
+
 This project is currently under construction, but until everything is up and running smoothly, check out my previous version of this project below: 
 
 Project Updated: `r todays_date`
 
 Data Updated: `r datas_date`
+
 
 ```{r setup 2, include = FALSE}
 # variables 
