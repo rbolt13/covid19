@@ -12,29 +12,67 @@ output:
     theme: darkly
 ---
 
+This analysis has two areas of focus: the United States, and Oregon counties. 
+
 ```{r, include=FALSE}
 here::i_am("website/analysis.Rmd")
 ```
 
 ```{r load data, include=FALSE}
 # data 
-
+us_list <- readRDS(here::here("clean_data",
+                              "us_list.rds"))
+or_list <- readRDS(here::here("clean_data",
+                              "or_list.rds"))
 # variables
 todays_date <- readRDS(here::here("clean_data",
                                   "date_today.rds"))
+datas_date <- readRDS(here::here("clean_data",
+                                 "date_data.rds"))
 ```
 
-# 1. Introduction 
+# United States
 
-# 2. Methods
+## Populated Places
 
-## 2.1 Data 
+#### What states have the **most** covid cases? What states have the **most** covid related deaths? What states have the **most** people fully and partially vaccinated? 
 
-This analysis uses two data sets from the NY Times github repository  ^[[New York Times Covid 19 Data](https://github.com/nytimes/covid-19-data).], as well as census data from the RStudio package tidycensus^[[tidycensus](https://walker-data.com/tidycensus/).]. 
+As of `r datas_date` the state with the most cases is `r us_list[[1]][1,1]` with `r us_list[[1]][1,2]` cases.  Followed by `r us_list[[1]][2,1]` with `r us_list[[1]][2,2]` cases, `r us_list[[1]][3,1]` with `r us_list[[1]][3,2]`, `r us_list[[1]][4,1]` with `r us_list[[1]][4,2]`, and then `r us_list[[1]][5,1]` with `r us_list[[1]][5,2]` number of cases. 
 
-## 2.1 Design
 
-# 3. Statistical Analysis 
+## Contageous Spaces
 
-# 4. Results 
+#### What states have the **highest percent** of cases? What states have the **highest percent** of covid related deaths? What states have the **highest percent** of people fully and partially vaccinated? 
+
+As of `r datas_date` `r us_list[[2]][1,1]` has the highest percent of cases per population with `r us_list[[2]][1,2]`. Then `r us_list[[2]][2,1]` (`r us_list[[2]][2,2]`), `r us_list[[2]][3,1]` (`r us_list[[2]][3,2]`), `r us_list[[2]][4,1]` (`r us_list[[2]][4,2]`), and `r us_list[[2]][5,1]` (`r us_list[[2]][5,2]`). 
+
+
+## Influx Dates
+
+What days saw the highest number of new cases? What days saw the highes number of covid related deaths? What days saw highest number of people fully and partially vaccinated? 
+
+
+
+# Oregon
+
+## Populated Places
+
+What counties in Oreogn have the **most** covid cases? What counties in Oregon have the **most** deaths? 
+
+
+## Contageous Spaces
+
+What counties in Oregon have the **highest percent** of covid cases?What counties in Oregon have the **highest percent** of covid related deaths? 
+
+
+## Influx Dates
+
+What days in Oregon saw the highest number of new cases? What days in Oregon saw the highest number of coivd related deaths? 
+
+
+
+
+
+
+
 

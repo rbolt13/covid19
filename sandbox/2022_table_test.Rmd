@@ -32,38 +32,62 @@ or_current <- readRDS(here::here("clean_data",
 ```
 
 ```{r}
-make_reactable <- function(data_set){
-  table <- reactable(data_set %>% dplyr::select(!Date
-                                                ),
-                     columns = list(
-                                    Population = colDef(format = colFormat(separators = TRUE)),
-                                    Cases = colDef(format = colFormat(separators = TRUE)),
-                                    cases_per_pop = colDef(name = "Percent of Cases",
-                                                           format = colFormat(percent = TRUE,
-                                                                              digits = 2)),
-                                    Deaths = colDef(format = colFormat(separators = TRUE)),
-                                    deaths_per_pop = colDef(name = "Percent of Deaths",
-                                                            format = colFormat(percent = TRUE,
-                                                                               digits = 2)),
-                                    full_vacc = colDef(name = "Fully Vaccinated",
-                                                      format = colFormat(separators = TRUE)),
-                                    full_vacc_per_pop = colDef(name = "Percent Fully Vaccinated",
-                                                               format = colFormat(percent = TRUE,
-                                                                                  digits = 2)),
-                                    partial_vacc = colDef(name = "Partially Vaccinated",
-                                                          format = colFormat(separators = TRUE)),
-                                    partial_vacc_per_pop = colDef(name = "Percent Partially Vaccinated",
-                                                                  format = colFormat(percent = TRUE,
-                                                                                     digits = 2))
-                                    ),
-                     defaultSorted = list(Cases = "desc"),
-                     bordered = TRUE,
-                     highlight = TRUE,
-                     showPageSizeOptions = TRUE,
-                     pageSizeOptions = c(5, 10, 20, 50),
-                     defaultPageSize = 5)
-  return(table)
-}
-us_test <- make_reactable(us_current)
-us_test
+states_cases <- us_current %>%
+  select(State, cases_per_pop) %>%
+  arrange(desc(cases_per_pop)) %>%
+  head(5)
+states_cases[1,2]
+```
+
+We know that `r states_cases[1,1]` has the most cases.. by `r states_cases[1,2]`
+
+
+```{r}
+# new cases oregon
+or_new_cases <- us_clean %>%
+  select(Date, State, Cases) %>%
+  filter(State == "Oregon") %>%
+  arrange(Date) %>%
+  mutate(New_Cases = Cases - lag(Cases, default = first(Cases)))
+barplot(or_new_cases$New_Cases)
+```
+
+
+
+```{r}
+# make_reactable <- function(data_set){
+#   table <- reactable(data_set %>% dplyr::select(!Date
+#                                                 ),
+#                      columns = list(
+#                                     Population = colDef(format = colFormat(separators = TRUE)),
+#                                     Cases = colDef(format = colFormat(separators = TRUE)),
+#                                     cases_per_pop = colDef(name = "Percent of Cases",
+#                                                            format = colFormat(percent = TRUE,
+#                                                                               digits = 2)),
+#                                     Deaths = colDef(format = colFormat(separators = TRUE)),
+#                                     deaths_per_pop = colDef(name = "Percent of Deaths",
+#                                                             format = colFormat(percent = TRUE,
+#                                                                                digits = 2)),
+#                                     full_vacc = colDef(name = "Fully Vaccinated",
+#                                                       format = colFormat(separators = TRUE)),
+#                                     full_vacc_per_pop = colDef(name = "Percent Fully Vaccinated",
+#                                                                format = colFormat(percent = TRUE,
+#                                                                                   digits = 2)),
+#                                     partial_vacc = colDef(name = "Partially Vaccinated",
+#                                                           format = colFormat(separators = TRUE)),
+#                                     partial_vacc_per_pop = colDef(name = "Percent Partially Vaccinated",
+#                                                                   format = colFormat(percent = TRUE,
+#                                                                                      digits = 2))
+#                                     ),
+#                      defaultSorted = list(Cases = "desc"),
+#                      bordered = TRUE,
+#                      highlight = TRUE,
+#                      showPageSizeOptions = TRUE,
+#                      pageSizeOptions = c(5, 10, 20, 50),
+#                      defaultPageSize = 5)
+#   return(table)
+# }
+# us_test <- make_reactable(or_current)
+# us_test
+# or_current
 ```
