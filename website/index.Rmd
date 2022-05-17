@@ -28,6 +28,9 @@ or_close_date <- c("2020-03-23")
 or_close_date <- as.Date(or_close_date)
 us_date_diff <- todays_date - us_close_date
 or_date_diff <- todays_date - or_close_date
+
+
+
 ```
 
 The Coronavirus is an infectious disease^[**World Health Organization**  [_Coronavirus disease (COVID-19)_](https://www.who.int/health-topics/coronavirus#tab=tab_1). 2022.], that shut down the United States on `r us_close_date` (`r us_date_diff` days ago) and Oregon on `r or_close_date`(`r or_date_diff` days ago). While most of the state and country have reopened, we still hear about spikes in cases, and warnings about traveling. This study uses two data sets from the NY Times github repository  ^[[New York Times Covid 19 Data](https://github.com/nytimes/covid-19-data).], census data from the RStudio package tidycensus^[[tidycensus](https://walker-data.com/tidycensus/).], and interactive data visualizations to further investigate where and when the coronavirus is impacting Americans and Oregonians. 

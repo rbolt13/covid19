@@ -1,6 +1,9 @@
 #' Clean Data
 #' 
-#' @description Cleans 5 data sets by:
+#' @description pulls in two lists of data sets: raw_data_list, and 
+#' dates_list. 
+#' 
+#' Cleans 5 data sets by:
 #' 
 #' 
 #' 
@@ -19,45 +22,45 @@ here::i_am("R/01_clean_data.R")
 library(magrittr)
 library(dplyr)
 
-# function to locate and save data
-locate_and_save_data <- function(file_name){
-  locate_data <- here::here("raw_data", file_name)
-  save_data <- base::readRDS(locate_data)
-  return(save_data)
-}
+# Location of Data Lists: raw_data, and dates_data
 
-# locate and save data
-date_today <- locate_and_save_data("date_today.rds")
-date_data <- locate_and_save_data("date_data.rds")
+  # raw data list
+location_of_raw_data_list <- here::here("raw_data",
+                                        "raw_data_list.rds")
 
-# location of raw data
-location_of_us_covid <- here::here("raw_data",
-                                       "states_covid_data.rds")
-location_of_counties_covid <- here::here("raw_data",
-                                         "counties_covid_data.rds")
-location_of_vacc <- here::here("raw_data",
-                               "vacc_data.rds")
-location_of_us_pop <- here::here("raw_data",
-                                    "state_pop_data.rds")
-location_of_or_pop <- here::here("raw_data",
-                                 "or_pop_data.rds")
-# data
-us_covid <- base::readRDS(location_of_us_covid)
-counties_covid <- base::readRDS(location_of_counties_covid)
-vacc <- base::readRDS(location_of_vacc)
-us_pop <- base::readRDS(location_of_us_pop)
-or_pop <- base::readRDS(location_of_or_pop)
+  # date data list 
+location_of_dates_list <- here::here("raw_data", "dates_list.rds")
 
-# 1. rename columns (for future join)
+# Save Data Lists, and Data Sets
+
+  # save lists 
+raw_data_list <- base::readRDS(location_of_raw_data_list)
+dates_data_list <- base::readRDS(location_of_dates_list)
+
+  # save raw dataset 
+us_covid <- base::readRDS(location_of_raw_data_list)[[1]]
+counties_covid <- base::readRDS(location_of_raw_data_list)[[2]]
+vacc <- base::readRDS(location_of_raw_data_list)[[3]]
+us_pop <- base::readRDS(location_of_raw_data_list)[[4]]
+or_pop <- base::readRDS(location_of_raw_data_list)[[5]]
+
+  # save us and counties data dates
+us_data_date <- base::readRDS(location_of_dates_list)[[4]]
+counties_data_date <- base::readRDS(location_of_dates_list)[[5]]
+
+# Clean Data: us_clean and or_clean
+  # rename columns (for future join)
 base::names(us_pop)[base::names(us_pop) == 'NAME'] <- 'state'
 base::names(us_pop)[base::names(us_pop) == 'value'] <- 'population'
 base::names(or_pop)[base::names(or_pop) == 'NAME'] <- 'county'
 base::names(or_pop)[base::names(or_pop) == 'value'] <- 'or_population'
 
-# 2. remove " County, Oregon" from the county name
+  # remove " County, Oregon" from the county name
 or_pop$county <- base::gsub(" County, Oregon", "", or_pop$county)
 
-# 3. join state covid data with vacc data
+# Joins
+
+  # join state covid data with vacc data
 us_join <- us_covid %>%
   dplyr::select(date, 
          state, 
@@ -75,7 +78,7 @@ us_join <- us_covid %>%
             by = c("state" = "Province_State",
                    "date" = "Date")
             ) %>%
-# 4. join state_join with state pop
+  # join state_join with state pop
   dplyr::select(date, 
                 state, 
                 cases, 
@@ -92,7 +95,7 @@ us_join <- us_covid %>%
             by = c("state" = "state")
             ) 
 
-# 5. join counties covid data with or pop data
+  # join counties covid data with or pop data
 join_or <- counties_covid %>%
   dplyr::filter(state == "Oregon") %>%
   dplyr::select(date,
@@ -107,11 +110,10 @@ join_or <- counties_covid %>%
             by = c("county" = "county")
   )
 
-# 6. clean data
-# US
+  # US
 us_clean <- us_join %>%
-  # dplyr::summarise
-  dplyr::summarise(
+     # dplyr::summarise
+     dplyr::summarise(
                   # Given
                    Date = date,
                    State = state,
@@ -141,34 +143,40 @@ or_clean <- join_or %>%
                    Deaths = deaths,
                    deaths_per_pop = deaths/or_population
                    )
-# most current data per data 
-# us
-us_data_date_clean <- us_clean %>%
-  filter(Date == date_data)
-# or
-or_data_date_clean <- or_clean %>%
-  filter(Date == date_data)
 
-# use paste() in save 
+# Current Data: us_current, and or_current  
+  # filter by date of data 
+us_current <- us_clean %>% filter(Date == us_data_date)
+or_current <- or_clean %>%filter(Date == counties_data_date)
 
-# location of cleaned data
-location_of_us_clean <- here::here("clean_data",
-                                   "us_covid_clean.rds")
-location_of_or_clean <- here::here("clean_data",
-                                   "or_covid_clean.rds")
-location_of_today_clean <- here::here("clean_data",
-                                      "date_today.rds")
-location_of_data_date_clean <- here::here("clean_data",
-                                          "date_data.rds")
-location_of_us_date_clean <- here::here("clean_data",
-                                        paste0("us_",date_data,".rds"))
-location_of_or_date_clean <- here::here("clean_data",
-                                        paste0("or_",date_data,".rds"))
+# New Data: new_cases, new_deaths, new_vacc
+  # us
+us_new <- "This is a placeholder"
+  # or 
+or_new <- us_clean %>% 
+    # select 
+  dplyr::select(Date, State, Cases, Deaths, full_vacc, partial_vacc) %>% 
+    # filter by State == Oregon
+  dplyr::filter(State == "Oregon") %>%
+    # arrange by date
+  dplyr::arrange(Date) %>%
+    # calcualte new columns 
+  dplyr::mutate(new_cases = Cases - lag(Cases, default = first(Cases)),
+         new_deaths = Deaths - lag(Deaths, default = first(Deaths)),
+         new_full_vacc = full_vacc - lag(full_vacc, default = first(full_vacc)),
+         new_part_vacc = partial_vacc - lag(partial_vacc, default = first(partial_vacc)))
 
+
+# List of clean data
+clean_data_list <- list(us_clean,
+                        or_clean,
+                        us_current,
+                        or_current,
+                        us_new,
+                        or_new)
+
+# location of cleaned data list 
+location_of_clean_data_list <- here::here("clean_data",
+                                          "clean_data_list.rds")
 # saved data
-saveRDS(us_clean, location_of_us_clean)
-saveRDS(or_clean, location_of_or_clean)
-saveRDS(date_today, location_of_today_clean)
-saveRDS(date_data, location_of_data_date_clean)
-saveRDS(us_data_date_clean, location_of_us_date_clean)
-saveRDS(or_data_date_clean, location_of_or_date_clean)
+saveRDS(clean_data_list, location_of_clean_data_list)

@@ -1,14 +1,9 @@
 #' Analyze Data
 #' 
-#' @description This analysis does: 
-#' 1. Save simple variables such as: today's date
-#' 2. Load clean data
-#' 3. Save Data
-#' 4. Compute most current date of data. 
+#' @description 
 #' 
-#' @return 2 char objects:  
-#' date_today.rds : today's date
-#' date_data.rds : data's most current date
+#' @return 2 lists of data:
+#' 
 
 here::i_am("R/02_analyze_data.R")
 
@@ -16,30 +11,10 @@ here::i_am("R/02_analyze_data.R")
 library(dplyr)
 library(magrittr)
 
-# location of dates data
-location_of_today_clean <- here::here("clean_data",
-                                      "date_today.rds")
-location_of_data_date_clean <- here::here("clean_data",
-                                          "date_data.rds")
-# save dates data
-date_today <- base::readRDS(location_of_today_clean)
-date_data <- base::readRDS(location_of_data_date_clean)
-
-# location of data 
-location_of_us_clean <- here::here("clean_data",
-                                   "us_covid_clean.rds")
-location_of_or_clean <- here::here("clean_data",
-                                   "or_covid_clean.rds")
-location_of_us_current <- here::here("clean_data",
-                                     paste0("us_", date_data, ".rds"))
-location_of_or_current <- here::here("clean_data",
-                                     paste0("or_", date_data, ".rds"))
-
-# data 
-us_clean <- base::readRDS(location_of_us_clean)
-or_clean <- base::readRDS(location_of_or_clean)
-us_current <- base::readRDS(location_of_us_current)
-or_current <- base::readRDS(location_of_or_current)
+# load data 
+# current data 
+us_current <- base::readRDS(here::here("clean_data", "clean_data_list.rds"))[[3]]
+or_current <- base::readRDS(here::here("clean_data", "clean_data_list.rds"))[[4]]
 
 # function that subsets current data 
 subset_data <- function(data, var1, var2){

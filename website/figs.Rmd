@@ -19,25 +19,15 @@ here::i_am("website/figs.Rmd")
 # library
 library(reactable)
 library(magrittr)
-# date variables
-todays_date <- readRDS(here::here("clean_data",
-                                  "date_today.rds"))
-datas_date <- readRDS(here::here("clean_data",
-                                 "date_data.rds"))
-# current data 
-us_current <- readRDS(here::here("clean_data",
-                               paste0("us_", datas_date, ".rds")))
-or_current <- readRDS(here::here("clean_data",
-                               paste0("or_", datas_date, ".rds")))
-```
+# dates data
+date_today <- base::readRDS(here::here("raw_data", "dates_list.rds"))[[1]]
+us_data_date <- base::readRDS(here::here("raw_data", "dates_list.rds"))[[4]]
+or_data_date <- base::readRDS(here::here("raw_data", "dates_list.rds"))[[5]]
+ # current data 
+us_current <- base::readRDS(here::here("clean_data", "clean_data_list.rds"))[[3]]
+or_current <- base::readRDS(here::here("clean_data", "clean_data_list.rds"))[[4]]
 
-
-# US FIGS.
-
-## Tables 
-
-```{r, echo=FALSE}
-# nightmode theme 
+# nightmode theme for reactables
 options(reactable.theme = reactableTheme(
   color = "hsl(233, 9%, 87%)",
   backgroundColor = "hsl(233, 9%, 19%)",
@@ -49,6 +39,14 @@ options(reactable.theme = reactableTheme(
   pageButtonHoverStyle = list(backgroundColor = "hsl(233, 9%, 25%)"),
   pageButtonActiveStyle = list(backgroundColor = "hsl(233, 9%, 28%)")
 ))
+```
+
+
+# US FIGS.
+
+## Tables 
+
+```{r, echo=FALSE}
 reactable::reactable(us_current %>% 
             # remove date column
             dplyr::select(!Date),
@@ -84,18 +82,6 @@ reactable::reactable(us_current %>%
 ## Tables
 
 ```{r, echo=FALSE}
-# nightmode theme 
-options(reactable.theme = reactableTheme(
-  color = "hsl(233, 9%, 87%)",
-  backgroundColor = "hsl(233, 9%, 19%)",
-  borderColor = "hsl(233, 9%, 22%)",
-  stripedColor = "hsl(233, 12%, 22%)",
-  highlightColor = "hsl(233, 12%, 24%)",
-  inputStyle = list(backgroundColor = "hsl(233, 9%, 25%)"),
-  selectStyle = list(backgroundColor = "hsl(233, 9%, 25%)"),
-  pageButtonHoverStyle = list(backgroundColor = "hsl(233, 9%, 25%)"),
-  pageButtonActiveStyle = list(backgroundColor = "hsl(233, 9%, 28%)")
-))
 reactable::reactable(or_current %>% 
             # remove date column
             dplyr::select(!Date),

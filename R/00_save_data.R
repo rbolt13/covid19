@@ -3,7 +3,7 @@
 #' @description saves two lists of data to raw_data folder. The first 
 #' list of raw data uses the readr and tidycensus packages to make five
 #' different data sets: states_covid_data, counties_covid_data, vacc_data, 
-#' state_pop_data, and or_pop_data. The second list use base and dplyr 
+#' state_pop_data, and or_pop_data. The second list uses base and dplyr 
 #' functions to save five dates: todays_date, us_close_date, or_close_date, 
 #' us_data_date, and counties_data_date. 
 #' 
@@ -36,7 +36,9 @@ or_pop_data <- tidycensus::get_estimates(geography = "county",
   # put in one list
 raw_data_list <- list(states_covid_data,
                       counties_covid_data,
-                      vacc_data)
+                      vacc_data,
+                      state_pop_data,
+                      or_pop_data)
 
 # List 2: Dates 
 
@@ -62,7 +64,7 @@ dates_list <- list(todays_date,
                    us_data_date,
                    counties_data_date)
 
-# Location of Data 
+# Location of Data (List 1 and 2)
 
   # raw data list
 location_of_raw_data_list <- here::here("raw_data",
