@@ -7,7 +7,7 @@ raw_data/clean_data:: R/01_clean_data.R raw_data/raw_data_list.rds raw_data/date
 	Rscript R/01_clean_data.R
 	
 # analyze data 
-output/analyze_data:: R/00_save_data.R R/01_clean_data.R R/02_analyze_data.R clean_data/or_covid_clean.rds clean_data/us_covid_clean.rds
+output/analyze_data:: R/00_save_data.R R/01_clean_data.R R/02_analyze_data.R raw_data/dates_list.rds clean_data/clean_data_list.rds
 	Rscript R/02_analyze_data.R
 	
 # make figures 
