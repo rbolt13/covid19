@@ -15,4 +15,12 @@ output:
 here::i_am("website/contact.Rmd")
 ```
 
-Like what you see or have a specific question? Check out other projects I've worked on via my personal website / blog [here](https://www.rbolt.me/), or send me an email at **rbolt@pdx.edu**.
+Be sure to also check out the source code for this project on Github [here](https://github.com/rbolt13/covid19), or send me an email at **rbolt@pdx.edu** if you have any questions. 
+
+---
+
+<center>
+
+[Blog](https://www.rbolt.me/)     $\quad$|$\quad$ [Github](https://github.com/rbolt13)    $\quad$|$\quad$ [Linkedin](https://www.linkedin.com/in/randi-bolt/)
+
+</center>

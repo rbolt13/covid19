@@ -13,8 +13,6 @@ navbar:
       href: analysis.html
     - text: "Figures"
       href: figs.html
-    - text: "DIY"
-      href: diy.html
     - text: "Contact"
       href: contact.html
 ---
