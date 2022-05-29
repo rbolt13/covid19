@@ -20,7 +20,7 @@ or_current <- base::readRDS(here::here("clean_data", "clean_data_list.rds"))[[4]
 subset_data <- function(data, var1, var2){
   df <- data %>%
     select(var1, var2) 
-  print(df)
+  return(df)
 }
 
 # subset data 

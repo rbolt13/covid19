@@ -15,8 +15,6 @@ The purpose of this project to analyze Covid-19 data.
 
 * Data Visualization
 
-* Predictive Modeling (maybe)
-
 ### Technologies
 
 * R

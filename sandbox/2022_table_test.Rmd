@@ -13,27 +13,29 @@ library(magrittr)
 library(dplyr)
 ```
 
-
 ```{r load data, include=FALSE, echo=FALSE}
-# variables
-date_today <- readRDS(here::here("clean_data",
-                                  "date_today.rds"))
-date_data <- readRDS(here::here("clean_data",
-                                "date_data.rds"))
-# data
-us_clean <- readRDS(here::here("clean_data",
-                               "us_covid_clean.rds"))
-or_clean <- readRDS(here::here("clean_data",
-                               "or_covid_clean.rds"))
-us_current <- readRDS(here::here("clean_data",
-                               paste0("us_", date_data, ".rds")))
-or_current <- readRDS(here::here("clean_data",
-                               paste0("or_", date_data, ".rds")))
+# dates data
+date_today <- base::readRDS(here::here("raw_data", "dates_list.rds"))[[1]]
+us_data_date <- base::readRDS(here::here("raw_data", "dates_list.rds"))[[4]]
+or_data_date <- base::readRDS(here::here("raw_data", "dates_list.rds"))[[5]]
+# clean data  
+us_clean <- base::readRDS(here::here("clean_data", "clean_data_list.rds"))[[1]]
+or_clean <- base::readRDS(here::here("clean_data", "clean_data_list.rds"))[[2]]
+# current data 
+us_current <- base::readRDS(here::here("clean_data", "clean_data_list.rds"))[[3]]
+or_current <- base::readRDS(here::here("clean_data", "clean_data_list.rds"))[[4]]
 ```
+
+
+```{r}
+us_new <- us_clean %>% 
+  select()
+```
+
 
 ```{r}
 # create new df without Date column
-us_tb_01 <-us_current %>% select(!Date)
+# us_tb_01 <-us_current %>% select(!Date)
 # Add commas to: 
 # us_tb_01$Population <-base::prettyNum(us_tb_01$Population, big.mark = ",")
 # us_tb_01$Cases <-base::prettyNum(us_tb_01$Cases, big.mark = ",")
@@ -44,10 +46,10 @@ us_tb_01 <-us_current %>% select(!Date)
 # us_tb_01$cases_per_pop <- base::sprintf("%0.2f%%", us_tb_01$cases_per_pop*100)
 # us_tb_01$deaths_per_pop <- base::sprintf("%0.2f%%", us_tb_01$deaths_per_pop*100)
 
-head(us_tb_01)
+# head(us_tb_01)
 ```
 
-```{r}
+```{r us current reactable}
 reactable(us_current %>% 
             # remove date column
             dplyr::select(!Date),
@@ -78,27 +80,72 @@ reactable(us_current %>%
                      defaultPageSize = 5)
 ```
 
-
 ```{r}
-library(reactable)
-options(reactable.theme = reactableTheme(
-  color = "hsl(233, 9%, 87%)",
-  backgroundColor = "hsl(233, 9%, 19%)",
-  borderColor = "hsl(233, 9%, 22%)",
-  stripedColor = "hsl(233, 12%, 22%)",
-  highlightColor = "hsl(233, 12%, 24%)",
-  inputStyle = list(backgroundColor = "hsl(233, 9%, 25%)"),
-  selectStyle = list(backgroundColor = "hsl(233, 9%, 25%)"),
-  pageButtonHoverStyle = list(backgroundColor = "hsl(233, 9%, 25%)"),
-  pageButtonActiveStyle = list(backgroundColor = "hsl(233, 9%, 28%)")
-))
-reactable(us_tb_01,
-           defaultSorted = "State",
+reactable(or_current %>% 
+            # remove date column
+            dplyr::select(!Date),
+          # modify columns 
+          columns = list(Population = colDef(format = colFormat(separators = TRUE)),
+                         Cases = colDef(format = colFormat(separators = TRUE)),
+                         cases_per_pop = colDef(name = "Percent of Cases", 
+                                                format = colFormat(percent = TRUE,
+                                                                   digits = 2)),
+                         Deaths = colDef(format = colFormat(separators = TRUE)),
+                         deaths_per_pop = colDef(name = "Percent of Deaths",
+                                                 format = colFormat(percent = TRUE,
+                                                                    digits = 2))),
+                     defaultSorted = list(Cases = "desc"),
                      bordered = TRUE,
                      highlight = TRUE,
                      showPageSizeOptions = TRUE,
                      pageSizeOptions = c(5, 10, 20, 50),
                      defaultPageSize = 5)
+or_current
+```
+
+
+
+```{r}
+or_new <- us_clean %>% 
+  dplyr::select(Date, State, Cases, Deaths, full_vacc, partial_vacc) %>% 
+  dplyr::filter(State == "Oregon") %>%
+  dplyr::arrange(Date) %>%
+  dplyr::mutate(new_cases = Cases - lag(Cases, default = first(Cases)),
+         new_deaths = Deaths - lag(Deaths, default = first(Deaths)),
+         new_full_vacc = full_vacc - lag(full_vacc, default = first(full_vacc)),
+         new_part_vacc = partial_vacc - lag(partial_vacc, default = first(partial_vacc)))
+or_new
+```
+
+```{r}
+library(magrittr)
+library(dplyr)
+```
+
+
+```{r}
+mini_us_clean <- head(us_clean, 10)
+mini_us_clean
+```
+
+```{r}
+
+```
+
+
+
+```{r}
+us_new <- us_clean %>%
+  select(Date, Cases) %>%
+  group_by(Date) %>%
+  summarise(new_cases = sum(Cases))
+us_clean
+us_new
+```
+
+
+```{r}
+reactable(or_new_cases)
 ```
 
 
