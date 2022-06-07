@@ -1,0 +1,26 @@
+---
+title: "Contact"
+knit: (function(input_file, encoding) {
+  out_dir <- '../docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'contact.html'))})
+output:
+  html_document:
+    toc: true
+    theme: darkly
+---
+
+```{r, include=FALSE}
+here::i_am("04_website/contact.Rmd")
+```
+
+Be sure to also check out the source code for this project on Github [here](https://github.com/rbolt13/covid19), or send me an email at **rbolt@pdx.edu** if you have any questions. 
+
+---
+
+<center>
+
+[Blog](https://www.rbolt.me/)     $\quad$|$\quad$ [Github](https://github.com/rbolt13)    $\quad$|$\quad$ [Linkedin](https://www.linkedin.com/in/randi-bolt/)
+
+</center>
