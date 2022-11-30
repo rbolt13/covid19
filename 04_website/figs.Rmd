@@ -20,6 +20,8 @@ here::i_am("04_website/figs.Rmd")
 # library
 library(reactable)
 library(magrittr)
+library(dplyr)
+library(gt)
 # location of data
 location_of_dates_data <- here::here("01_data/clean_data",
                                      "clean_data_dates.rds")
@@ -107,4 +109,14 @@ reactable::reactable(or_current %>%
                      showPageSizeOptions = TRUE,
                      pageSizeOptions = c(5, 10, 20, 50),
                      defaultPageSize = 5)
+```
+
+
+```{r}
+cases_tb <- or_current %>%
+  select(County, Population, Cases, cases_per_pop) %>% 
+  arrange(desc(cases_per_pop)) %>%
+  head(5) %>%
+  gt::gt()
+cases_tb
 ```
