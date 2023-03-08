@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: "f22ec6bc-c497-4e6d-9a3e-01e6fa80b607"
+      url: "covid-19-analysis-in-r.netlify.app"
