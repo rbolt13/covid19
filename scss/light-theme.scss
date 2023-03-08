@@ -1,0 +1,89 @@
+/*-- scss:defaults --*/
+
+//color-scheme
+$honeydew:        #f1ffe7 !default;
+$champagne:       #feebe2 !default;
+$cherry-blossom:  #fbb4b9 !default;
+$eggplant:        #6c464e !default;
+$dark-purple:     #2c1320 !default;
+$steel-blue:      #4D7EA8 !default;
+
+$white:    #fff !default;
+$black:    #000 !default;
+
+//banner color
+$primary: #6c464e !default;
+
+//body color
+$body-bg: #feebe2 !default;
+
+//body text color
+$body-color: #2c1320 !default;
+
+//body text color
+$body-color: #000 !default;
+
+//font
+$font-family-base:    'Source Sans Pro', 'Lato' !default;
+
+//heading font
+$headings-font-family:    'Prata', 'Roboto' !default;
+
+/*-- scss:rules --*/
+//category box
+div.quarto-post .listing-categories .listing-category {
+    color: $champagne;
+    background-color: $eggplant;
+    border: solid 1px $dark-purple;
+    border-radius: 0.6rem;
+    text-transform: none;
+    font-size: .65em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.15em;
+    padding-bottom: 0.15em;
+    cursor: pointer;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+// about links
+div.quarto-about-jolla .about-link {
+    font-size: .8em;
+    color: $dark-purple;
+    background-color: $champagne;
+    border: solid 1px $dark-purple;
+    border-radius: 0.6rem;
+    padding: 0.25em 0.5em;
+    border-radius: 4px;
+}
+
+//title color
+.quarto-title-banner .quarto-title .title {
+    font-weight: 600;
+    color: $champagne;
+}
+
+//link
+a {
+    color: #4D7EA8;
+    text-decoration: underline;
+}
+
+//line color between blog posts
+div.quarto-post {
+    border-bottom: 1px solid $dark-purple;
+}
+
+//category tags on blog
+.quarto-title .quarto-categories .quarto-category a {
+    color: $champagne;
+    background-color: $eggplant;
+    text-transform: none;
+    font-size: 1.2em;
+}
+
+//projects line seperating title from project
+h2, .h2 {
+    border-bottom: 1px solid $eggplant;
+}

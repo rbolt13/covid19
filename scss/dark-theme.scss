@@ -1,0 +1,96 @@
+/*-- scss:defaults --*/
+
+//color-scheme
+//main pallettte
+$honeydew:        #f1ffe7 !default;
+$champagne:       #feebe2 !default;
+$cherry-blossom:  #fbb4b9 !default;
+$eggplant:        #6c464e !default;
+$dark-purple:     #2c1320 !default;
+$steel-blue:      #4D7EA8 !default;
+
+//black and white
+$white:           #fff !default;
+$black:           #000 !default;
+
+//banner color
+$primary: #6c464e !default;
+
+//body color
+$body-bg: #2c1320 !default;
+
+//body text color
+$body-color: #feebe2 !default;
+
+//font
+$font-family-base:    'Source Sans Pro', 'Lato' !default;
+
+//heading font
+$headings-font-family:    'Prata', 'Roboto' !default;
+
+/*-- scss:rules --*/
+//category box
+div.quarto-post .listing-categories .listing-category {
+    color: $champagne;
+    background-color: $eggplant;
+    border: solid 1px $honeydew;
+    border-radius: 0.6rem;
+    text-transform: none;
+    font-size: .65em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.15em;
+    padding-bottom: 0.15em;
+    cursor: pointer;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+// about links
+div.quarto-about-jolla .about-link {
+    font-size: .8em;
+    color: $champagne;
+    background-color: $eggplant;
+    border: solid 1px $honeydew;
+    padding: 0.25em 0.5em;
+    border-radius: 4px;
+}
+
+//title color
+.quarto-title-banner .quarto-title .title {
+    font-weight: 600;
+    color: $champagne;
+}
+
+//link
+a {
+    color: #4D7EA8;
+    text-decoration: underline;
+}
+
+//code ouput
+pre code {
+    color: $champagne;
+}
+
+//code chunk numbers 
+code span.dv {
+    color: $dark-purple;
+}
+
+//code chunk operations
+code span.sc {
+    color: $cherry-blossom;
+}
+
+// tabs text color
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: $honeydew;
+    background-color: #2c1320;
+    border-color: #dee2e6 #dee2e6 #2c1320;
+}
+
+//
+.nav-link {
+    color: $cherry-blossom;
+}

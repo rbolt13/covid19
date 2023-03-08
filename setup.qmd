@@ -1,0 +1,1125 @@
+---
+toc: true
+---
+
+```{r set up}
+#| include: false
+here::i_am("setup.qmd")
+knitr::opts_chunk$set(
+  warning = FALSE, 
+  message = FALSE)
+base::readRenviron(".Renviron")
+```
+
+# Set Up
+
+This COVID-19 analysis aims to gain insights into the spread and impact of the pandemic in a particular region. To accomplish this I will be using the programming language R to first load the necessary packages that will facilitate data manipulation and visualization. Next I will load the data from various sources, and clean the data to ensure consistency and accuracy. I will then create date data, and totals data to understand the magnitude of the pandemics impact. Then localization data will be created to analyze the spatial distribution of cases and identify hot-spots. Finally, the data will be saved into one list to facilitate easy access and manipulation for further analysis and data visualization. Proper setup and execution of these steps is crucial to the success of this analysis. 
+
+## Packages
+
+For this analysis several packages are used to explore, manipulate, and visualize the data. These packages offer a wide range of functions and capabilities that allow us to efficiently perform data analysis tasks and produce high-quality visualizations. 
+
+::: {.panel-tabset}
+
+### Packages
+
+* **tidyverse** : This is the core package used for data manipulation, tidying, data visualization, and reshaping. 
+
+* **tidycensus** : This package will be used to gather census data such as population by state and county. 
+
+* **plotly** : This package will be used to make graphs and maps interactive. 
+
+### tidyverse 
+
+```{r isntall tidyverse}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Install"
+utils::install.packages("tidyverse")
+```
+
+```{r load tidyverse}
+#| code-fold: true
+#| code-summary: "Load"
+base::library(tidyverse)
+```
+
+### tidycensus
+
+```{r install tidycensus}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Install"
+utils::install.packages("tidycensus")
+```
+
+```{r load tidycensus}
+#| code-fold: true
+#| code-summary: "Load"
+base::library(tidycensus)
+```
+
+### plotly
+
+```{r install plotly}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Install"
+utils::install.packages("plotly")
+```
+
+```{r load plotly}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Load"
+base::library(plotly)
+```
+
+:::
+
+## Raw Data
+
+This analysis uses data from two resources. The first data source comes from the New York Times github repository, [Coronavirus (Covid-19) Data in the United States](https://github.com/nytimes/covid-19-data/blob/master/README.md). This repository has been widely used by researchers and analysts to track the spread and impact of the virus across the country. Additionally census data from the [tidycensus](https://walker-data.com/tidycensus/) package provides information about the population. The availability and accessibility of these data sources make them valuable tools for analyzing the impact of the pandemic on different communities. 
+
+::: {.panel-tabset}
+
+### Raw Data
+
+* **us_covid** : includes the date, state, fips, number of cases, and number of deaths.
+
+* **counties_covid** : includes the date, county, state, fips, number of cases, and number of deaths.
+
+* **us_pop** : includes state, GEOID, variable, and population.
+
+* **or_pop** : includes county, GEOID, variable, and population. 
+
+### us_covid
+
+```{r load us_covid data}
+#| code-fold: true
+#| code-summary: "Show Code"
+us_covid <- readr::read_csv(
+  'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv')
+utils::head(us_covid)
+```
+
+### counties_covid
+
+```{r load counties_covid data}
+#| code-fold: true
+#| code-summary: "Show Code"
+counties_covid <- readr::read_csv(
+  'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv')
+utils::head(counties_covid)
+```
+
+### us_pop
+
+```{r load us_pop data}
+#| code-fold: true
+#| code-summary: "Show Code"
+us_pop <- tidycensus::get_estimates(
+    geography = "state", 
+    year = 2019, 
+    variable =  "POP") %>% 
+  dplyr::rename (
+    "state" = NAME, 
+    "population" = value)
+utils::head(us_pop)
+```
+
+### or_pop
+
+```{r load or_pop data}
+#| code-fold: true
+#| code-summary: "Show Code"
+or_pop <- tidycensus::get_estimates(
+    geography = "county", 
+    state = "OR", 
+    year = 2019, 
+    variable = "POP") %>% 
+  dplyr::rename (
+    "county" = NAME, 
+    "population" = value)
+utils::head(or_pop)
+```
+
+:::
+
+## Clean Data
+
+Before any meaningful insights can be derived from a data set, it must first be cleaned and pre-processed to remove errors and inconsistencies. This data cleaning involves filtering, removing excess information, and joining data sets.  The goal of data cleaning is to ensure that the data set is accurate, complete, and ready for analysis. 
+
+::: {.panel-tabset}
+
+### Clean Data 
+
+* **or_covid** : filter counties_covid data for state = "Oregon". 
+
+* **or_pop$county** : remove " County, Oregon" from or_pop county column. 
+
+* **us_join** : joins us_covid data with us_pop data.
+
+* **or_join** : joins or_covid data with or_pop data.
+
+### or_covid
+
+```{r filter for oregon counties}
+#| code-fold: true
+#| code-summary: "Show Code"
+or_covid <- counties_covid %>%
+  dplyr::filter(
+    state == "Oregon")
+utils::head(or_covid)
+```
+
+### or_pop$county
+
+```{r remove county, oregon}
+#| code-fold: true
+#| code-summary: "Show Code"
+or_pop$county <- base::gsub(
+  " County, Oregon", 
+  "", 
+  or_pop$county)
+utils::head(or_pop)
+```
+
+### us_join 
+
+```{r us join}
+#| code-fold: true
+#| code-summary: "Show Code"
+us_join <- us_covid %>%
+  dplyr::select(
+    date, 
+    state, 
+    cases, 
+    deaths
+    ) %>%
+  dplyr::full_join(
+    us_pop %>%
+      dplyr::select(
+        state, 
+        population
+        ),
+    by = c("state" = "state")) %>%
+  dplyr::summarise(
+    date = date,
+    state = state,
+    population = population,
+    cases = cases,
+    cases_per_pop = cases/population,
+    deaths = deaths,
+    deaths_per_pop = deaths/population
+    )
+utils::head(us_join)
+```
+
+### or_join
+
+```{r or_join}
+#| code-fold: true
+#| code-summary: "Show Code"
+or_join <- or_covid %>%
+  dplyr::select(
+    date, 
+    state,
+    county,
+    cases, 
+    deaths
+    ) %>%
+  dplyr::full_join(
+    or_pop %>%
+      select(
+        county, 
+        population
+        ),
+    by = c("county" = "county")) %>%
+  dplyr::summarise(
+    date = date,
+    county = county,
+    population = population,
+    cases = cases,
+    cases_per_pop = cases/population,
+    deaths = deaths,
+    deaths_per_pop = deaths/population
+    )
+utils::head(or_join)
+```
+
+:::
+
+## Date Data
+
+Data can become outdated quickly, and using old data can lead to inaccurate or incomplete conclusions. By recording the date the data was obtained, the analysis can be based on the most recent information, and any changes that may have occurred in the data over time can be taken into account.  
+
+::: {.panel-tabset}
+
+### Date Data 
+
+* **us_data_date** : the most current date of data for us_join. 
+
+* **or_data_date** : the most current date of data for or_join.
+
+### us_data_date
+
+```{r us_data_date}
+#| code-fold: true
+#| code-summary: "Show Code"
+us_data_date <- us_join %>%
+  dplyr::arrange(dplyr::desc(date))
+us_data_date <- us_data_date[[1,1]]
+us_data_date
+```
+
+### or_data_date
+
+```{r or_data_date}
+#| code-fold: true
+#| code-summary: "Show Code"
+or_data_date <- or_join %>%
+  dplyr::arrange(dplyr::desc(date))
+or_data_date <- or_data_date[[1,1]]
+or_data_date
+```
+
+:::
+
+## Totals Data
+
+Collecting the total number of COVID-19 related cases, and deaths is a critical component of understanding the impact of the pandemic. By collecting this data, we can determine which regions have been most affected by COVID-19, potential areas of concern, and evaluate the progression of the pandemic over time. Overall, this data is essential for understanding the scope and impact of the pandemic. 
+
+::: {.panel-tabset}
+
+### Totals Data 
+
+* **us_totals** : includes state, total_cases, total_cases_perc, total_deaths, total_deaths_perc, and population. 
+
+* **or_totals** : includes county, total_cases, total_cases_perc, total_deaths, total_deaths_per, and population. 
+
+### us_totals
+
+```{r us_totals data}
+#| code-fold: true
+#| code-summary: "Show Code"
+us_totals <- us_join %>%
+  dplyr::filter(date == us_data_date) %>%
+  dplyr::group_by(state) %>%
+  dplyr::summarise(
+    total_cases = cases,
+    total_cases_perc = cases_per_pop,
+    total_deaths = deaths,
+    total_deaths_perc = deaths_per_pop
+  ) %>%
+  dplyr::full_join(us_pop %>%
+              dplyr::select(state, population),
+            by = c("state" = "state")) 
+utils::head(us_totals)
+```
+
+### or_totals
+
+```{r or total data}
+#| code-fold: true
+#| code-summary: "Show Code"
+or_totals <- or_join %>%
+  dplyr::filter(date == or_data_date) %>%
+  dplyr::group_by(county) %>%
+  dplyr::summarise(
+    total_cases = cases,
+    total_cases_perc = cases_per_pop,
+    total_deaths = deaths,
+    total_deaths_perc = deaths_per_pop
+  ) %>%
+  dplyr::full_join(or_pop %>%
+              dplyr::select(county, population),
+            by = c("county" = "county")) 
+utils::head(or_totals)
+```
+
+:::
+
+## Location Data 
+
+Collecting localization (latitude and longitude) data is crucial for creating maps that illustrate the spread of the pandemic. By collecting this data, we can plot the locations of COVID-19 cases, and deaths. Mapping this data can help identify geographic clusters of cases and assess the spatial distribution of the pandemic. 
+
+::: {.panel-tabset}
+
+### Location Data
+
+* **us_states** : includes lat, long, group, order, and region. 
+
+* **or_counties** : includes lon, lat, group, and county. 
+
+* **us_totals_lat_long** : includes state, total_cases, total_cases_perc, total_deaths, total_deaths_perc, population, lat, long, and group. 
+
+* **or_totals_lat_lon** : includes county, total_cases, total_cases_perc, total_deaths, total_deaths_perc, population, lat, long, and group. 
+
+### us_states
+
+```{r us_states}
+#| code-fold: true
+#| code-summary: "Show Code"
+us_states <- ggplot2::map_data("state") 
+utils::head(us_states)
+```
+
+### or_couties
+
+```{r or counties}
+#| code-fold: true
+#| code-summary: "Show Code"
+or_counties <- ggplot2::map_data(
+  "county", 
+  "oregon") %>%
+  dplyr::select(lon = long, 
+         lat, 
+         group, 
+         county = subregion)
+utils::head(or_counties)
+```
+
+### us_totals_lat_long
+
+```{r us_totals lat long data}
+#| code-fold: true
+#| code-summary: "Show Code"
+# To join data by state and region then both  
+# columns need to have a similar case structure.
+us_totals$state <- stringr::str_to_title(
+  us_totals$state)
+us_states$state <- stringr::str_to_title(
+  us_states$region)
+# join us_totals with lat long data
+us_totals_lat_long <- us_totals  %>%
+  dplyr::full_join(
+    us_states %>%
+      dplyr::select(
+        long, 
+        lat, 
+        group, 
+        state
+        ),
+    by = c("state" = "state")) %>%
+  dplyr::filter(
+    !is.na(date),
+    !is.na(lat),
+    !is.na(long)
+    ) %>%
+  dplyr::arrange(
+    state
+    )
+utils::head(us_totals_lat_long)
+```
+
+### or_totals_lat_lon
+
+```{r or totals lat lon data}
+#| code-fold: true
+#| code-summary: "Show Code"
+# To join data by county then both  
+# columns need to have a similar case structure.
+or_totals$county <- stringr::str_to_title(
+  or_totals$county)
+or_counties$county <- stringr::str_to_title(
+  or_counties$county)
+# join or_totals with or_counties, remove na values from date .. 
+or_totals_lat_lon <- or_totals %>%
+  dplyr::full_join(
+    or_counties %>%
+      dplyr::select(
+        lat, 
+        lon, 
+        group, 
+        county),
+    by = c("county" = "county")
+    ) %>%
+  dplyr::filter(
+    !is.na(date)
+    ) %>%
+  dplyr::arrange(county)
+utils::head(or_totals_lat_lon)
+```
+
+:::
+
+## Arranged Data
+
+The pandemic has generated an enormous amount of data. This data is often complex, messy, and collected from different sources, making it difficult to draw meaningful insights. By arranging the data in a clear and structured manner, analyst can easily identify patterns and trends, track the progression of the pandemic, and develop evidence-based recommendations for policymakers and public health officials. 
+
+::: {.panel-tabset}
+
+### Arranged Data 
+
+* **us_case_num** : includes state, population, cases, and cases_per_pop arranged in descending order by cases. 
+
+* **us_case_percent** : includes state, population, cases, and cases_per_pop arranged in descending order by percent of cases (cases_per_pop). 
+
+* **us_deaths_num** : includes state, population, deaths, and deaths_per_pop arranged in descending order by deaths. 
+
+* **us_deaths_percent** : includes state, population, deaths, and deaths_per_pop arranged in descending order by percent of deaths (deaths_per_pop)
+
+* **or_case_num** : includes county, population, cases, and cases_per_pop arranged in descending order by cases.
+
+* **or_case_percent** : includes county, population, cases, and cases_per_pop arranged in descending order by percent of cases (cases_per_pop). 
+
+* **or_deaths_num** : includes county, population, deaths, and deaths_per_pop arranged in descending order by deaths. 
+
+* **or_deaths_percent** : includes county, population, deaths, and deaths_per_pop arranged in descending order by deaths. 
+
+### us_case_num
+
+```{r us case num arrange data}
+#| code-fold: true
+#| code-summary: "Show Code"
+us_case_num <- us_join %>%
+  dplyr::filter(
+    date == us_data_date
+    ) %>%
+  dplyr::select(
+    state,
+    population,
+    cases,
+    cases_per_pop
+    ) %>%
+  dplyr::arrange(dplyr::desc(cases))
+  
+utils::head(us_case_num)
+```
+
+### us_case_percent
+
+```{r us case percent arrange data show code}
+#| code-fold: true
+#| code-summary: "Show Code"
+us_case_percent <- us_join %>%
+  dplyr::filter(
+    date == us_data_date
+    ) %>%
+  dplyr::select(
+    state,
+    population,
+    cases,
+    cases_per_pop
+    ) %>%
+  dplyr::arrange(dplyr::desc(
+    cases_per_pop
+    ))
+utils::head(us_case_percent)
+```
+
+### us_deaths_num
+
+```{r us death num arrange data show code}
+#| code-fold: true
+#| code-summary: "Show Code"
+us_deaths_num <- us_join %>%
+  dplyr::filter(
+    date == us_data_date
+    ) %>%
+  dplyr::select(
+    state,
+    population,
+    deaths,
+    deaths_per_pop
+    ) %>%
+  dplyr::arrange(dplyr::desc(deaths))
+utils::head(us_deaths_num)
+```
+
+### us_deaths_percent
+
+```{r us death percent arrange data show code}
+#| code-fold: true
+#| code-summary: "Show Code"
+us_deaths_percent <- us_join %>%
+  dplyr::filter(
+    date == us_data_date
+    ) %>%
+  dplyr::select(
+    state,
+    population,
+    deaths,
+    deaths_per_pop
+    ) %>%
+  dplyr::arrange(dplyr::desc(deaths_per_pop))
+utils::head(us_deaths_percent)
+```
+
+### or_case_num
+
+```{r or case num arrange show code}
+#| code-fold: true
+#| code-summary: "Show Code"
+or_case_num <- or_join %>%
+  dplyr::filter(
+    date == or_data_date
+    ) %>%
+  dplyr::select(
+    county,
+    population,
+    cases,
+    cases_per_pop
+    ) %>%
+  dplyr::arrange(dplyr::desc(cases))
+utils::head(or_case_num)
+```
+
+### or_case_percent
+
+```{r or case percent arrange data show code}
+#| code-fold: true
+#| code-summary: "Show Code"
+or_case_percent <- or_join %>%
+  dplyr::filter(date == or_data_date) %>%
+  dplyr::select(
+    county,
+    population,
+    cases,
+    cases_per_pop
+  ) %>%
+  dplyr::arrange(dplyr::desc(cases_per_pop))
+utils::head(or_case_percent)
+```
+
+### or_deaths_num
+
+```{r or death num arrange data show code}
+#| code-fold: true
+#| code-summary: "Show Code"
+or_deaths_num <- or_join %>%
+  dplyr::filter(
+    date == or_data_date
+    ) %>%
+  dplyr::select(
+    county,
+    population,
+    deaths,
+    deaths_per_pop
+    ) %>%
+  dplyr::arrange(dplyr::desc(deaths))
+utils::head(or_deaths_num)
+```
+
+### or_deaths_percent
+
+```{r or death percent arrange data show code}
+#| code-fold: true
+#| code-summary: "Show Code"
+or_deaths_percent <- or_join %>%
+  dplyr::filter(
+    date == or_data_date
+    ) %>%
+  dplyr::select(
+    county,
+    population,
+    deaths,
+    deaths_per_pop
+    ) %>%
+  dplyr::arrange(dplyr::desc(deaths_per_pop))
+utils::head(or_deaths_percent)
+```
+
+:::
+
+## Save Data 
+
+Collecting all relevant information into a single location is essential for efficient data management and organization. By saving all important data into a list in a single location then it can be easily accessed and manipulated during analysis. 
+
+### data_list
+
+```{r save data}
+#| code-fold: true
+#| code-summary: "Show Code"
+# Save data into a list. 
+data_list <- base::list(
+  us_join,
+  or_join,
+  us_data_date,
+  or_data_date,
+  us_totals_lat_long,
+  or_totals_lat_lon,
+  us_case_num,
+  us_case_percent,
+  us_deaths_num,
+  us_deaths_percent,
+  or_case_num,
+  or_case_percent,
+  or_deaths_num,
+  or_deaths_percent
+)
+# Save data list into data folder.
+base::saveRDS(
+  data_list,
+  file = paste0(
+    "data/",
+    Sys.Date(),
+    "data_list.RDS"))
+```
+
+::: {.column width="48%"}
+
+1. **us_join** : which is used to create analysis, and tables. 
+
+  2. **or_join** : which is used to create analysis, and tables.
+
+  3. **us_data_date** : which is used to create analysis, and tables.
+
+  4. **or_data_date** : which is used to create analysis, and tables. 
+  
+  5. **us_totals_lat_long** : which is used to create analysis, and maps. 
+
+  6. **or_totals_lat_lon** : which is used to create analysis, and maps. 
+  
+  7. **us_case_num** : which is used to create analysis and tables. 
+
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="48%"}
+  
+  8. **us_case_percent** : which is used to create analysis and tables. 
+  
+  9. **us_deaths_num** : which is used to create analysis and tables. 
+  
+  10. **us_deaths_percent** : which is used to create analysis and tables. 
+  
+  11. **or_case_num** : which is used to create analysis and tables. 
+  
+  12. **or_case_percent** : which is used to create analysis and tables. 
+  
+  13. **or_deaths_num** : which is used to create analysis and tables. 
+  
+  14. **or_deaths_percent** : which is used to create analysis and tables. 
+  
+:::
+
+# Data Visuals 
+
+COVID-19 data is complex and voluminous, and data visualization provides an effective way to summarize and communicate insights from the data. Visualization makes it easier to identify patterns, trends, and anomalies in the data, which might not be immediately apparent in raw data or tables. This, in turn, makes it easier for policymakers and the general public to make informed decisions based on the data. Furthermore, data visualization is a powerful tool for communicating complex ideas in a clear and concise manner, making it easier for people to understand the impact of the pandemic on different states and counties in Oregon. Creating compelling and effective data visualization can increase public awareness, improve decision making, and ultimately save lives. 
+
+## Style Functions
+
+Creating functions helps automating automating tasks and reducing the overall workload. Specifically, functions can be used to style tables, graphs, and maps consistently throughout the project, ensuring a professional and coherent visual representation of the data. This approach saves time and improves accuracy by reducing the potential for errors when formatting data manually. Additionally, functions can be reused in future projects or shared with other team members, promoting collaboration and consistency in data analysis. 
+
+::: {.panel-tabset}
+
+### Style Functions 
+
+* **style_table()** : which is used to add footnotes to all the tables, and specify colors. 
+
+### style_table
+
+```{r style table function}
+#| code-fold: true
+#| code-summary: "Show Code"
+style_table <- function(table){
+  tb <- table %>%
+  gt::tab_footnote(
+    footnote = gt::md(
+      "Table by Randi Bolt </br> Data from New York Times and tidycensus. "
+      )
+    ) %>%
+  gt::tab_footnote(
+    footnote = gt::md(
+      "Table by Randi Bolt </br> Data from New York Times and tidycensus. "
+      )
+    )%>%
+  gt::tab_options(
+    table.background.color = "#feebe2",
+    heading.background.color = "#F7CEB6",
+    footnotes.background.color = "#F7CEB6",
+    # table border
+    table.border.top.color = "#6c464e",
+    table.border.bottom.color = "#6c464e",
+    table.border.right.color = "#6c464e",
+    table.border.left.color = "#6c464e",
+    # horizontal table body lines color
+    table_body.hlines.color = "#6c464e",
+    # heading bottom border color
+    heading.border.bottom.color ="#6c464e",
+    # column label bottom border color
+    column_labels.border.bottom.color = "#6c464e"
+  ) %>%
+  gt::opt_table_font(
+    font = "Times"
+  )
+  return(tb)
+}
+```
+
+:::
+
+## Tables 
+
+
+::: {.panel-tabset}
+
+### US 
+
+**us_case_num_table**
+
+```{r us case num tb}
+#| code-fold: true
+#| code-summary: "Show Code"
+us_case_num_table <- gt::gt(
+  us_case_num[1:5,]) %>%
+  gt::fmt_number(
+    columns = cases,
+    decimals = 0
+  ) %>%
+  gt::fmt_number(
+    columns = population,
+    decimals = 0
+  ) %>%
+  gt::fmt_percent(
+    columns = cases_per_pop,
+    decimals = 0
+    ) %>%
+  gt::tab_header(
+    title = gt::md("**Highest Number of Cases**"),
+    subtitle = base::paste0(
+      "By State as of ", 
+      us_data_date)
+  ) %>%
+  gt::cols_label(
+    state = gt::md("**State**"),
+    population = gt::md("**Population**"),
+    cases = gt::md("**Cases**"),
+    cases_per_pop = gt::md("**Percentage**")
+    ) %>%
+  style_table() %>%
+  gt::gtsave(filename = "tables/current_us_case_num.png")
+```
+
+**us_case_percent_table**
+
+```{r us case percent table }
+#| code-fold: true
+#| code-summary: "Show Code"
+us_case_percent_table <- gt::gt(
+  us_case_percent[1:5,]
+  ) %>%
+  gt::fmt_number(
+    columns = cases,
+    decimals = 0
+  ) %>%
+  gt::fmt_number(
+    columns = population,
+    decimals = 0
+  ) %>%
+  gt::fmt_percent(
+    columns = cases_per_pop,
+    decimals = 0
+    ) %>%
+  gt::tab_header(
+    title = gt::md(
+      "**Highest Percent of Cases**"
+      ),
+    subtitle = base::paste0(
+      "By State as of ", 
+      us_data_date)
+  ) %>%
+  gt::cols_label(
+    state = gt::md(
+      "**State**"
+      ),
+    population = gt::md(
+      "**Population**"
+      ),
+    cases = gt::md(
+      "**Cases**"
+      ),
+    cases_per_pop = gt::md(
+      "**Percentage**"
+      )
+    ) %>%
+  style_table() %>%
+  gt::gtsave(
+    filename = "tables/current_us_case_percent.png"
+    ) 
+```
+
+**us_death_num_table**
+
+```{r us death num table}
+#| code-fold: true
+#| code-summary: "Show Code"
+#| eval: false
+us_deaths_num_table <- gt(us_deaths_num[1:5,]) %>%
+  fmt_number(
+    columns = deaths,
+    decimals = 0
+  ) %>%
+  fmt_number(
+    columns = population,
+    decimals = 0
+  ) %>%
+  fmt_percent(
+    columns = deaths_per_pop,
+    decimals = 2
+    ) %>%
+  tab_header(
+    title = md(
+      "**Highest Number of Deaths**"
+      ),
+    subtitle = paste0(
+      "By state as of ", 
+      us_data_date)
+  ) %>%
+  cols_label(
+    state = md(
+      "**State**"
+      ),
+    population = md(
+      "**Population**"
+      ),
+    deaths = md(
+      "**Deaths**"
+      ),
+    deaths_per_pop = md(
+      "**Percentage**"
+      )
+    ) %>%
+  style_table() %>%
+  gt::gtsave(
+    filename = "tables/current_us_deaths_num.png"
+    ) 
+```
+
+**us_death_num_perc**
+
+```{r us death perc table}
+#| code-fold: true
+#| code-summary: "Show Code"
+#| eval: false
+us_deaths_perc_table <- gt::gt(
+  us_death_percent[1:5,]
+  ) %>%
+  gt::fmt_number(
+    columns = deaths,
+    decimals = 0
+  ) %>%
+  gt::fmt_number(
+    columns = population,
+    decimals = 0
+  ) %>%
+  gt::fmt_percent(
+    columns = deaths_per_pop,
+    decimals = 2
+    ) %>%
+  gt::tab_header(
+    title = md(
+      "**Highest Percent of Deaths**"
+      ),
+    subtitle = paste0(
+      "By state as of ", 
+      us_data_date)
+  ) %>%
+  gt::cols_label(
+    state = md(
+      "**State**"
+      ),
+    population = md(
+      "**Population**"
+      ),
+    deaths = md(
+      "**Deaths**"
+      ),
+    deaths_per_pop = md(
+      "**Percentage**"
+      )
+    ) %>%
+  style_table() %>%
+  gt::gtsave(
+    filename = "tables/current_us_deaths_percent.png"
+    ) 
+```
+
+### OR  
+
+**or_case_num_table**
+
+```{r or case num tb}
+#| code-fold: true
+#| code-summary: "Show Code"
+#| eval: false
+or_case_num_table <- gt::gt(
+  or_case_num[1:5,]) %>%
+  gt::fmt_number(
+    columns = cases,
+    decimals = 0
+  ) %>%
+  gt::fmt_number(
+    columns = population,
+    decimals = 0
+  ) %>%
+  gt::fmt_percent(
+    columns = cases_per_pop,
+    decimals = 0
+    ) %>%
+  gt::tab_header(
+    title = gt::md("**Highest Number of Cases**"),
+    subtitle = base::paste0(
+      "By county as of ", 
+      or_data_date)
+  ) %>%
+  gt::cols_label(
+    county = gt::md("**County**"),
+    population = gt::md("**Population**"),
+    cases = gt::md("**Cases**"),
+    cases_per_pop = gt::md("**Percentage**")
+    ) %>%
+  style_table() %>%
+  gt::gtsave(filename = "tables/current_or_case_num.png")
+```
+
+**or_case_percent_table**
+
+```{r or case percent table }
+#| code-fold: true
+#| code-summary: "Show Code"
+#| eval: false
+or_case_percent_table <- gt::gt(
+  or_case_percent[1:5,]
+  ) %>%
+  gt::fmt_number(
+    columns = cases,
+    decimals = 0
+  ) %>%
+  gt::fmt_number(
+    columns = population,
+    decimals = 0
+  ) %>%
+  gt::fmt_percent(
+    columns = cases_per_pop,
+    decimals = 0
+    ) %>%
+  gt::tab_header(
+    title = gt::md(
+      "**Highest Percent of Cases**"
+      ),
+    subtitle = base::paste0(
+      "By county as of ", 
+      or_data_date)
+  ) %>%
+  gt::cols_label(
+    county = gt::md(
+      "**County**"
+      ),
+    population = gt::md(
+      "**Population**"
+      ),
+    cases = gt::md(
+      "**Cases**"
+      ),
+    cases_per_pop = gt::md(
+      "**Percentage**"
+      )
+    ) %>%
+  style_table() %>%
+  gt::gtsave(
+    filename = "tables/current_or_case_percent.png"
+    ) 
+```
+
+**or_death_num_table**
+
+```{r or death num table}
+#| code-fold: true
+#| code-summary: "Show Code"
+#| eval: false
+or_deaths_num_table <- gt(or_deaths_num[1:5,]) %>%
+  fmt_number(
+    columns = deaths,
+    decimals = 0
+  ) %>%
+  fmt_number(
+    columns = population,
+    decimals = 0
+  ) %>%
+  fmt_percent(
+    columns = deaths_per_pop,
+    decimals = 2
+    ) %>%
+  tab_header(
+    title = md(
+      "**Highest Number of Deaths**"
+      ),
+    subtitle = paste0(
+      "By county as of ", 
+      or_data_date)
+  ) %>%
+  cols_label(
+    county = md(
+      "**County**"
+      ),
+    population = md(
+      "**Population**"
+      ),
+    deaths = md(
+      "**Deaths**"
+      ),
+    deaths_per_pop = md(
+      "**Percentage**"
+      )
+    ) %>%
+  style_table() %>%
+  gt::gtsave(
+    filename = "tables/current_or_deaths_num.png"
+    ) 
+```
+
+**us_death_num_perc**
+
+```{r or death perc table}
+#| code-fold: true
+#| code-summary: "Show Code"
+#| eval: false
+or_deaths_perc_table <- gt::gt(
+  or_death_percent[1:5,]
+  ) %>%
+  gt::fmt_number(
+    columns = deaths,
+    decimals = 0
+  ) %>%
+  gt::fmt_number(
+    columns = population,
+    decimals = 0
+  ) %>%
+  gt::fmt_percent(
+    columns = deaths_per_pop,
+    decimals = 2
+    ) %>%
+  gt::tab_header(
+    title = md(
+      "**Highest Percent of Deaths**"
+      ),
+    subtitle = paste0(
+      "By county as of ", 
+      or_data_date)
+  ) %>%
+  gt::cols_label(
+    county = md(
+      "**County**"
+      ),
+    population = md(
+      "**Population**"
+      ),
+    deaths = md(
+      "**Deaths**"
+      ),
+    deaths_per_pop = md(
+      "**Percentage**"
+      )
+    ) %>%
+  style_table() %>%
+  gt::gtsave(
+    filename = "tables/current_or_deaths_percent.png"
+    ) 
+```
+
+:::

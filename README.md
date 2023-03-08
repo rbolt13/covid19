@@ -1,77 +1,35 @@
-# Instructions 
-Fork this repository and run code in Makefile from terminal to reproduce this analysis. It can also be viewed in your browser from this link [here](https://rbolt13.github.io/covid19/).
+# COVID-19 Analysis with R
 
-# COVID-19 Analysis
-This project was created by [Randi Bolt](https://www.rbolt.me/) as a student project. 
+This repository contains an analysis of COVID-19 data using R and presented with Quarto Docs and Netlify. The goal of this analysis is to explore the COVID-19 data to understand the trend of the pandemic and the impact of the virus on different countries an regions. 
 
-# Project Intro
-The purpose of this project to analyze Covid-19 data.
+## Data
 
-#### -- Project Status: [Under Construction]
+The data used in this analysis is obtained from the New York Times github repository, [Coronavirus (Covid-19) Data in the United States](https://github.com/nytimes/covid-19-data/blob/master/README.md). This data set includes information on COVID-19 cases, and deaths. The [tidycensus](https://walker-data.com/tidycensus/) packages is also used to gather data on state and county populations. 
 
-### Methods Used
+## Analysis
 
-* Descriptive Statistics
+The analysis is done using R programming language and R packages such as tidyverse, tidycensus, and plotly. The set up code for this analysis can be found in the setup.qmd file, while the analysis itself can be found in the analysis.qmd file in this repository. 
 
-* Data Visualization
+The analysis covers the following topics:
 
-### Technologies
+* Overview of COVID-19 cases, case percent, deaths, and deaths percent. 
 
-* R
+* Comparison of the COVID-19 impact on different states and counties in Oregon. 
 
-## Project Description
-Content coming. 
+* Interactive time series analysis.
 
-## Getting Started 
+* Interactive map. 
 
-1. Fork repository to make a copy of it on your computer. 
+## Presentation 
 
-2. Clone this repository.
+This analysis is presented using Quarto, a powerful tool for generating reproducible documents in R. The .qmd files in the repository contain the code for generating the HTML documents.  
 
-```
-git clone https://github.com/rbolt/covid19.git
-```
+## Deployment
 
-3. Change to project directory. 
+The HTML documents are deployed using Netlify, a cloud-based platform for web development. The document is automatically deployed whenever changes are pushed to the repository's main branch. 
 
-```
-cd covid19
-```
+The dployed HTML documents can be accessed through the following link [here](). 
 
-4. Open R in terminal. 
+## Conclusion 
 
-```
-R
-```
-
-5. Restore the environment.  
-
-```
-renv::restore()
-```
-
-6. Quit R in terminal. 
-
-```
-q()
-```
-
-7. Load data with the following Makefile commands: 
-
-```
-make all/raw
-```
-```
-make all/clean
-```
-
-8. Make a report a current report of covid19. 
-```
-make report
-```
-
-9. Open report 
-
-```
-open 03_output/report.html
-```
+This analysis provide insights into the COVID-19 pandemic and its impact on differenct states and counties in Oregon. The use of R, Quarto, and Nelify ensures that the analysis is reporducible, transparent, and easily accessible. 

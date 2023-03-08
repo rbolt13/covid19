@@ -1,0 +1,25 @@
+project:
+  type: website
+
+website:
+  title: "Coronavirus"
+  navbar:
+    left:
+      - href: setup.qmd
+        text: "Set Up"
+        aria-label: "Set Up"
+      - href: analysis.qmd
+        text: Analysis
+        aria-label: Analysis
+      - href: contact.qmd
+        text: Contact
+        aria-label: Contact
+
+format:
+  html:
+    theme: 
+      light: [scss/light-theme.scss]
+      dark: [scss/dark-theme.scss]
+
+
+

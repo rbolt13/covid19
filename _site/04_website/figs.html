@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Coronavirus - Figures</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="../site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="../site_libs/react-17.0.0/react.min.js"></script>
+<script src="../site_libs/react-17.0.0/react-dom.min.js"></script>
+<script src="../site_libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="../site_libs/htmlwidgets-1.6.0/htmlwidgets.js"></script>
+<link href="../site_libs/reactable-0.4.1/reactable.css" rel="stylesheet">
+<script src="../site_libs/reactable-binding-0.4.1/reactable.js"></script>
+
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Coronavirus</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html">Set Up</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../analysis.html">Analysis</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../contact.html">Contact</a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Figures</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="us-figs." class="level1">
+<h1>US FIGS.</h1>
+<section id="tables" class="level2">
+<h2 class="anchored" data-anchor-id="tables">Tables</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="reactable html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1d5c5e54a016f11724d5" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1d5c5e54a016f11724d5">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"State":["Alabama","Alaska","American Samoa","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","District of Columbia","Florida","Georgia","Guam","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Northern Mariana Islands","Ohio","Oklahoma","Oregon","Pennsylvania","Puerto Rico","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virgin Islands","Virginia","Washington","West Virginia","Wisconsin","Wyoming","Department of Defense","Federal Bureau of Prisons","Indian Health Services","Veterans Health Administration"],"Population":[4903185,731545,"NA",7278717,3017804,39512223,5758736,3565287,973764,705749,21477737,10617423,"NA",1415872,1787065,12671821,6732219,3155070,2913314,4467673,4648794,1344212,6045680,6892503,9986857,5639632,2976149,6137428,1068778,1934408,3080156,1359711,8882190,2096829,19453561,10488084,762062,"NA",11689100,3956971,4217737,12801989,3193694,1059361,5148714,884659,6829174,28995881,3205958,623989,"NA",8535519,7614893,1792147,5822434,578759,"NA","NA","NA","NA"],"Cases":[1320708,261117,6053,2062669,846119,9675504,1467039,813676,278609,151005,6223573,2499718,50442,275631,453661,3338626,1742261,781963,789963,1377324,1267633,264366,1098538,1885034,2547366,1518186,811833,1481047,279470,488110,744192,327358,2417401,540931,5466857,2774905,245476,11403,2780653,1053558,774426,2941231,728375,395410,1504967,240357,2020366,6906459,954938,132676,20083,1805781,1604010,519762,1688016,158472,"NA","NA","NA","NA"],"cases_per_pop":[0.269357162742177,0.356939080986132,"NA",0.283383596312372,0.280375730166704,0.244873693894672,0.254750174343814,0.228221739231652,0.286115526965466,0.213964171398047,0.289768563606119,0.235435472430551,"NA",0.194672258509244,0.253858141701617,0.26346852595219,0.25879446286581,0.247843312509707,0.271156147260474,0.308286662877968,0.272679968180995,0.196669870526375,0.181706276217067,0.27349048669257,0.255071840920522,0.269199479682362,0.272779689457752,0.241313951055719,0.261485547045317,0.252330428740989,0.24160854190502,0.240755572323825,0.272162721130712,0.25797573383428,0.281020888669175,0.264576923678338,0.322120772325611,"NA",0.237884268249908,0.266253657153414,0.18361173302176,0.229747971194164,0.228066621285571,0.373253310250236,0.29229959170387,0.271694517322494,0.295843391894832,0.23818758947176,0.297863540320865,0.212625543078484,"NA",0.211560773281625,0.210641173815574,0.290021968064004,0.289915866800723,0.273813452576979,"NA","NA","NA","NA"],"Deaths":[19676,1246,31,30332,11505,91681,12773,10971,2961,1347,74715,36758,366,1454,4945,38222,23740,9603,8963,16004,17345,2382,14634,20670,36407,12984,12471,20796,3423,4294,10909,2547,33775,7846,68489,24663,2330,34,38657,14437,7659,45308,4400,3583,17907,2928,26221,88602,4781,670,113,20431,13031,6977,14656,1820,"NA","NA","NA","NA"],"deaths_per_pop":[0.0040129018179,0.00170324450307226,"NA",0.00416721793140192,0.00381237482619812,0.00232031996782363,0.00221802145470812,0.00307717162741737,0.00304077784760989,0.00190861056834654,0.00347871845157616,0.00346204535695714,"NA",0.00102692898793111,0.00276710696029523,0.00301629892025779,0.00352632616378047,0.00304367256510949,0.00307656503898996,0.00358217801526656,0.00373107519928825,0.00177204191005585,0.00242057138320255,0.00299891055542522,0.00364549126917508,0.00230227787912403,0.00419031439622143,0.0033883900552479,0.00320272310994425,0.00221980057981563,0.0035417037318889,0.00187319217098339,0.00380255319915471,0.0037418406555804,0.0035206407711164,0.00235152578869506,0.00305749400967375,"NA",0.00330709806571935,0.00364849780299123,0.00181590269853241,0.00353913755120396,0.00137771495954215,0.0033822275881404,0.00347795585460758,0.00330974985842002,0.00383955658473484,0.00305567539058392,0.00149128591204252,0.00107373687677187,"NA",0.00239364472154534,0.00171125188495754,0.00389309582305469,0.00251716034909112,0.0031446595214934,"NA","NA","NA","NA"],"full_vacc":[2522903,459364,41863,5036852,1654376,28712597,4068310,2847479,680494,683915,14480120,5854801,140282,1098534,994685,8735170,3721549,1964357,1805061,2577858,2499487,1077778,4606516,5491475,6041726,3921650,1550896,3526130,610478,1234542,1886711,967988,6862642,1503711,15075102,6515575,425620,43958,6900750,2283663,2954469,8855068,2688974,883315,2957814,550030,3744285,17969147,2069728,509952,57181,6337459,5556737,1037765,3838877,296141,3205887,135787,878028,2963266],"full_vacc_per_pop":[0.514543709853901,0.627936763972141,"NA",0.691997229731558,0.548205251235667,0.726676324943803,0.706458847913848,0.798667540649603,0.698828463570229,0.969062655419986,0.674192071539008,0.55143333744921,"NA",0.775870982687701,0.556602585804098,0.689338177993518,0.552796782160533,0.622603301986961,0.619590267303833,0.577002390282368,0.537663531660039,0.801791681669261,0.761951674584166,0.796731608241592,0.604967709060018,0.695373386064906,0.521108318165522,0.574528939484097,0.571192520804133,0.638201454915406,0.612537481867802,0.711907162624999,0.772629497905359,0.717135732098326,0.774927634071726,0.621235966454883,0.558510987294997,"NA",0.590357683654002,0.577124017335482,0.700486777625063,0.691694704627539,0.841963569459065,0.833818688813351,0.574476267277615,0.621742388875262,0.548277873722356,0.619713779346798,0.645587995850226,0.817245175796368,"NA",0.742480802866235,0.729719642810477,0.579062431820604,0.659325120731296,0.511682755689328,"NA","NA","NA","NA"],"partial_vacc":[569268,53681,3568,847614,370962,3916449,528256,588542,136220,167639,2666512,1128967,14308,101639,113624,927207,438170,188087,378056,392374,350798,149973,657310,1342718,678170,333160,232035,619431,90761,129805,447774,242786,1315603,352628,2569756,2424781,76676,2217,569769,547386,349027,2104858,381045,172191,548633,133510,523513,3451788,251742,77655,13282,1070216,5735448,133219,363947,41611,1095183,11726,226185,520259],"partial_vacc_per_pop":[0.116101676767244,0.0733803115324416,"NA",0.116451017397709,0.122924484161331,0.0991199356209343,0.0917312410223355,0.165075630657504,0.13989015819028,0.23753345736232,0.124152372291364,0.106331545799767,"NA",0.0717854438819328,0.0635813470690769,0.0731707779016133,0.0650855238072321,0.0596142082426063,0.129768366883899,0.0878251385005125,0.0754600010239215,0.111569454818139,0.108723915258499,0.194808475237515,0.0679062491833016,0.0590747765102404,0.0779648465181011,0.100926805169853,0.0849203482856122,0.0671032171082833,0.145373805742307,0.178557061022526,0.148116962145597,0.168172035010962,0.132096946158084,0.231193895853618,0.100616485272852,"NA",0.0487436158472423,0.1383345998745,0.0827521962606962,0.164416482470029,0.119311681081531,0.162542325043116,0.106557287897522,0.150916906966413,0.0766583191466494,0.119044080778232,0.0785231746641721,0.124449309202566,"NA",0.125383822588878,0.753188258850124,0.0743348620397769,0.0625077072578238,0.0718969381037703,"NA","NA","NA","NA"]},"columns":[{"id":"State","name":"State","type":"character"},{"id":"Population","name":"Population","type":"numeric","format":{"cell":{"separators":true},"aggregated":{"separators":true}}},{"id":"Cases","name":"Cases","type":"numeric","format":{"cell":{"separators":true},"aggregated":{"separators":true}}},{"id":"cases_per_pop","name":"Percent of Cases","type":"numeric","format":{"cell":{"digits":2,"percent":true},"aggregated":{"digits":2,"percent":true}}},{"id":"Deaths","name":"Deaths","type":"numeric","format":{"cell":{"separators":true},"aggregated":{"separators":true}}},{"id":"deaths_per_pop","name":"Percent of Deaths","type":"numeric","format":{"cell":{"digits":2,"percent":true},"aggregated":{"digits":2,"percent":true}}},{"id":"full_vacc","name":"Fully Vaccinated","type":"numeric","format":{"cell":{"separators":true},"aggregated":{"separators":true}}},{"id":"full_vacc_per_pop","name":"Percent Fully Vaccinated","type":"numeric","format":{"cell":{"digits":2,"percent":true},"aggregated":{"digits":2,"percent":true}}},{"id":"partial_vacc","name":"Partially Vaccinated","type":"numeric","format":{"cell":{"separators":true},"aggregated":{"separators":true}}},{"id":"partial_vacc_per_pop","name":"Percent Partially Vaccinated","type":"numeric","format":{"cell":{"digits":2,"percent":true},"aggregated":{"digits":2,"percent":true}}}],"defaultSorted":[{"id":"Cases","desc":true}],"defaultPageSize":5,"showPageSizeOptions":true,"pageSizeOptions":[5,10,20,50],"highlight":true,"bordered":true,"theme":{"color":"hsl(233, 9%, 87%)","backgroundColor":"hsl(233, 9%, 19%)","borderColor":"hsl(233, 9%, 22%)","stripedColor":"hsl(233, 12%, 22%)","highlightColor":"hsl(233, 12%, 24%)","inputStyle":{"backgroundColor":"hsl(233, 9%, 25%)"},"selectStyle":{"backgroundColor":"hsl(233, 9%, 25%)"},"pageButtonHoverStyle":{"backgroundColor":"hsl(233, 9%, 25%)"},"pageButtonActiveStyle":{"backgroundColor":"hsl(233, 9%, 28%)"}},"dataKey":"84b18e1bce04e6e8c1ddad55da82efd2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+</section>
+<section id="or-figs." class="level1">
+<h1>OR FIGS.</h1>
+<section id="tables-1" class="level2">
+<h2 class="anchored" data-anchor-id="tables-1">Tables</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="reactable html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-972746f948a459eed87e" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-972746f948a459eed87e">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"County":["Baker","Benton","Clackamas","Clatsop","Columbia","Coos","Crook","Curry","Deschutes","Douglas","Gilliam","Grant","Harney","Hood River","Jackson","Jefferson","Josephine","Klamath","Lake","Lane","Lincoln","Linn","Malheur","Marion","Morrow","Multnomah","Polk","Sherman","Tillamook","Umatilla","Union","Wallowa","Wasco","Washington","Wheeler","Yamhill"],"Population":[16124,93053,418187,40224,52354,64487,24404,22925,197692,110980,1912,7199,7393,23382,220944,24658,87487,68238,7869,382067,49962,129749,30571,347818,11603,812855,86085,1780,27036,77950,26835,7208,26682,601592,1332,107100],"Cases":[3231,16301,63827,4810,7987,10849,6158,3385,47906,20020,284,1704,1617,3698,43552,7319,16627,14285,1429,59853,7223,27257,8251,70744,2980,123906,15778,321,3827,22545,5068,1267,5218,91092,246,18265],"cases_per_pop":[0.200384519970231,0.175179736279325,0.152627891350042,0.119580350039777,0.152557588722925,0.168235458309427,0.252335682674971,0.147655398037077,0.242326447200696,0.180392863579023,0.148535564853556,0.236699541603,0.218720411199784,0.158155846377555,0.197117821710479,0.296820504501582,0.190051093305291,0.20934083648407,0.181598678358114,0.156655769799538,0.144569873103559,0.210074836800284,0.269896306957574,0.203393728904197,0.256830130138757,0.152433090772647,0.183283963524424,0.180337078651685,0.141552004734428,0.289223861449647,0.188857834917086,0.175776914539401,0.195562551532869,0.15141823694464,0.184684684684685,0.170541549953315],"Deaths":[48,71,632,50,95,153,79,54,286,396,5,21,38,44,535,92,339,222,29,541,85,268,108,721,34,1207,134,6,64,225,80,16,63,594,3,222],"deaths_per_pop":[0.00297692880178616,0.000763006028822284,0.001511285621026,0.00124303898170247,0.00181457004240364,0.00237257121590398,0.00323717423373217,0.00235550708833152,0.00144669485866904,0.00356821048837628,0.00261506276150628,0.00291707181552993,0.00513999729473827,0.00188178941065777,0.00242142805416757,0.0037310406358991,0.00387486140798061,0.0032533192649257,0.0036853475663998,0.00141598201362588,0.00170129298266683,0.00206552651658202,0.003532759805044,0.00207292319546429,0.00293027665258985,0.00148488967897103,0.00155660103386188,0.00337078651685393,0.00236721408492381,0.00288646568313021,0.00298118129308739,0.00221975582685905,0.00236114234315269,0.0009873801513318,0.00225225225225225,0.00207282913165266]},"columns":[{"id":"County","name":"County","type":"character"},{"id":"Population","name":"Population","type":"numeric","format":{"cell":{"separators":true},"aggregated":{"separators":true}}},{"id":"Cases","name":"Cases","type":"numeric","format":{"cell":{"separators":true},"aggregated":{"separators":true}}},{"id":"cases_per_pop","name":"Percent of Cases","type":"numeric","format":{"cell":{"digits":2,"percent":true},"aggregated":{"digits":2,"percent":true}}},{"id":"Deaths","name":"Deaths","type":"numeric","format":{"cell":{"separators":true},"aggregated":{"separators":true}}},{"id":"deaths_per_pop","name":"Percent of Deaths","type":"numeric","format":{"cell":{"digits":2,"percent":true},"aggregated":{"digits":2,"percent":true}}}],"defaultSorted":[{"id":"Cases","desc":true}],"defaultPageSize":5,"showPageSizeOptions":true,"pageSizeOptions":[5,10,20,50],"highlight":true,"bordered":true,"theme":{"color":"hsl(233, 9%, 87%)","backgroundColor":"hsl(233, 9%, 19%)","borderColor":"hsl(233, 9%, 22%)","stripedColor":"hsl(233, 12%, 22%)","highlightColor":"hsl(233, 12%, 24%)","inputStyle":{"backgroundColor":"hsl(233, 9%, 25%)"},"selectStyle":{"backgroundColor":"hsl(233, 9%, 25%)"},"pageButtonHoverStyle":{"backgroundColor":"hsl(233, 9%, 25%)"},"pageButtonActiveStyle":{"backgroundColor":"hsl(233, 9%, 28%)"}},"dataKey":"6ba41e32416662fa6adb6641903c2d98"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cases_tb <span class="ot">&lt;-</span> or_current <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(County, Population, Cases, cases_per_pop) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(cases_per_pop)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>cases_tb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="lcskjbvoet" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#lcskjbvoet) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#lcskjbvoet) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#lcskjbvoet) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#lcskjbvoet) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#lcskjbvoet) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#lcskjbvoet) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#lcskjbvoet) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#lcskjbvoet) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#lcskjbvoet) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#lcskjbvoet) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#lcskjbvoet) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#lcskjbvoet) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#lcskjbvoet) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#lcskjbvoet) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#lcskjbvoet) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#lcskjbvoet) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#lcskjbvoet) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#lcskjbvoet) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#lcskjbvoet) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#lcskjbvoet) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#lcskjbvoet) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#lcskjbvoet) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#lcskjbvoet) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#lcskjbvoet) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#lcskjbvoet) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#lcskjbvoet) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#lcskjbvoet) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#lcskjbvoet) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#lcskjbvoet) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#lcskjbvoet) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#lcskjbvoet) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#lcskjbvoet) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#lcskjbvoet) .gt_left {
+  text-align: left;
+}
+
+:where(#lcskjbvoet) .gt_center {
+  text-align: center;
+}
+
+:where(#lcskjbvoet) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#lcskjbvoet) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#lcskjbvoet) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#lcskjbvoet) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#lcskjbvoet) .gt_super {
+  font-size: 65%;
+}
+
+:where(#lcskjbvoet) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#lcskjbvoet) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#lcskjbvoet) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#lcskjbvoet) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#lcskjbvoet) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#lcskjbvoet) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#lcskjbvoet) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="County">County</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Population">Population</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Cases">Cases</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cases_per_pop">cases_per_pop</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="County" class="gt_row gt_left">Jefferson</td>
+<td headers="Population" class="gt_row gt_right">24658</td>
+<td headers="Cases" class="gt_row gt_right">7319</td>
+<td headers="cases_per_pop" class="gt_row gt_right">0.2968205</td></tr>
+    <tr><td headers="County" class="gt_row gt_left">Umatilla</td>
+<td headers="Population" class="gt_row gt_right">77950</td>
+<td headers="Cases" class="gt_row gt_right">22545</td>
+<td headers="cases_per_pop" class="gt_row gt_right">0.2892239</td></tr>
+    <tr><td headers="County" class="gt_row gt_left">Malheur</td>
+<td headers="Population" class="gt_row gt_right">30571</td>
+<td headers="Cases" class="gt_row gt_right">8251</td>
+<td headers="cases_per_pop" class="gt_row gt_right">0.2698963</td></tr>
+    <tr><td headers="County" class="gt_row gt_left">Morrow</td>
+<td headers="Population" class="gt_row gt_right">11603</td>
+<td headers="Cases" class="gt_row gt_right">2980</td>
+<td headers="cases_per_pop" class="gt_row gt_right">0.2568301</td></tr>
+    <tr><td headers="County" class="gt_row gt_left">Crook</td>
+<td headers="Population" class="gt_row gt_right">24404</td>
+<td headers="Cases" class="gt_row gt_right">6158</td>
+<td headers="cases_per_pop" class="gt_row gt_right">0.2523357</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,20 @@
+---
+title: "Contact"
+about:
+  template: jolla
+  links:
+    - icon: file-person
+      text: Blog
+      href: https://www.rbolt.me/ 
+    - icon: envelope
+      text: Email
+      href: randibolt93@gmail.com
+    - icon: github
+      text: Github
+      href: https://github.com/rbolt13/
+    - icon: linkedin
+      text: Linkedin
+      href: https://www.linkedin.com/in/randi-bolt/
+---
+
+Comments, questions, and suggestions regarding this COVID-19 analysis are encouraged. </br>Please feel free to contact me using the information below. </br>I appreciate your interest in this project and look forward to hearing from you. </br>Thank you for your support!

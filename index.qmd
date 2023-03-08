@@ -1,0 +1,15 @@
+---
+title: "Introduction"
+about: 
+  template: jolla
+---
+
+```{r set up}
+#| include: false
+here::i_am("index.qmd")
+knitr::opts_chunk$set(
+  warning = FALSE, 
+  message = FALSE)
+```
+
+The COVID-19 pandemic has had a significant impact on the world, and the United States has been hit particularly hard. With millions of reported cases and hundreds of thousands of deaths, the need for accurate data analysis has become increasingly important. This data analysis project focuses on the cases and deaths related to COVID-19 in the United States and my home state, Oregon. The goal of this project is to explore and compare the trends in cases and deaths in both areas. 

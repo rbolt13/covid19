@@ -1,0 +1,809 @@
+---
+toc: true
+title: "Analysis"
+about: 
+  template: jolla
+---
+
+```{r set up}
+#| include: false
+# location of file 
+here::i_am("analysis.qmd")
+# code chunk settings: hide all warning and messages
+knitr::opts_chunk$set(
+  warning = FALSE, 
+  message = FALSE)
+# load packages : see setup.qmd
+library(tidyverse)
+library(gt)
+library(plotly)
+# load data : see setup.qmd
+data_list <- readRDS(paste0(
+  "data/",
+  Sys.Date(),
+  "data_list.RDS"))
+# data
+us_case_num <- data_list[[7]]
+us_case_percent <- data_list[[8]]
+us_deaths_num <- data_list[[9]]
+us_death_percent <- data_list[[10]]
+or_case_num <- data_list[[11]]
+or_case_percent <- data_list[[12]]
+or_deaths_num <- data_list[[13]]
+or_death_percent <- data_list[[14]]
+```
+
+This COVID-19 analysis has two areas of interest. The first being the states of the Untied States and the second being the counties of Oregon. Both sections then explore the areas with the highest number of cases, highest percent of cases per population, highest number of deaths, and highest percent of deaths per population. 
+
+Knowing this information is important in several ways. It enables policymakers to tailor measure such as social distancing and stay-at-home orders to specific regions, thereby reducing the overall spread of the virus. Additionally, understanding which areas have been most affected by the pandemic can help identify population groups that may be at higher risk. Finally, tracking trends can help identify areas where the virus is spreading more rapidly and inform decisions around the allocation of resources and policy interventions. Overall, knowing areas with high numbers and percents of COVID-19 cases and deaths is critical in the fight against the pandemic and minimizing its impact on individuals and communities.
+
+# United States
+
+::: {.panel-tabset}
+
+### About 
+
+This section presents a detailed examination of COVID-19 cases and deaths in the United States. 
+
+### Number of Cases 
+
+::: columns
+::: {.column width="48%"}
+![](tables/current_us_case_num.png)
+:::
+::: {.column width="2%"}
+:::
+::: {.column width="48%"}
+
+</br>
+
+* With **`r formatC(us_case_num[[1,3]], format="d", big.mark=",")` total cases**, **`r us_case_num[[1,1]]`** has the most **cases of COVID-19**.
+
+* Followed by **`r us_case_num[[2,1]]`**  with **`r formatC(us_case_num[[2,3]], format="d", big.mark=",")` total cases**
+
+* Then, `r us_case_num[[3,1]]` (`r formatC(us_case_num[[3,3]], format="d", big.mark=",")` total cases), `r us_case_num[[4,1]]` (`r formatC(us_case_num[[4,3]], format="d", big.mark=",")` total cases), and `r us_case_num[[5,1]]` (`r formatC(us_case_num[[5,3]], format="d", big.mark=",")` total cases).
+:::
+:::
+
+```{r}
+#| echo: false
+us_case_num_graph <- data_list[[1]] %>%
+  ggplot(aes(
+    x = date,
+    y = cases,
+    color = state
+  )) + 
+  geom_line(
+    size = .8
+    ) +
+  scale_x_date(
+    date_breaks = "1 month", 
+    date_labels = "%m") +
+  ggtitle(
+    "Number of Cases"
+  ) +
+  xlab(
+    "Month"
+  ) +
+  ylab(
+    "Number of Cases"
+  ) + 
+  theme(
+    axis.text.x = element_text(
+      angle = 60, 
+      vjust = 0.5, 
+      hjust=1)
+    ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times"))
+ggplotly(us_case_num_graph)
+```
+
+</br>
+
+
+```{r}
+#| echo: false
+us_case_num_map <- data_list[[5]] %>%
+  ggplot(
+    aes(
+      long,
+      lat,
+      group = group,
+      fill = total_cases
+    )
+  ) +
+  geom_polygon(
+    color = "grey"
+  ) +
+  coord_quickmap() +
+  theme_minimal() +
+  ggtitle(
+    "Number of Cases"
+  ) +
+  xlab(
+    ""
+  ) +
+  ylab(
+    ""
+  ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times")
+    ) 
+ggplotly(us_case_num_map)
+```
+
+### Percent of Cases 
+
+::: columns
+::: {.column width="48%"}
+![](tables/current_us_case_percent.png)
+:::
+::: {.column width="2%"}
+:::
+::: {.column width="48%"}
+
+</br>
+
+* As of `r data_list[[3]]`, **`r us_case_percent[[1,1]]`** has the **highest percent of COVID-19 cases** per population, with  `r round(us_case_percent[[1,4]]*100, digits = 2)`%.
+
+
+* `r us_case_percent[[2,1]]` has the second highest percent of COVID-19 cases with `r round(us_case_percent[[2,4]]*100, digits = 2)`% of the population catching COVID-19,  followed by `r us_case_percent[[3,1]]` (`r round(us_case_percent[[3,4]]*100, digits = 2)`%), `r us_case_percent[[4,1]]` (`r round(us_case_percent[[4,4]]*100, digits = 2)`%), and `r us_case_percent[[5,1]]` (`r round(us_case_percent[[5,4]]*100, digits = 2)`%).
+
+:::
+:::
+
+```{r us case percent graph}
+#| echo: false
+us_case_perc_graph <- data_list[[1]] %>%
+  ggplot(aes(
+    x = date,
+    y = cases_per_pop,
+    color = state
+  )) + 
+  geom_line(
+    size = .8
+    ) +
+  scale_x_date(
+    date_breaks = "1 month", 
+    date_labels = "%m") +
+  ggtitle(
+    "Percent of Cases"
+  ) +
+  xlab(
+    "Month"
+  ) +
+  ylab(
+    "Percent of Cases"
+  ) + 
+  theme(
+    axis.text.x = element_text(
+      angle = 60, 
+      vjust = 0.5, 
+      hjust=1)
+    ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times")
+    ) + 
+  scale_y_continuous(
+    labels = scales::percent
+    ) 
+ggplotly(us_case_perc_graph)
+```
+
+</br>
+
+```{r us case percent map}
+#| echo: false
+us_cases_perc_map <- data_list[[5]] %>%
+  ggplot(
+    aes(
+      long,
+      lat,
+      group = group,
+      fill = total_cases_perc
+    )
+  ) +
+  geom_polygon(
+    color = "grey"
+  ) +
+  coord_quickmap() +
+  theme_minimal() +
+  ggtitle(
+    "Percent of Cases"
+  ) +
+  xlab(
+    ""
+  ) +
+  ylab(
+    ""
+  ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times")
+    ) 
+ggplotly(us_cases_perc_map)
+```
+
+### Number of Deaths 
+
+::: columns
+::: {.column width="48%"}
+![](tables/current_us_deaths_num.png)
+:::
+::: {.column width="2%"}
+:::
+::: {.column width="48%"}
+
+</br>
+
+* As of `r data_list[[3]]`, **`r us_deaths_num[[1,1]]`** has the **most COVID-19 related deaths**, with  `r formatC(us_deaths_num[[1,3]], format="d", big.mark=",")` total deaths.
+
+* `r us_deaths_num[[2,1]]` has the second most number of COVID-19 related deaths with `r formatC(us_deaths_num[[2,3]], format="d", big.mark=",")` total deaths,  followed by `r us_deaths_num[[3,1]]` (`r formatC(us_deaths_num[[3,3]], format="d", big.mark=",")` total deaths), `r us_deaths_num[[4,1]]` (`r formatC(us_deaths_num[[4,3]], format="d", big.mark=",")` total deaths), and `r us_deaths_num[[5,1]]` (`r formatC(us_deaths_num[[5,3]], format="d", big.mark=",")` total deaths).
+
+:::
+:::
+
+```{r us death num graph}
+#| echo: false
+us_death_num_graph <- data_list[[1]] %>%
+  ggplot(aes(
+    x = date,
+    y = deaths,
+    color = state
+  )) + 
+  geom_line(
+    size = .8
+    ) +
+  scale_x_date(
+    date_breaks = "1 month", 
+    date_labels = "%m") +
+  ggtitle(
+    "Number of Deaths"
+  ) +
+  xlab(
+    "Month"
+  ) +
+  ylab(
+    "Number of Deaths"
+  ) + 
+  theme(
+    axis.text.x = element_text(
+      angle = 60, 
+      vjust = 0.5, 
+      hjust=1)
+    ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times"))
+ggplotly(us_death_num_graph)
+```
+
+</br>
+
+```{r us death num map}
+#| echo: false
+us_death_num_map <- data_list[[5]] %>%
+  ggplot(
+    aes(
+      long,
+      lat,
+      group = group,
+      fill = total_deaths
+    )
+  ) +
+  geom_polygon(
+    color = "grey"
+  ) +
+  coord_quickmap() +
+  theme_minimal() +
+  ggtitle(
+    "Number of Deaths"
+  ) +
+  xlab(
+    ""
+  ) +
+  ylab(
+    ""
+  ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times")
+    ) 
+ggplotly(us_death_num_map)
+```
+
+### Percent of Deaths
+
+::: columns
+::: {.column width="48%"}
+![](tables/current_us_case_num.png)
+:::
+::: {.column width="2%"}
+:::
+::: {.column width="48%"}
+
+</br>
+
+* As of `r data_list[[3]]`, **`r us_death_percent[[1,1]]`** has the **highest percent of COVID-19 deaths** per population, with  `r round(us_death_percent[[1,4]]*100, digits = 3)`%.
+
+* `r us_death_percent[[2,1]]` has the second highest percent of COVID-19 deaths with `r round(us_death_percent[[2,4]]*100, digits = 3)`% of the population dying from COVID-19, followed by `r us_death_percent[[3,1]]` (`r round(us_death_percent[[3,4]]*100, digits = 3)`%), `r us_death_percent[[4,1]]` (`r round(us_death_percent[[4,4]]*100, digits = 3)`%), and `r us_death_percent[[5,1]]` (`r round(us_death_percent[[5,4]]*100, digits = 3)`%).
+
+:::
+:::
+
+```{r us death percent graph}
+#| echo: false
+us_death_perc_graph <- data_list[[1]] %>%
+  ggplot(aes(
+    x = date,
+    y = deaths_per_pop,
+    color = state
+  )) + 
+  geom_line(
+    size = .8
+    ) +
+  scale_x_date(
+    date_breaks = "1 month", 
+    date_labels = "%m") +
+  ggtitle(
+    "Percent of Deaths"
+  ) +
+  xlab(
+    "Month"
+  ) +
+  ylab(
+    "Percent of Deaths"
+  ) + 
+  theme(
+    axis.text.x = element_text(
+      angle = 60, 
+      vjust = 0.5, 
+      hjust=1)
+    ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times")
+    ) + 
+  scale_y_continuous(
+    labels = scales::percent
+    ) 
+ggplotly(us_death_perc_graph)
+```
+
+</br>
+
+
+```{r us death percent map}
+#| echo: false
+us_death_perc_map <- data_list[[5]] %>%
+  ggplot(
+    aes(
+      long,
+      lat,
+      group = group,
+      fill = total_deaths_perc
+    )
+  ) +
+  geom_polygon(
+    color = "grey"
+  ) +
+  coord_quickmap() +
+  theme_minimal() +
+  ggtitle(
+    "Percent of Deaths"
+  ) +
+  xlab(
+    ""
+  ) +
+  ylab(
+    ""
+  ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times")
+    ) 
+ggplotly(us_death_perc_map)
+```
+
+:::
+
+# Oregon 
+
+::: {.panel-tabset}
+
+### About
+
+This section presents a detailed examination of COVID-19 cases and deaths in the Oregon. 
+
+### Number of Cases
+
+::: columns
+::: {.column width="48%"}
+![](tables/current_or_case_num.png)
+:::
+::: {.column width="2%"}
+:::
+::: {.column width="48%"}
+
+</br>
+
+* As of `r data_list[[4]]`, **`r or_case_num[[1,1]]` county** has the **most cases of COVID-19**, with  `r formatC(or_case_num[[1,3]], format="d", big.mark=",")` total cases.
+
+* `r or_case_num[[2,1]]` county has the second most number of COVID-19 cases with `r formatC(or_case_num[[2,3]], format="d", big.mark=",")` total cases,  followed by `r or_case_num[[3,1]]` (`r formatC(or_case_num[[3,3]], format="d", big.mark=",")` total cases), `r or_case_num[[4,1]]` (`r formatC(or_case_num[[4,3]], format="d", big.mark=",")` total cases), and `r or_case_num[[5,1]]` (`r formatC(or_case_num[[5,3]], format="d", big.mark=",")` total cases).
+
+:::
+:::
+
+```{r or case num graph}
+#| echo: false
+or_case_num_graph <- data_list[[2]] %>%
+  ggplot(aes(
+    x = date,
+    y = cases,
+    color = county
+  )) + 
+  geom_line(
+    size = .8
+    ) +
+  scale_x_date(
+    date_breaks = "1 month", 
+    date_labels = "%m") +
+  ggtitle(
+    "Number of Cases"
+  ) +
+  xlab(
+    "Month"
+  ) +
+  ylab(
+    "Number of Cases"
+  ) + 
+  theme(
+    axis.text.x = element_text(
+      angle = 60, 
+      vjust = 0.5, 
+      hjust=1)
+    ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times"))
+ggplotly(or_case_num_graph)
+```
+
+</br>
+
+```{r or case num map }
+#| echo: false
+or_case_num_map <- data_list[[6]] %>%
+  ggplot(
+    aes(
+      lon,
+      lat,
+      group = group,
+      fill = total_cases
+    )
+  ) +
+  geom_polygon(
+    color = "grey"
+  ) +
+  coord_quickmap() +
+  theme_minimal() +
+  ggtitle(
+    "Number of Cases"
+  ) +
+  xlab(
+    ""
+  ) +
+  ylab(
+    ""
+  ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times")
+    ) 
+ggplotly(or_case_num_map)
+```
+
+### Percent of Cases
+
+::: columns
+::: {.column width="48%"}
+![](tables/current_or_case_percent.png)
+:::
+::: {.column width="2%"}
+:::
+::: {.column width="48%"}
+
+</br>
+
+* As of `r data_list[[4]]`, **`r or_case_percent[[1,1]]` county** has the **highest percent of COVID-19 cases** per population, with  `r round(or_case_percent[[1,4]]*100, digits = 2)`%.
+
+* `r or_case_percent[[2,1]]` county has the second highest percent of COVID-19 cases with `r round(or_case_percent[[2,4]]*100, digits = 2)`% of the population catching COVID-19,  followed by `r or_case_percent[[3,1]]` (`r round(or_case_percent[[3,4]]*100, digits = 2)`%), `r or_case_percent[[4,1]]` (`r round(or_case_percent[[4,4]]*100, digits = 2)`%), and `r or_case_percent[[5,1]]` (`r round(or_case_percent[[5,4]]*100, digits = 2)`%).
+
+:::
+:::
+
+```{r or case perc graph}
+#| echo: false
+or_case_perc_graph <- data_list[[2]] %>%
+  ggplot(aes(
+    x = date,
+    y = cases_per_pop,
+    color = county
+  )) + 
+  geom_line(
+    size = .8
+    ) +
+  scale_x_date(
+    date_breaks = "1 month", 
+    date_labels = "%m") +
+  ggtitle(
+    "Percent of Cases"
+  ) +
+  xlab(
+    "Month"
+  ) +
+  ylab(
+    "Percent of Cases"
+  ) + 
+  theme(
+    axis.text.x = element_text(
+      angle = 60, 
+      vjust = 0.5, 
+      hjust=1)
+    ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times")
+    ) + 
+  scale_y_continuous(
+    labels = scales::percent
+    ) 
+ggplotly(or_case_perc_graph)
+```
+
+</br>
+
+
+```{r or cases perc map}
+#| echo: false
+or_cases_perc_map <- data_list[[6]] %>%
+  ggplot(
+    aes(
+      lon,
+      lat,
+      group = group,
+      fill = total_cases_perc
+    )
+  ) +
+  geom_polygon(
+    color = "grey"
+  ) +
+  coord_quickmap() +
+  theme_minimal() +
+  ggtitle(
+    "Percent of Cases"
+  ) +
+  xlab(
+    ""
+  ) +
+  ylab(
+    ""
+  ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times")
+    ) 
+ggplotly(or_cases_perc_map)
+```
+
+### Number of Deaths
+
+::: columns
+::: {.column width="48%"}
+![](tables/current_or_case_num.png)
+:::
+::: {.column width="2%"}
+:::
+::: {.column width="48%"}
+
+</br>
+
+* As of `r data_list[[4]]`, **`r or_deaths_num[[1,1]]` county** has the **most COVID-19 related deaths**, with  `r formatC(or_deaths_num[[1,3]], format="d", big.mark=",")` total deaths.
+
+* `r or_deaths_num[[2,1]]` county has the second most number of COVID-19 related deaths with `r formatC(or_deaths_num[[2,3]], format="d", big.mark=",")` total deaths,  followed by `r or_deaths_num[[3,1]]` (`r formatC(or_deaths_num[[3,3]], format="d", big.mark=",")` total deaths), `r or_deaths_num[[4,1]]` (`r formatC(or_deaths_num[[4,3]], format="d", big.mark=",")` total deaths), and `r or_deaths_num[[5,1]]` (`r formatC(or_deaths_num[[5,3]], format="d", big.mark=",")` total deaths).
+
+:::
+:::
+
+```{r or death num graph}
+#| echo: false
+or_death_num_graph <- data_list[[2]] %>%
+  ggplot(aes(
+    x = date,
+    y = deaths,
+    color = county
+  )) + 
+  geom_line(
+    size = .8
+    ) +
+  scale_x_date(
+    date_breaks = "1 month", 
+    date_labels = "%m") +
+  ggtitle(
+    "Number of Deaths"
+  ) +
+  xlab(
+    "Month"
+  ) +
+  ylab(
+    "Number of Deaths"
+  ) + 
+  theme(
+    axis.text.x = element_text(
+      angle = 60, 
+      vjust = 0.5, 
+      hjust=1)
+    ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times"))
+ggplotly(or_death_num_graph)
+```
+
+</br>
+
+```{r or death num map}
+#| echo: false
+or_death_num_map <- data_list[[6]] %>%
+  ggplot(
+    aes(
+      lon,
+      lat,
+      group = group,
+      fill = total_deaths
+    )
+  ) +
+  geom_polygon(
+    color = "grey"
+  ) +
+  coord_quickmap() +
+  theme_minimal() +
+  ggtitle(
+    "Number of Deaths"
+  ) +
+  xlab(
+    ""
+  ) +
+  ylab(
+    ""
+  ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times")
+    ) 
+ggplotly(or_death_num_map)
+```
+
+### Percent of Deaths 
+::: columns
+::: {.column width="48%"}
+![](tables/current_or_deaths_percent.png)
+:::
+::: {.column width="2%"}
+:::
+::: {.column width="48%"}
+
+</br>
+
+* As of `r data_list[[4]]`, **`r or_death_percent[[1,1]]` county** has the **highest percent of COVID-19 deaths** per population, with  `r round(or_death_percent[[1,4]]*100, digits = 4)`%.
+
+* `r or_death_percent[[2,1]]` county has the second highest percent of COVID-19 deaths with `r round(or_death_percent[[2,4]]*100, digits = 4)`% of the population dying from COVID-19, followed by `r or_death_percent[[3,1]]` (`r round(or_death_percent[[3,4]]*100, digits = 4)`%), `r or_death_percent[[4,1]]` (`r round(or_death_percent[[4,4]]*100, digits = 4)`%), and `r or_death_percent[[5,1]]` (`r round(or_death_percent[[5,4]]*100, digits = 4)`%).
+
+:::
+:::
+
+```{r or death perc graph}
+#| echo: false
+or_death_perc_graph <- data_list[[2]] %>%
+  ggplot(aes(
+    x = date,
+    y = deaths_per_pop,
+    color = county
+  )) + 
+  geom_line(
+    size = .8
+    ) +
+  scale_x_date(
+    date_breaks = "1 month", 
+    date_labels = "%m") +
+  ggtitle(
+    "Percent of Deaths"
+  ) +
+  xlab(
+    "Month"
+  ) +
+  ylab(
+    "Percent of Deaths"
+  ) + 
+  theme(
+    axis.text.x = element_text(
+      angle = 60, 
+      vjust = 0.5, 
+      hjust=1)
+    ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times")
+    ) + 
+  scale_y_continuous(
+    labels = scales::percent
+    ) 
+ggplotly(or_death_perc_graph)
+```
+
+</br>
+
+
+```{r or death perc map}
+#| echo: false
+or_death_perc_map <- data_list[[6]] %>%
+  ggplot(
+    aes(
+      lon,
+      lat,
+      group = group,
+      fill = total_deaths_perc
+    )
+  ) +
+  geom_polygon(
+    color = "grey"
+  ) +
+  coord_quickmap() +
+  theme_minimal() +
+  ggtitle(
+    "Percent of Deaths"
+  ) +
+  xlab(
+    ""
+  ) +
+  ylab(
+    ""
+  ) +
+  theme(
+    text = element_text(
+      size=16, 
+      family="Times")
+    ) 
+ggplotly(or_death_perc_map)
+```
+
+:::
+
+# Conclusion
+
+The pandemic has caused significant health and economic impacts across the United States and the state of Oregon. Through this data analysis, it was discovered that certain areas were hit harder by the virus than others. Moving forward , it will be crucial to continue tracking and analyzing COVID-19 data to inform public health policy decisions and ensure that resources are allocated effectively to prevent further spread of the virus and mitigate its impacts.
+
+One key finding was significant variation in the impact of the pandemic across different regions and communities. While some states and counties were relatively spared from the virus, others experienced a much higher burden of cases and deaths. This emphasizes the importance of targeted interventions and resources to support communities that have been disproportionately affected by the pandemic. 
+
+Another important insight from this analysis was the role of areas with higher populations. In the future this would be a great area to expand research upon, and look into population density, household incomes, and minority populations. Such information would highlight the need for a comprehensive, equity-focused response to the pandemic that addresses the underlying social determinants of health. 
+
+By continuing to monitor and analyze COVID-19 data, a deeper understanding of the factors driving the spread of the virus can be gained, and strategies to mitigate the impact can be effectively developed. 
