@@ -1,0 +1,15 @@
+---
+format: 
+  html:
+    page-layout: custom
+---
+
+```{r}
+#| panel: sidebar
+print("This is sidebar text")
+```
+
+```{r}
+#| panel: fill
+plot(cars)
+```

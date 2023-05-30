@@ -1,5 +1,4 @@
 ---
-title: "Introduction"
 about: 
   template: jolla
 ---
@@ -11,5 +10,17 @@ knitr::opts_chunk$set(
   warning = FALSE, 
   message = FALSE)
 ```
+
+<center>
+
+# --- Announcement ---
+
+I am excited to announce that this analysis has been updated to an interactive dashboard! By clicking the image below you will gain access to a dynamic and interactive dashboard where you can explore various data visualizations and insights. This dashboard provides a user-friendly interface to analyze and interpret information more efficiently. Feel free to click the image below and enjoy!
+
+[![](img/covid-dash.png)](https://rbolt13.github.io/covid-dashboard/)
+
+# Introduction
+
+</center>
 
 The COVID-19 pandemic has had a significant impact on the world, and the United States has been hit particularly hard. With millions of reported cases and hundreds of thousands of deaths, the need for accurate data analysis has become increasingly important. This data analysis project focuses on the cases and deaths related to COVID-19 in the United States and my home state, Oregon. The goal of this project is to explore and compare the trends in cases and deaths in both areas. 
